@@ -65,7 +65,7 @@ SELECT 'checkout_sessions', 'distinct experiment_group labels', COUNT(DISTINCT e
 SELECT shipping_city AS raw_city, COUNT(*) AS orders
 FROM raw.orders
 GROUP BY shipping_city
-ORDER BY orders DESC;
+ORDER BY orders DESC, raw_city NULLS LAST;
 
 -- name: label_inventory
 -- Every raw label used for payment, status, and experiment group.
@@ -76,4 +76,4 @@ UNION ALL
 SELECT 'experiment_group', experiment_group, COUNT(*) FROM raw.checkout_sessions GROUP BY experiment_group
 UNION ALL
 SELECT 'category', category, COUNT(*) FROM raw.products GROUP BY category
-ORDER BY field, rows_count DESC;
+ORDER BY field, rows_count DESC, raw_value NULLS LAST;
