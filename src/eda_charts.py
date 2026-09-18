@@ -110,7 +110,7 @@ def rto_drivers(con):
     order = ["First order\nAbove PKR 15,000", "First order\nPKR 15,000 or less",
              "Repeat order\nAbove PKR 15,000", "Repeat order\nPKR 15,000 or less"]
     fig, ax = plt.subplots(figsize=(10, 5))
-    sns.barplot(data=r, x="segment", y="rto_rate_pct", hue="payment_group", order=order,
+    sns.barplot(data=r, x="segment", y="rto_rate_pct", hue="payment_group", order=order, hue_order=["COD", "Prepaid"],
                 palette={"COD": COD, "Prepaid": PREPAID}, ax=ax)
     for c in ax.containers:
         ax.bar_label(c, fmt="%.1f%%", fontsize=9)

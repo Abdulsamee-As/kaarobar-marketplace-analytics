@@ -3,23 +3,23 @@ category,Fashion,147
 category,Home & Kitchen,97
 category,Mobile Accessories,85
 category,Beauty & Personal Care,69
-category,Grocery,62
 category,Electronics,62
+category,Grocery,62
 category,Footwear,50
 category,Baby & Toys,37
 category,beauty & personal care,4
-category,Beauty and Personal Care,3
+category,Fashion ,3
 category,Home and Kitchen,3
 category,fashion,3
-category,Fashion ,3
+category,Beauty and Personal Care,3
+category,MOBILE ACCESSORIES,2
 category,grocery,2
 category,home & kitchen,2
-category,MOBILE ACCESSORIES,2
 category,Mobile accessories,2
-category,Baby and Toys,1
-category,footwear,1
-category,Electronics ,1
 category,electronics,1
+category,Electronics ,1
+category,footwear,1
+category,Baby and Toys,1
 experiment_group,treatment,48291
 experiment_group,control,48002
 experiment_group,Treatment,806

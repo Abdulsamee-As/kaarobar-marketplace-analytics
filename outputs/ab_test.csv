@@ -1,9 +1,9 @@
 experiment_group,device_type,is_bot,sessions,orders,revenue
-treatment,Desktop,False,11678,7615.0,40798403.0
 control,Android,False,30115,16551.0,88712174.0
-control,Desktop,True,367,0.0,
-treatment,Android,False,30063,18332.0,100002304.0
-treatment,iOS,False,6722,4554.0,24298656.0
 control,Desktop,False,11766,7653.0,40975348.0
+control,Desktop,True,367,0.0,
 control,iOS,False,6714,4175.0,22139586.0
+treatment,Android,False,30063,18332.0,100002304.0
+treatment,Desktop,False,11678,7615.0,40798403.0
 treatment,Desktop,True,882,0.0,
+treatment,iOS,False,6722,4554.0,24298656.0

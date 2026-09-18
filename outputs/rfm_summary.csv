@@ -1,7 +1,7 @@
 segment,customers,avg_recency_days,avg_delivered_orders,net_revenue,revenue_share_pct
-Champions,4711,90.0,3.72,152367822.0,33.12
-New or promising,4147,95.0,1.0,12908044.0,2.81
 At risk,6367,585.0,2.66,157115519.0,34.15
-Loyal,5347,209.0,2.36,116516563.0,25.33
+Champions,4711,90.0,3.72,152367822.0,33.12
 Lost,4583,608.0,1.0,14424457.0,3.14
+Loyal,5347,209.0,2.36,116516563.0,25.33
 Needs attention,2220,281.0,1.0,6751681.0,1.47
+New or promising,4147,95.0,1.0,12908044.0,2.81

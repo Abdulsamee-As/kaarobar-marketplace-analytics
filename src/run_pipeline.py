@@ -75,7 +75,7 @@ def main() -> int:
         "SELECT table_name FROM information_schema.tables "
         "WHERE table_schema = 'mart' AND table_type = 'VIEW' ORDER BY table_name").fetchall()
     for (view,) in views:
-        con.execute(f"SELECT * FROM mart.{view}").df().to_csv(OUT_DIR / f"{view.removeprefix('v_')}.csv", index=False)
+        con.execute(f"SELECT * FROM mart.{view} ORDER BY ALL").df().to_csv(OUT_DIR / f"{view.removeprefix('v_')}.csv", index=False)
     print(f"\nexported {len(views)} analysis views to outputs/")
 
     failed = (checks.result == "FAIL").sum()

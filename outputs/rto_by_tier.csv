@@ -1,9 +1,9 @@
 city_tier,payment_group,shipped_orders,rto_rate_pct
-3,Prepaid,2482,1.33
-1,Prepaid,16232,1.39
-,Prepaid,1,0.0
-2,COD,12041,15.32
 1,COD,19831,14.25
-3,COD,7351,18.69
-,COD,2,0.0
+1,Prepaid,16232,1.39
+2,COD,12041,15.32
 2,Prepaid,6506,1.89
+3,COD,7351,18.69
+3,Prepaid,2482,1.33
+,COD,2,0.0
+,Prepaid,1,0.0
