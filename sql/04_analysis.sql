@@ -280,6 +280,7 @@ JOIN clean.sellers se ON se.seller_id = s.seller_id;
 
 -- Q12. RFM segmentation of customers with at least one delivered order.
 --      Recency, frequency, and monetary value each scored 1 to 5.
+--      customer_id breaks ties so the scores are identical on every run.
 CREATE OR REPLACE VIEW mart.v_rfm AS
 WITH base AS (
     SELECT customer_id,
@@ -292,9 +293,9 @@ WITH base AS (
 ),
 scored AS (
     SELECT *,
-           NTILE(5) OVER (ORDER BY recency_days DESC) AS r_score,
-           NTILE(5) OVER (ORDER BY frequency, monetary) AS f_score,
-           NTILE(5) OVER (ORDER BY monetary) AS m_score
+           NTILE(5) OVER (ORDER BY recency_days DESC, customer_id) AS r_score,
+           NTILE(5) OVER (ORDER BY frequency, monetary, customer_id) AS f_score,
+           NTILE(5) OVER (ORDER BY monetary, customer_id) AS m_score
     FROM base
 )
 SELECT *,

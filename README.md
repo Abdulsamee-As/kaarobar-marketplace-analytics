@@ -35,7 +35,7 @@ The full requirements, stakeholders, and metric definitions are in the [project 
 
 **6. Fashion returns are a sizing problem, and five sellers stand out.** Fashion has the highest return rate (15%), and 48% of those returns cite size or fit. A binomial z-test flags five sellers whose return rates are 1.6 to 2.8 times their category average, mostly for items "not as described".
 
-**7. A third of revenue sits with customers who have gone quiet.** RFM segmentation puts 6,365 customers in "At risk": they bought often but have not ordered in a long time. Together they account for 34% of net revenue, the largest share of any segment.
+**7. A third of revenue sits with customers who have gone quiet.** RFM segmentation puts 6,367 customers in "At risk": they bought often but have not ordered in a long time. Together they account for 34% of net revenue, the largest share of any segment.
 
 **8. The one-page checkout works on mobile, not on desktop.** Conversion rose from 58.4% to 62.9% overall (+4.5 points, p < 0.001): +6.0 points on Android and +5.6 on iOS, but +0.2 on desktop (p = 0.79, no real change). Bot sessions leaned toward the treatment group; left in, they would have understated the lift at 3.9 points.
 
