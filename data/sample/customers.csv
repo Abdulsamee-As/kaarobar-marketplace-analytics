@@ -1,0 +1,1001 @@
+customer_id,email,signup_date,city,acquisition_channel,device_type
+C000001,ahmed.khan1@example.com,2024-01-01,Multan,Organic Search,Android
+C000002,ali.akhtar2@example.com,2024-01-01,Lahore,Organic Search,Android
+C000003,asad.hussain3@example.com,2024-01-01,Mardan,Referral,Android
+C000004,faisal.shah4@example.com,2024-01-01,Karachi,Organic Search,Android
+C000005,danish.iqbal5@example.com,2024-01-01,Peshawar,App Store,Android
+C000006,haris.malik6@example.com,2024-01-01,Lahore,Paid Social,Desktop
+C000007,ahmed.ahmed7@example.com,2024-01-01,Rawalpindi,Paid Social,Desktop
+C000008,hira.raza8@example.com,2024-01-01,Karachi,Referral,iOS
+C000009,ayesha.butt9@example.com,2024-01-01,Gujranwala,Organic Search,Desktop
+C000010,asad.awan10@example.com,2024-01-01,Lahore,App Store,iOS
+C000011,sana.akhtar11@example.com,2024-01-01,Rawalpindi,Paid Social,iOS
+C000012,faisal.rana12@example.com,2024-01-01,Bahawalpur,Organic Search,iOS
+C000013,mahnoor.baig13@example.com,2024-01-01,Karachi,Direct,iOS
+C000014,sara.awan14@example.com,2024-01-01,Abbottabad,Paid Social,Android
+C000015,sara.baig15@example.com,2024-01-01,Islamabad,Paid Social,Desktop
+C000016,zain.chaudhry16@example.com,2024-01-01,Hyderabad,Direct,Desktop
+C000017,sana.baig17@example.com,2024-01-01,Islamabad,Organic Search,Android
+C000018,ahmed.ali18@example.com,2024-01-01,Gujranwala,Influencer,iOS
+C000019,faisal.ali19@example.com,2024-01-01,Sialkot,Paid Social,Android
+C000020,areeba.hussain20@example.com,2024-01-01,Lahore,App Store,Android
+C000021,iqra.sheikh21@example.com,2024-01-01,Multan,Paid Social,Android
+C000022,ibrahim.ali22@example.com,2024-01-01,Mardan,App Store,Android
+C000023,haris.qureshi23@example.com,2024-01-01,Peshawar,Influencer,iOS
+C000024,asad.rana24@example.com,2024-01-01,Abbottabad,Paid Social,Desktop
+C000025,hira.shah25@example.com,2024-01-01,Peshawar,Paid Social,iOS
+C000026,saad.iqbal26@example.com,2024-01-01,Lahore,app_store,Android
+C000027,ali.iqbal27@example.com,2024-01-01,Gujranwala,Paid Social,iOS
+C000028,ali.awan28@example.com,2024-01-01,Faisalabad,Organic Search,iOS
+C000029,amna.abbasi29@example.com,2024-01-01,Karachi,Direct,Desktop
+C000030,taimoor.raza30@example.com,2024-01-02,Karachi,Direct,iOS
+C000031,areeba.mirza31@example.com,2024-01-02,Lahore,Direct,Android
+C000032,ibrahim.akhtar32@example.com,2024-01-02,Peshawar,App Store,Android
+C000033,ibrahim.baig33@example.com,2024-01-02,Hyderabad,Referral,Android
+C000034,ibrahim.chaudhry34@example.com,2024-01-02,Gujranwala,App Store,Android
+C000035,rabia.shah35@example.com,2024-01-02,Karachi,App Store,iOS
+C000036,maryam.ali36@example.com,2024-01-02,Karachi,Referral,Android
+C000037,ali.rana37@example.com,2024-01-02,Lahore,Referral,Android
+C000038,ayesha.shah38@example.com,2024-01-02,Multan,Referral,Android
+C000039,bilal.rana39@example.com,2024-01-02,Gujranwala,Direct,Android
+C000040,ayesha.hussain40@example.com,2024-01-02,Sialkot,Organic Search,iOS
+C000041,zain.raza41@example.com,2024-01-02,Karachi,Paid Social,Android
+C000042,bilal.butt42@example.com,2024-01-02,Peshawar,Paid Social,Android
+C000043,sara.butt43@example.com,2024-01-02,Faisalabad,App Store,Android
+C000044,zainab.khan44@example.com,2024-01-02,Bahawalpur,Direct,Android
+C000045,hira.malik45@example.com,2024-01-02,Peshawar,App Store,Android
+C000046,hira.awan46@example.com,2024-01-02,Islamabad,Organic Search,iOS
+C000047,zainab.siddiqui47@example.com,2024-01-02,hyderabad,Organic Search,Android
+C000048,noor.awan48@example.com,2024-01-02,Lahore,Organic Search,iOS
+C000049,hassan.raza49@example.com,2024-01-03,Hyderabad,Influencer,Desktop
+C000050,usman.siddiqui50@example.com,2024-01-03,Hyderabad,Organic Search,iOS
+C000051,hamza.raza51@example.com,2024-01-03,sialkot,Paid Social,Android
+C000052,ali.javed52@example.com,2024-01-03,Lahore,Organic Search,Desktop
+C000053,ibrahim.chaudhry53@example.com,2024-01-03,Gujranwala,Paid Social,Android
+C000054,amna.hussain54@example.com,2024-01-03,Karachi ,Organic Search,Android
+C000055,ayesha.malik55@example.com,2024-01-03,peshawar,App Store,iOS
+C000056,ibrahim.abbasi56@example.com,2024-01-03,Bahawalpur,App Store,Desktop
+C000057,maryam.shah57@example.com,2024-01-03,Karachi,Direct,iOS
+C000058,iqra.malik58@example.com,2024-01-03,Faisalabad,Organic Search,Android
+C000059,maryam.akhtar59@example.com,2024-01-03,Faisalabad,Influencer,Android
+C000060,noor.ahmed60@example.com,2024-01-03,Gujranwala,Paid Social,Android
+C000061,usman.abbasi61@example.com,2024-01-03,Karachi,Organic Search,Android
+C000062,hassan.qureshi62@example.com,2024-01-03,Quetta,Direct,Android
+C000063,iqra.shah63@example.com,2024-01-03,Mardan,Referral,Android
+C000064,fatima.javed64@example.com,2024-01-03,Faisalabad,App Store,Android
+C000065,rabia.butt65@example.com,2024-01-03,Lahore Cantt,Referral,Android
+C000066,hira.mirza66@example.com,2024-01-03,Faisalabad,Organic Search,Android
+C000067,taimoor.awan67@example.com,2024-01-03,Karachi,organic,Android
+C000068,bilal.mirza68@example.com,2024-01-03,Peshawar,Paid Social,Android
+C000069,hira.sheikh69@example.com,2024-01-03,Karachi,App Store,Android
+C000070,danish.ali70@example.com,2024-01-04,Lahore,Direct,Desktop
+C000071,sana.abbasi71@example.com,2024-01-04,Karachi,App Store,Desktop
+C000072,ayesha.baig72@example.com,2024-01-04,Peshawar,Influencer,Android
+C000073,ali.khan73@example.com,2024-01-04,Rawalpindi,Paid Social,Android
+C000074,hamza.rana74@example.com,2024-01-04,Multan,Organic Search,Android
+C000075,hamza.khan75@example.com,2024-01-04,Karachi,Direct,Android
+C000076,faisal.qureshi76@example.com,2024-01-04,Lahore,App Store,Android
+C000077,ali.abbasi77@example.com,2024-01-04,Lahore,Paid Social,Android
+C000078,abdullah.shah78@example.com,2024-01-04,rawalpindi,Direct,Android
+C000079,ahmed.abbasi79@example.com,2024-01-04,KARACHI,Organic Search,Android
+C000080,rabia.akhtar80@example.com,2024-01-04,Faisalabad,Referral,Desktop
+C000081,hamza.abbasi81@example.com,2024-01-04,Lahore,Organic Search,Desktop
+C000082,iqra.rana82@example.com,2024-01-04,Quetta,Paid Social,iOS
+C000083,rabia.abbasi83@example.com,2024-01-04,Lahore,App Store,iOS
+C000084,maryam.raza84@example.com,2024-01-04,Karachi,Organic Search,Android
+C000085,ahmed.ali85@example.com,2024-01-04,Karachi,App Store,Android
+C000086,danish.khan86@example.com,2024-01-04,Lahore,Organic Search,Android
+C000087,maryam.raza87@example.com,2024-01-04,Lahore,Organic Search,Android
+C000088,zain.butt88@example.com,2024-01-04,Hyderabad,Organic Search,Android
+C000089,maryam.raza89@example.com,2024-01-04,Multan,Organic Search,Android
+C000090,amna.qureshi90@example.com,2024-01-04,Karachi,Direct,Android
+C000091,ahmed.chaudhry91@example.com,2024-01-04,gujranwala,Organic Search,Desktop
+C000092,khadija.awan92@example.com,2024-01-04,Karachi,Organic Search,Desktop
+C000093,ayesha.shah93@example.com,2024-01-04,Hyderabad,Influencer,iOS
+C000094,danish.butt94@example.com,2024-01-04,Karachi,Influencer,Android
+C000095,hassan.chaudhry95@example.com,2024-01-05,Lahore,Paid Social,Android
+C000096,usman.abbasi96@example.com,2024-01-05,Peshawar,Organic Search,Android
+C000097,zainab.sheikh97@example.com,2024-01-05,Lahore,Referral,Desktop
+C000098,saad.awan98@example.com,2024-01-05,Karachi,App Store,Desktop
+C000099,hira.rana99@example.com,2024-01-05,Hyderabad,Organic Search,Android
+C000100,rabia.shah100@example.com,2024-01-05,Multan,Direct,Android
+C000101,areeba.baig101@example.com,2024-01-05,Quetta,Referral,Android
+C000102,sana.qureshi102@example.com,2024-01-05,Faisalabad,Organic Search,Android
+C000103,danish.rana103@example.com,2024-01-05,Karachi,Paid Social,Desktop
+C000104,taimoor.hussain104@example.com,2024-01-05,Faisalabad,Paid Social,iOS
+C000105,usman.akhtar105@example.com,2024-01-05,Gujranwala,Organic Search,Desktop
+C000106,haris.chaudhry106@example.com,2024-01-05,Karachi,App Store,Desktop
+C000107,hassan.butt107@example.com,2024-01-05,Karachi,Organic Search,Android
+C000108,danish.siddiqui108@example.com,2024-01-05,Multan,Organic Search,Android
+C000109,ahmed.chaudhry109@example.com,2024-01-05,hyderabad,Organic Search,Android
+C000110,ayesha.raza110@example.com,2024-01-05,Lahore,App Store,Android
+C000111,asad.abbasi111@example.com,2024-01-05,Peshawar,Referral,Desktop
+C000112,mahnoor.butt112@example.com,2024-01-05,Karachi ,Organic Search,Android
+C000113,danish.raza113@example.com,2024-01-05,Lahore,Organic Search,iOS
+C000114,zain.sheikh114@example.com,2024-01-05,Peshawar,App Store,Desktop
+C000115,hamza.akhtar115@example.com,2024-01-05,Karachi,Paid Social,Android
+C000116,bilal.mirza116@example.com,2024-01-05,Lahore,Paid Social,Android
+C000117,noor.butt117@example.com,2024-01-05,Faisalabad,Paid Social,Android
+C000118,omar.iqbal118@example.com,2024-01-05,Lahore,App Store,Android
+C000119,asad.malik119@example.com,2024-01-05,Sialkot,Referral,Desktop
+C000120,maryam.mirza120@example.com,2024-01-05,Abbottabad,Referral,Desktop
+C000121,amna.hussain121@example.com,2024-01-06,Faisalabad,App Store,Android
+C000122,noor.akhtar122@example.com,2024-01-06,Hyderabad,organic,Android
+C000123,amna.baig123@example.com,2024-01-06,QUETTA,Organic Search,Android
+C000124,hamza.raza124@example.com,2024-01-06,MULTAN,App Store,Desktop
+C000125,ali.ali125@example.com,2024-01-06,Peshawar,App Store,Android
+C000126,areeba.iqbal126@example.com,2024-01-06,Karachi,Paid Social,iOS
+C000127,sana.hussain127@example.com,2024-01-06,Gujranwala,App Store,Desktop
+C000128,amna.akhtar128@example.com,2024-01-06,Lahore,App Store,Android
+C000129,danish.awan129@example.com,2024-01-06,Karachi,Paid Social,Android
+C000130,taimoor.awan130@example.com,2024-01-06,Rawalpindi,Direct,iOS
+C000131,faisal.iqbal131@example.com,2024-01-06,Karachi,Direct,Android
+C000132,zainab.khan132@example.com,2024-01-06,Karachi,App Store,iOS
+C000133,ali.baig133@example.com,2024-01-06,Faisalabad,Influencer,Android
+C000134,ahmed.malik134@example.com,2024-01-06,Karachi,App Store,Desktop
+C000135,mahnoor.siddiqui135@example.com,2024-01-06,Quetta,Influencer,Android
+C000136,noor.abbasi136@example.com,2024-01-06,Abbottabad,App Store,Android
+C000137,areeba.hussain137@example.com,2024-01-06,Peshawar,App Store,Android
+C000138,rabia.khan138@example.com,2024-01-06,Lahore,Paid Social,Android
+C000139,fatima.butt139@example.com,2024-01-06,Rawalpindi,Organic Search,iOS
+C000140,amna.ahmed140@example.com,2024-01-06,Karachi,Influencer,iOS
+C000141,faisal.baig141@example.com,2024-01-06,Faisalabad,App Store,Android
+C000142,mahnoor.raza142@example.com,2024-01-06,Lahore,Paid Social,Desktop
+C000143,mahnoor.baig143@example.com,2024-01-06,Islamabad,Organic Search,Android
+C000144,zainab.siddiqui144@example.com,2024-01-06,Karachi,Organic Search,Android
+C000145,hira.hussain145@example.com,2024-01-06,sargodha,Influencer,Android
+C000146,sara.shah146@example.com,2024-01-06,Karachi,paid social,Desktop
+C000147,zainab.javed147@example.com,,Lahore,Referral,Android
+C000148,faisal.awan148@example.com,2024-01-06,Lahore,Organic Search,Android
+C000149,saad.awan149@example.com,2024-01-07,Rawalpindi,Organic Search,Desktop
+C000150,sana.chaudhry150@example.com,2024-01-07,Quetta,Referral,Android
+C000151,amna.baig151@example.com,2024-01-07,Karachi,Direct,Android
+C000152,noor.khan152@example.com,2024-01-07,Karachi,Influencer,Android
+C000153,ahmed.qureshi153@example.com,2024-01-07,Karachi,Direct,iOS
+C000154,danish.baig154@example.com,2024-01-07,Rawalpindi,App Store,Android
+C000155,hira.javed155@example.com,2024-01-07,Rawalpindi,Direct,Android
+C000156,danish.malik156@example.com,2024-01-07,Gujranwala,Referral,Android
+C000157,faisal.siddiqui157@example.com,2024-01-07,Gujranwala,Influencer,Android
+C000158,maryam.qureshi158@example.com,2024-01-07,Karachi,Paid Social,Android
+C000159,fatima.hussain159@example.com,2024-01-07,Quetta,Referral,Android
+C000160,rabia.akhtar160@example.com,2024-01-07,Gujranwala,Paid Social,Desktop
+C000161,ahmed.raza161@example.com,2024-01-07,FSD,App Store,Android
+C000162,danish.khan162@example.com,2024-01-07,Lahore,App Store,Android
+C000163,sana.malik163@example.com,2024-01-07,Peshawar,Organic Search,Android
+C000164,amna.awan164@example.com,2024-01-07,Faisalabad,App Store,iOS
+C000165,abdullah.sheikh165@example.com,2024-01-07,Lahore,App Store,Android
+C000166,sana.butt166@example.com,2024-01-07,Karachi,Instagram Ads,Android
+C000167,ali.shah167@example.com,2024-01-07,Rawalpindi,Direct,Android
+C000168,iqra.javed168@example.com,2024-01-07,Rawalpindi,Direct,Android
+C000169,rabia.siddiqui169@example.com,2024-01-07,Karachi,App Store,Android
+C000170,taimoor.siddiqui170@example.com,2024-01-07,Quetta,Paid Social,Android
+C000171,hassan.ahmed171@example.com,2024-01-07,Karachi,Organic Search,Android
+C000172,sana.butt172@example.com,2024-01-07,Lahore,Direct,Android
+C000173,omar.raza173@example.com,2024-01-07,Lahore,Influencer,Android
+C000174,iqra.qureshi174@example.com,2024-01-07,Multan,Direct,Desktop
+C000175,ahmed.abbasi175@example.com,2024-01-07,Karachi,Paid Social,Desktop
+C000176,ali.chaudhry176@example.com,2024-01-07,Multan,Paid Social,Android
+C000177,haris.iqbal177@example.com,2024-01-07,Lahore,App Store,Android
+C000178,maryam.awan178@example.com,2024-01-07,Karachi,Influencer,Android
+C000179,ali.baig179@example.com,2024-01-07,Karachi,Referral,Android
+C000180,faisal.malik180@example.com,2024-01-07,Lahore,Paid Social,Android
+C000181,iqra.hussain181@example.com,2024-01-07,Lahore,Paid Social,Desktop
+C000182,omar.hussain182@example.com,2024-01-07,Karachi,Referral,iOS
+C000183,asad.malik183@example.com,2024-01-07,Islamabad,Direct,Desktop
+C000184,noor.baig184@example.com,2024-01-08,Islamabad,Referral,Android
+C000185,hira.abbasi185@example.com,2024-01-08,Sargodha,organic,Android
+C000186,haris.ahmed186@example.com,2024-01-08,Multan,Direct,iOS
+C000187,noor.awan187@example.com,2024-01-08,Karachi,Referral,Android
+C000188,omar.baig188@example.com,2024-01-08,Islamabad,App Store,Android
+C000189,khadija.rana189@example.com,2024-01-08,Karachi,Direct,Desktop
+C000190,sara.ali190@example.com,2024-01-08,Islamabad,Organic Search,Desktop
+C000191,bilal.javed191@example.com,2024-01-08,Lahore,Referral,Android
+C000192,maryam.mirza192@example.com,2024-01-08,Quetta,Organic Search,Android
+C000193,hamza.malik193@example.com,2024-01-08,Islamabad,App Store,Android
+C000194,usman.abbasi194@example.com,2024-01-08,Gujranwala,Organic Search,Android
+C000195,ahmed.hussain195@example.com,2024-01-08,Rawalpindi,Influencer,Android
+C000196,iqra.akhtar196@example.com,2024-01-08,Lahore,app_store,Android
+C000197,sara.qureshi197@example.com,2024-01-08,Karachi,Influencer,Android
+C000198,mahnoor.qureshi198@example.com,2024-01-08,Karachi,Direct,iOS
+C000199,ayesha.chaudhry199@example.com,2024-01-08,Hyderabad,App Store,Desktop
+C000200,iqra.baig200@example.com,2024-01-08,Quetta,Influencer,Android
+C000201,iqra.mirza201@example.com,2024-01-08,,Paid Social,Android
+C000202,ibrahim.malik202@example.com,2024-01-08,Islamabad,Influencer,Android
+C000203,sara.ali203@example.com,2024-01-08,Lahore,Organic Search,iOS
+C000204,asad.mirza204@example.com,2024-01-08,Islamabad,App Store,Android
+C000205,ibrahim.qureshi205@example.com,2024-01-08,Sialkot,Referral,Android
+C000206,mahnoor.baig206@example.com,2024-01-09,Karachi,App Store,Android
+C000207,sana.javed207@example.com,2024-01-09,Lahore,Referral,Android
+C000208,maryam.malik208@example.com,2024-01-09,Multan,App Store,Android
+C000209,asad.rana209@example.com,2024-01-09,Lahore,App Store,Desktop
+C000210,iqra.rana210@example.com,2024-01-09,Karachi,Referral,Desktop
+C000211,abdullah.abbasi211@example.com,2024-01-09,Lahore,Facebook Ads,Android
+C000212,mahnoor.javed212@example.com,2024-01-09,Faisalabad,Direct,Android
+C000213,sara.iqbal213@example.com,2024-01-09,Sargodha,Organic Search,Android
+C000214,sana.ali214@example.com,2024-01-09,Quetta,Paid Social,Android
+C000215,asad.butt215@example.com,2024-01-09,Rawalpindi,Influencer,Android
+C000216,bilal.raza216@example.com,2024-01-09,hyderabad,Paid Social,Android
+C000217,faisal.baig217@example.com,2024-01-09,Rawalpindi,App Store,Android
+C000218,hassan.iqbal218@example.com,2024-01-09,Islamabad,Organic Search,Android
+C000219,mahnoor.chaudhry219@example.com,2024-01-09,Karachi,Organic Search,Android
+C000220,usman.javed220@example.com,2024-01-09,Lahore,Facebook Ads,iOS
+C000221,noor.iqbal221@example.com,2024-01-09,Islamabad,Organic Search,iOS
+C000222,haris.raza222@example.com,2024-01-09,sargodha,Paid Social,Desktop
+C000223,fatima.awan223@example.com,2024-01-09,FSD,Paid Social,Android
+C000224,omar.ahmed224@example.com,2024-01-09,Sukkur,App Store,Android
+C000225,hira.abbasi225@example.com,2024-01-09,Lahore,Direct,Android
+C000226,ibrahim.mirza226@example.com,2024-01-09,Karachi,Paid Social,Android
+C000227,areeba.ali227@example.com,2024-01-09,Sargodha,App Store,Desktop
+C000228,noor.sheikh228@example.com,2024-01-09,Lahore,Organic Search,iOS
+C000229,noor.shah229@example.com,2024-01-09,Islamabad,Paid Social,Android
+C000230,faisal.mirza230@example.com,2024-01-09,Karachi,Referral,Android
+C000231,sara.ahmed231@example.com,2024-01-09,Sialkot,Referral,Android
+C000232,faisal.chaudhry232@example.com,2024-01-09,Karachi,Paid Social,Android
+C000233,ahmed.iqbal233@example.com,2024-01-09,Quetta,Influencer,Android
+C000234,ayesha.malik234@example.com,2024-01-10,Karachi,Influencer,Desktop
+C000235,ayesha.akhtar235@example.com,2024-01-10,Karachi,Referral,iOS
+C000236,omar.butt236@example.com,2024-01-10,Gujranwala,Paid Social,Android
+C000237,amna.shah237@example.com,2024-01-10,lahore,Paid Social,Android
+C000238,areeba.chaudhry238@example.com,2024-01-10,Lahore,App Store,iOS
+C000239,fatima.ali239@example.com,2024-01-10,Rawalpindi,Paid Social,Desktop
+C000240,danish.akhtar240@example.com,2024-01-10,Lahore Cantt,App Store,Android
+C000241,asad.abbasi241@example.com,2024-01-10,Lahore,Paid Social,Android
+C000242,ibrahim.javed242@example.com,2024-01-10,Karachi,Paid Social,Desktop
+C000243,ayesha.raza243@example.com,2024-01-10,Rawalpindi,Direct,Android
+C000244,taimoor.iqbal244@example.com,2024-01-10,Karachi,App Store,Android
+C000245,khadija.baig245@example.com,2024-01-10,Gujranwala,Organic Search,Android
+C000246,zainab.abbasi246@example.com,2024-01-10,Peshawar,Paid Social,iOS
+C000247,zain.hussain247@example.com,2024-01-10,Lahore,App Store,Desktop
+C000248,omar.javed248@example.com,2024-01-10,Islamabad ,Organic Search,Android
+C000249,asad.shah249@example.com,2024-01-10,Rawalpindi,Influencer,Desktop
+C000250,khadija.raza250@example.com,2024-01-10,faisalabad,Paid Social,Desktop
+C000251,usman.abbasi251@example.com,2024-01-10,Lahore,Referral,Desktop
+C000252,sara.javed252@example.com,2024-01-10,Faisalabad,Referral,Android
+C000253,amna.rana253@example.com,2024-01-10,Karachi,Direct,iOS
+C000254,danish.chaudhry254@example.com,2024-01-10,Islamabad,Referral,Android
+C000255,faisal.abbasi255@example.com,2024-01-10,Karachi,Organic Search,iOS
+C000256,saad.shah256@example.com,2024-01-10,Sukkur,Direct,Android
+C000257,rabia.malik257@example.com,2024-01-10,Lahore,Paid Social,Desktop
+C000258,hamza.hussain258@example.com,2024-01-10,Faisalabad,Direct,Desktop
+C000259,mahnoor.ahmed259@example.com,2024-01-10,Islamabad,Referral,iOS
+C000260,hira.hussain260@example.com,2024-01-10,Karachi,Paid Social,iOS
+C000261,maryam.malik261@example.com,2024-01-10,Karachi,Paid Social,Desktop
+C000262,ali.javed262@example.com,2024-01-11,Lahore,App Store,Desktop
+C000263,areeba.baig263@example.com,2024-01-11,Faisalabad,Paid Social,Android
+C000264,noor.malik264@example.com,2024-01-11,Faisalabad,Direct,Android
+C000265,usman.chaudhry265@example.com,2024-01-11,Karachi,Paid Social,Android
+C000266,zain.iqbal266@example.com,2024-01-11,Islamabad,App Store,Desktop
+C000267,iqra.iqbal267@example.com,2024-01-11,Lahore,Influencer,Desktop
+C000268,hassan.javed268@example.com,2024-01-11,Rawalpindi,App Store,Android
+C000269,ali.baig269@example.com,2024-01-11,Lahore,App Store,Android
+C000270,faisal.qureshi270@example.com,2024-01-11,Quetta,App Store,Android
+C000271,abdullah.hussain271@example.com,2024-01-11,Islamabad,App Store,Desktop
+C000272,ayesha.abbasi272@example.com,2024-01-11,Lahore Cantt,App Store,Android
+C000273,sana.raza273@example.com,2024-01-11,Multan,Paid Social,iOS
+C000274,noor.butt274@example.com,2024-01-11,Hyderabad,Paid Social,Android
+C000275,hira.siddiqui275@example.com,2024-01-11,Lahore,Referral,Desktop
+C000276,zainab.shah276@example.com,2024-01-11,Karachi,Paid Social,Android
+C000277,ahmed.iqbal277@example.com,2024-01-11,"Karachi, Sindh",Paid Social,Android
+C000278,taimoor.shah278@example.com,2024-01-11,Lahore,Organic Search,Android
+C000279,sara.mirza279@example.com,2024-01-11,Peshawar,Direct,Desktop
+C000280,zainab.chaudhry280@example.com,2024-01-11,Faisalabad,App Store,Android
+C000281,mahnoor.sheikh281@example.com,2024-01-12,Lahore,Organic Search,Android
+C000282,ahmed.ali282@example.com,2024-01-12,Karachi,App Store,Android
+C000283,ibrahim.raza283@example.com,2024-01-12,Faisalabad,App Store,Android
+C000284,amna.rana284@example.com,2024-01-12,Rawalpindi,App Store,Android
+C000285,amna.raza285@example.com,2024-01-12,Pesh,Paid Social,Android
+C000286,rabia.siddiqui286@example.com,2024-01-12,Multan,Influencer,Android
+C000287,amna.baig287@example.com,2024-01-12,Lahore,Organic Search,Desktop
+C000288,faisal.akhtar288@example.com,2024-01-12,Peshawar,Organic Search,Android
+C000289,ibrahim.siddiqui289@example.com,2024-01-12,Islamabad,Organic Search,Android
+C000290,sana.iqbal290@example.com,2024-01-12,Rawalpindi,Influencer,Android
+C000291,saad.chaudhry291@example.com,2024-01-12,Lahore,Paid Social,Android
+C000292,taimoor.malik292@example.com,2024-01-12,HYD,Organic Search,Android
+C000293,zain.qureshi293@example.com,2024-01-12,Karachi,Influencer,Desktop
+C000294,khadija.abbasi294@example.com,2024-01-12,Karachi,Influencer,Android
+C000295,hamza.siddiqui295@example.com,2024-01-12,Lahore,Direct,Android
+C000296,hamza.ali296@example.com,2024-01-12,Hyderabad,App Store,Android
+C000297,ahmed.qureshi297@example.com,2024-01-12,Peshawar,Paid Social,iOS
+C000298,ayesha.ali298@example.com,2024-01-12,Lahore,Facebook Ads,Desktop
+C000299,usman.chaudhry299@example.com,2024-01-12,Karachi,Paid Social,iOS
+C000300,zainab.ahmed300@example.com,2024-01-12,Karachi,App Store,Desktop
+C000301,maryam.awan301@example.com,2024-01-12,Multan,Paid Social,Android
+C000302,noor.iqbal302@example.com,2024-01-12,Islamabad,Referral,Android
+C000303,saad.shah303@example.com,2024-01-12,Multan,App Store,Android
+C000304,khadija.khan304@example.com,2024-01-12,Multan,Direct,Desktop
+C000305,ali.malik305@example.com,2024-01-13,Gujranwala,Paid Social,Android
+C000306,zainab.sheikh306@example.com,2024-01-13, Lahore,Paid Social,Android
+C000307,taimoor.akhtar307@example.com,2024-01-13,Gujranwala,Referral,Android
+C000308,fatima.rana308@example.com,2024-01-13,Lahore,App Store,iOS
+C000309,faisal.akhtar309@example.com,2024-01-13,Multan,App Store,Android
+C000310,mahnoor.butt310@example.com,2024-01-13,Rawalpindi,Organic Search,Android
+C000311,amna.raza311@example.com,2024-01-13,Bahawalpur,Influencer,Android
+C000312,ibrahim.shah312@example.com,2024-01-13,Lahore,app_store,Desktop
+C000313,zain.sheikh313@example.com,2024-01-13,Multan,App Store,Android
+C000314,zainab.ali314@example.com,2024-01-13,Rawalpindi,Facebook Ads,Android
+C000315,zainab.chaudhry315@example.com,2024-01-13,Mardan,Direct,Android
+C000316,khadija.siddiqui316@example.com,2024-01-13,Karachi,Paid Social,iOS
+C000317,noor.awan317@example.com,2024-01-13,Rawalpindi,paid social,Android
+C000318,bilal.siddiqui318@example.com,2024-01-13,Karachi,App Store,Android
+C000319,taimoor.shah319@example.com,2024-01-13,Quetta,App Store,Desktop
+C000320,faisal.sheikh320@example.com,2024-01-13,Hyderabad,Organic Search,Android
+C000321,ayesha.ali321@example.com,2024-01-13,Faisalabad,App Store,Android
+C000322,amna.javed322@example.com,2024-01-13,Islamabad,Influencer,Android
+C000323,noor.iqbal323@example.com,2024-01-13,Multan,Paid Social,Android
+C000324,fatima.rana324@example.com,2024-01-13,Rawalpindi,App Store,Android
+C000325,zainab.iqbal325@example.com,2024-01-13,lahore,Organic Search,Android
+C000326,maryam.ahmed326@example.com,2024-01-13,Gujranwala,Direct,Desktop
+C000327,haris.rana327@example.com,2024-01-14,islamabad,organic,Desktop
+C000328,saad.baig328@example.com,2024-01-14,Lahore,App Store,iOS
+C000329,noor.ali329@example.com,2024-01-14,Faisalabad,Referral,Android
+C000330,zainab.raza330@example.com,2024-01-14,Karachi,App Store,Android
+C000331,rabia.malik331@example.com,2024-01-14,Multan,Paid Social,Desktop
+C000332,hassan.chaudhry332@example.com,2024-01-14,Islamabad,Referral,Android
+C000333,hira.iqbal333@example.com,2024-01-14,Faisalabad,Organic Search,Android
+C000334,ayesha.chaudhry334@example.com,2024-01-14,Karachi,Paid Social,Android
+C000335,omar.malik335@example.com,2024-01-14,Multan,Organic Search,Android
+C000336,hira.ahmed336@example.com,2024-01-14,Multan,Paid Social,Desktop
+C000337,noor.malik337@example.com,2024-01-14,Peshawar,Organic Search,Desktop
+C000338,ali.raza338@example.com,2024-01-14,Islamabad,Paid Social,Desktop
+C000339,omar.mirza339@example.com,2024-01-14,Faisalabad,app_store,Android
+C000340,hamza.javed340@example.com,2024-01-14,Rawalpindi,Direct,Android
+C000341,sara.javed341@example.com,2024-01-14,Karachi,Referral,Desktop
+C000342,khadija.qureshi342@example.com,2024-01-14,Karachi,Referral,Android
+C000343,fatima.khan343@example.com,2024-01-14,Lahore,Direct,Desktop
+C000344,ibrahim.sheikh344@example.com,2024-01-14,Gujranwala,Paid Social,Android
+C000345,amna.chaudhry345@example.com,2024-01-14,Lahore,Google Organic,Desktop
+C000346,hamza.abbasi346@example.com,2024-01-14,Peshawar,Paid Social,Android
+C000347,sana.rana347@example.com,2024-01-14,Faisalabad,Paid Social,Android
+C000348,abdullah.ali348@example.com,2024-01-14,lahore,Organic Search,Android
+C000349,faisal.malik349@example.com,2024-01-14,Karachi,Organic Search,iOS
+C000350,ali.ali350@example.com,2024-01-14,Lahore,App Store,Android
+C000351,abdullah.sheikh351@example.com,2024-01-15,Lahore,Influencer,Android
+C000352,abdullah.malik352@example.com,2024-01-15,Karachi,App Store,Android
+C000353,zain.iqbal353@example.com,2024-01-15,Gujranwala,Paid Social,Android
+C000354,amna.baig354@example.com,2024-01-15,Abbottabad,Paid Social,Android
+C000355,faisal.rana355@example.com,2024-01-15,Karachi,Influencer,Desktop
+C000356,noor.khan356@example.com,2024-01-15,Karachi,Influencer,Android
+C000357,zain.ali357@example.com,2024-01-15,Faisalabad,Influencer,Android
+C000358,asad.akhtar358@example.com,2024-01-15,Sukkur,Influencer,Android
+C000359,khadija.malik359@example.com,2024-01-15,Sukkur,App Store,Android
+C000360,hira.khan360@example.com,2024-01-15,Bahawalpur,Paid Social,Android
+C000361,zain.akhtar361@example.com,2024-01-15,Lahore,Organic Search,Android
+C000362,noor.javed362@example.com,2024-01-15,Sargodha,Influencer,Android
+C000363,haris.awan363@example.com,2024-01-15,Lahore,App Store,iOS
+C000364,mahnoor.chaudhry364@example.com,2024-01-15,Karachi,Direct,Android
+C000365,hamza.malik365@example.com,2024-01-15,Multan,Paid Social,Android
+C000366,danish.shah366@example.com,2024-01-15,Rawalpindi,Organic Search,iOS
+C000367,ali.chaudhry367@example.com,2024-01-15,Hyderabad,Direct,Desktop
+C000368,taimoor.mirza368@example.com,2024-01-15,Faisalabad,Direct,Android
+C000369,fatima.ahmed369@example.com,2024-01-15,Gujranwala,Referral,iOS
+C000370,mahnoor.qureshi370@example.com,2024-01-15,Lahore,Referral,Android
+C000371,sara.khan371@example.com,2024-01-15,Lahore,Organic Search,iOS
+C000372,omar.siddiqui372@example.com,2024-01-16,Peshawar,Influencer,Desktop
+C000373,sara.sheikh373@example.com,2024-01-16,Islamabad,Influencer,Android
+C000374,ahmed.abbasi374@example.com,2024-01-16,Karachi,App Store,iOS
+C000375,rabia.javed375@example.com,2024-01-16,Lahore Cantt,Organic Search,iOS
+C000376,abdullah.shah376@example.com,2024-01-16,hyderabad,Influencer,Android
+C000377,asad.raza377@example.com,2024-01-16,Bahawalpur,Direct,Desktop
+C000378,noor.sheikh378@example.com,2024-01-16,Peshawar,Organic Search,Android
+C000379,omar.abbasi379@example.com,2024-01-16,Multan,Direct,Desktop
+C000380,fatima.sheikh380@example.com,2024-01-16,Hyderabad,App Store,iOS
+C000381,asad.chaudhry381@example.com,2024-01-16,KARACHI,Referral,Android
+C000382,usman.chaudhry382@example.com,2024-01-16,Rawalpindi,Organic Search,Android
+C000383,zainab.siddiqui383@example.com,2024-01-16,Rawalpindi,App Store,Android
+C000384,iqra.rana384@example.com,2024-01-16,Sukkur,Referral,Desktop
+C000385,sana.chaudhry385@example.com,2024-01-16,Karachi,App Store,iOS
+C000386,haris.siddiqui386@example.com,2024-01-16,Abbottabad,Paid Social,Android
+C000387,mahnoor.shah387@example.com,2024-01-16,Peshawar,Paid Social,Desktop
+C000388,fatima.raza388@example.com,2024-01-16,Karachi,Direct,iOS
+C000389,haris.khan389@example.com,2024-01-16,Islamabad,Paid Social,Android
+C000390,hira.raza390@example.com,2024-01-16,Karachi,Direct,iOS
+C000391,omar.butt391@example.com,2024-01-16,Rawalpindi,Paid Social,Android
+C000392,fatima.qureshi392@example.com,2024-01-16,Islamabad,App Store,iOS
+C000393,ali.khan393@example.com,2024-01-17,Peshawar,organic,iOS
+C000394,hassan.khan394@example.com,2024-01-17,Rawalpindi,Referral,iOS
+C000395,asad.malik395@example.com,2024-01-17,HYD,Direct,Desktop
+C000396,ali.ahmed396@example.com,2024-01-17,Lahore,Influencer,iOS
+C000397,faisal.malik397@example.com,2024-01-17,Sialkot,App Store,Android
+C000398,amna.iqbal398@example.com,2024-01-17,Sialkot,Direct,Android
+C000399,mahnoor.abbasi399@example.com,2024-01-17,Faisalabad,Organic Search,Android
+C000400,zainab.akhtar400@example.com,2024-01-17,Lahore,Paid Social,Desktop
+C000401,usman.ali401@example.com,2024-01-17,mardan,Organic Search,Android
+C000402,saad.malik402@example.com,2024-01-17,Gujranwala,Paid Social,Android
+C000403,danish.hussain403@example.com,2024-01-17,Gujranwala,Organic Search,Android
+C000404,ali.khan404@example.com,2024-01-17,Karachi,Paid Social,Android
+C000405,amna.ahmed405@example.com,2024-01-17,Gujranwala,Paid Social,Desktop
+C000406,hassan.mirza406@example.com,2024-01-17,Karachi,App Store,Android
+C000407,bilal.abbasi407@example.com,2024-01-17,Islamabad,Referral,Desktop
+C000408,saad.iqbal408@example.com,2024-01-17,Multan,Organic Search,Desktop
+C000409,abdullah.baig409@example.com,2024-01-17,Lahore,Paid Social,Desktop
+C000410,hamza.shah410@example.com,2024-01-17,Lahore,Direct,Android
+C000411,areeba.mirza411@example.com,2024-01-17,Islamabad,Organic Search,Android
+C000412,zainab.khan412@example.com,2024-01-17,Lahore,Paid Social,iOS
+C000413,khadija.hussain413@example.com,2024-01-17,Faisalabad,Paid Social,Android
+C000414,rabia.butt414@example.com,2024-01-17,Karachi,Influencer,iOS
+C000415,fatima.javed415@example.com,2024-01-17,Lahore,Paid Social,iOS
+C000416,abdullah.shah416@example.com,2024-01-17,Rawalpindi,Influencer,Android
+C000417,ali.ali417@example.com,2024-01-17,Mardan,Paid Social,Android
+C000418,maryam.hussain418@example.com,2024-01-17,Islamabad,Organic Search,Android
+C000419,ali.khan419@example.com,2024-01-17,Lahore,App Store,Android
+C000420,ali.sheikh420@example.com,2024-01-17,Sargodha,Referral,Android
+C000421,hamza.javed421@example.com,2024-01-18,Bahawalpur,App Store,Android
+C000422,danish.chaudhry422@example.com,2024-01-18,Faisalabad,Paid Social,Android
+C000423,ahmed.malik423@example.com,2024-01-18,Rawalpindi,Referral,Android
+C000424,hassan.iqbal424@example.com,2024-01-18,LAHORE,Referral,Android
+C000425,maryam.mirza425@example.com,2024-01-18,Faisalabad,App Store,Android
+C000426,hamza.ahmed426@example.com,2024-01-18,Gujranwala,Influencer,Android
+C000427,noor.shah427@example.com,2024-01-18,sargodha,Influencer,Android
+C000428,hira.baig428@example.com,2024-01-18,Karachi ,App Store,iOS
+C000429,saad.chaudhry429@example.com,2024-01-18,Lahore,Paid Social,Android
+C000430,ibrahim.butt430@example.com,2024-01-18,Quetta,Direct,Android
+C000431,zainab.ahmed431@example.com,2024-01-18,Sialkot,Referral,Desktop
+C000432,usman.javed432@example.com,2024-01-18,Multan,Paid Social,Android
+C000433,zainab.ali433@example.com,2024-01-18,Karachi,Organic Search,iOS
+C000434,haris.sheikh434@example.com,2024-01-18,Multan,Paid Social,Desktop
+C000435,fatima.akhtar435@example.com,2024-01-18,Islamabad,App Store,iOS
+C000436,fatima.chaudhry436@example.com,2024-01-18,Lahore,App Store,Android
+C000437,maryam.ahmed437@example.com,2024-01-18,LAHORE,Influencer,Android
+C000438,haris.rana438@example.com,2024-01-18,Lahore,Referral,Android
+C000439,ahmed.ali439@example.com,2024-01-18,Islamabad,Influencer,Android
+C000440,amna.butt440@example.com,2024-01-18,Karachi,Organic Search,Android
+C000441,ahmed.ali441@example.com,2024-01-18,Islamabad,Instagram Ads,Desktop
+C000442,areeba.ali442@example.com,2024-01-18,Karachi,Organic Search,Desktop
+C000443,haris.akhtar443@example.com,2024-01-18,Lahore,Direct,Desktop
+C000444,rabia.ali444@example.com,2024-01-18,Abbottabad,Direct,Android
+C000445,maryam.khan445@example.com,2024-01-18,Peshawar,Paid Social,Android
+C000446,sara.akhtar446@example.com,2024-01-18,Karachi,Paid Social,iOS
+C000447,ali.ahmed447@example.com,2024-01-18,Multan,Paid Social,Desktop
+C000448,noor.siddiqui448@example.com,2024-01-19,Karachi,Organic Search,iOS
+C000449,haris.sheikh449@example.com,2024-01-19,Islamabad,App Store,iOS
+C000450,ahmed.rana450@example.com,2024-01-19,Lahore,Referral,Android
+C000451,saad.iqbal451@example.com,2024-01-19,Sukkur,Paid Social,Android
+C000452,ayesha.malik452@example.com,2024-01-19,Karachi,Paid Social,Desktop
+C000453,abdullah.malik453@example.com,2024-01-19,Sialkot,App Store,Android
+C000454,fatima.baig454@example.com,2024-01-19,Multan,Paid Social,iOS
+C000455,amna.chaudhry455@example.com,2024-01-19,Lahore,Organic Search,Android
+C000456,sana.mirza456@example.com,2024-01-19,Sialkot,app_store,Android
+C000457,ayesha.ali457@example.com,2024-01-19,Lahore,App Store,Desktop
+C000458,khadija.butt458@example.com,2024-01-19,Multan,organic,Android
+C000459,ayesha.baig459@example.com,2024-01-19,Hyderabad,Paid Social,Desktop
+C000460,iqra.siddiqui460@example.com,2024-01-19, Lahore,Direct,Android
+C000461,areeba.sheikh461@example.com,2024-01-19,Karachi ,Referral,Android
+C000462,abdullah.akhtar462@example.com,2024-01-19,Sialkot,Paid Social,Android
+C000463,hassan.butt463@example.com,2024-01-19,KARACHI,Direct,Android
+C000464,taimoor.butt464@example.com,2024-01-19,Sukkur,Referral,Android
+C000465,maryam.khan465@example.com,2024-01-19,Lahore,app_store,Android
+C000466,khadija.awan466@example.com,2024-01-19,Lahore,Direct,Android
+C000467,usman.akhtar467@example.com,2024-01-19,Lahore,Organic Search,Desktop
+C000468,areeba.qureshi468@example.com,2024-01-19,Islamabad,Direct,Android
+C000469,noor.javed469@example.com,2024-01-20,Abbottabad,Direct,iOS
+C000470,zainab.ahmed470@example.com,2024-01-20,Lahore,App Store,Android
+C000471,mahnoor.mirza471@example.com,2024-01-20,Faisalabad,paid social,Android
+C000472,hassan.siddiqui472@example.com,2024-01-20,Lahore,App Store,Desktop
+C000473,faisal.siddiqui473@example.com,2024-01-20,Karachi,Organic Search,Android
+C000474,mahnoor.shah474@example.com,2024-01-20,Lahore,App Store,Android
+C000475,areeba.sheikh475@example.com,2024-01-20,Rawalpindi,Referral,Android
+C000476,saad.qureshi476@example.com,2024-01-20,Rawalpindi,App Store,Desktop
+C000477,fatima.sheikh477@example.com,2024-01-20,Lahore,Paid Social,Desktop
+C000478,amna.khan478@example.com,2024-01-20,sargodha,Paid Social,Android
+C000479,ayesha.mirza479@example.com,2024-01-20,Lahore,App Store,Android
+C000480,zain.qureshi480@example.com,2024-01-20,Gujranwala,App Store,Android
+C000481,areeba.hussain481@example.com,2024-01-20,Karachi,App Store,Android
+C000482,ali.mirza482@example.com,2024-01-20,Multan,Referral,Desktop
+C000483,sara.khan483@example.com,2024-01-20,Lahore,Organic Search,Android
+C000484,noor.butt484@example.com,2024-01-20,Islamabad,App Store,Android
+C000485,danish.qureshi485@example.com,2024-01-21,Gujranwala,Paid Social,Desktop
+C000486,saad.sheikh486@example.com,2024-01-21,Multan,Google Organic,Desktop
+C000487,hassan.shah487@example.com,2024-01-21,LAHORE,Organic Search,Android
+C000488,haris.malik488@example.com,2024-01-21,Peshawar,Referral,Desktop
+C000489,zain.sheikh489@example.com,2024-01-21,Lahore,Influencer,Desktop
+C000490,sara.ali490@example.com,2024-01-21,Karachi,App Store,Android
+C000491,noor.qureshi491@example.com,2024-01-21,Faisalabad,Influencer,Android
+C000492,sana.shah492@example.com,2024-01-21,Sukkur,Paid Social,Android
+C000493,ahmed.abbasi493@example.com,2024-01-21,Karachi,Organic Search,Desktop
+C000494,sana.shah494@example.com,2024-01-21,Multan,Referral,Android
+C000495,sana.ali495@example.com,2024-01-21,Gujranwala,Facebook Ads,Android
+C000496,iqra.rana496@example.com,2024-01-21,Rawalpindi,App Store,Android
+C000497,sara.malik497@example.com,2024-01-21,Islamabad,Paid Social,Android
+C000498,abdullah.khan498@example.com,2024-01-21, Lahore,Paid Social,Android
+C000499,usman.mirza499@example.com,2024-01-21,Karachi,Referral,Android
+C000500,ibrahim.siddiqui500@example.com,2024-01-21,Lahore,App Store,Android
+C000501,omar.shah501@example.com,2024-01-21,Faisalabad,Organic Search,Desktop
+C000502,haris.hussain502@example.com,2024-01-21, Lahore,App Store,Android
+C000503,zain.butt503@example.com,2024-01-21,ISB,Influencer,Desktop
+C000504,saad.awan504@example.com,2024-01-21,Rawalpindi,Paid Social,iOS
+C000505,saad.qureshi505@example.com,2024-01-21,Karachi,Direct,Android
+C000506,taimoor.qureshi506@example.com,2024-01-21,Pesh,Paid Social,Android
+C000507,hira.baig507@example.com,2024-01-21,Faisalabad,Paid Social,Desktop
+C000508,rabia.akhtar508@example.com,2024-01-22,Rawalpindi,Influencer,Desktop
+C000509,asad.siddiqui509@example.com,2024-01-22,Islamabad,Google Organic,Android
+C000510,omar.khan510@example.com,2024-01-22,Lahore,Influencer,Desktop
+C000511,rabia.malik511@example.com,2024-01-22,Rawalpindi,Organic Search,iOS
+C000512,zainab.malik512@example.com,2024-01-22,Peshawar,Direct,Android
+C000513,ibrahim.hussain513@example.com,2024-01-22,Multan,Organic Search,Android
+C000514,hassan.khan514@example.com,2024-01-22,Peshawar,Referral,Android
+C000515,haris.mirza515@example.com,2024-01-22,Karachi,Direct,Android
+C000516,danish.khan516@example.com,2024-01-22,Hyderabad,organic,Android
+C000517,zain.hussain517@example.com,2024-01-22,Lahore,Direct,Desktop
+C000518,mahnoor.rana518@example.com,2024-01-22,Karachi,Direct,Android
+C000519,usman.javed519@example.com,2024-01-22,Karachi,Paid Social,Android
+C000520,fatima.khan520@example.com,2024-01-22,Gujranwala,Influencer,Android
+C000521,taimoor.akhtar521@example.com,2024-01-22,faisalabad,Influencer,iOS
+C000522,iqra.malik522@example.com,2024-01-22,gujranwala,App Store,Android
+C000523,abdullah.rana523@example.com,2024-01-22,Rawalpindi Cantt,Organic Search,Desktop
+C000524,omar.siddiqui524@example.com,2024-01-22,Sialkot,Direct,Android
+C000525,sara.baig525@example.com,2024-01-22,Rawalpindi,App Store,Desktop
+C000526,mahnoor.ahmed526@example.com,2024-01-22,Faisalabad,App Store,Android
+C000527,rabia.raza527@example.com,2024-01-23,Karachi,App Store,Android
+C000528,zain.rana528@example.com,2024-01-23,faisalabad,Facebook Ads,Android
+C000529,hira.baig529@example.com,2024-01-23,Rawalpindi,Paid Social,iOS
+C000530,usman.mirza530@example.com,2024-01-23,Lahore,Organic Search,Android
+C000531,bilal.siddiqui531@example.com,2024-01-23,,Organic Search,iOS
+C000532,zainab.malik532@example.com,2024-01-23,Lahore,Organic Search,Android
+C000533,rabia.siddiqui533@example.com,2024-01-23,Karachi,Paid Social,Android
+C000534,sara.butt534@example.com,2024-01-23,Rawalpindi,Google Organic,Android
+C000535,hassan.malik535@example.com,2024-01-23,Rawalpindi,Influencer,Android
+C000536,zainab.abbasi536@example.com,2024-01-23,BWP,Direct,Android
+C000537,ibrahim.abbasi537@example.com,2024-01-23,Islamabad,App Store,Android
+C000538,omar.sheikh538@example.com,2024-01-23,Peshawar,Facebook Ads,Desktop
+C000539,faisal.baig539@example.com,2024-01-23,Faisalabad,Referral,iOS
+C000540,ali.chaudhry540@example.com,2024-01-23,Multan,Paid Social,Android
+C000541,hira.butt541@example.com,2024-01-23,Lahore,Influencer,Desktop
+C000542,usman.ali542@example.com,2024-01-23,Lahore,App Store,Desktop
+C000543,maryam.hussain543@example.com,2024-01-23,,Paid Social,Android
+C000544,taimoor.raza544@example.com,2024-01-23,Faisalabad,Organic Search,Android
+C000545,ibrahim.akhtar545@example.com,2024-01-23,Lahore Cantt,Direct,iOS
+C000546,rabia.ahmed546@example.com,2024-01-23,Rawalpindi,Organic Search,iOS
+C000547,haris.butt547@example.com,2024-01-23,Bahawalpur,Paid Social,Desktop
+C000548,areeba.baig548@example.com,2024-01-23,Multan,Influencer,Android
+C000549,hassan.butt549@example.com,2024-01-23,Lahore,Organic Search,iOS
+C000550,faisal.rana550@example.com,2024-01-23,Islamabad,Organic Search,Desktop
+C000551,areeba.butt551@example.com,2024-01-23,Rawalpindi,Paid Social,iOS
+C000552,danish.iqbal552@example.com,2024-01-23,Gujranwala,Organic Search,Android
+C000553,haris.iqbal553@example.com,2024-01-23,Hyderabad,App Store,iOS
+C000554,taimoor.chaudhry554@example.com,2024-01-23,Lahore,Referral,Desktop
+C000555,asad.javed555@example.com,2024-01-23,Bahawalpur,App Store,Android
+C000556,ibrahim.javed556@example.com,2024-01-23,Karachi,App Store,iOS
+C000557,zainab.hussain557@example.com,2024-01-24,Lahore,App Store,iOS
+C000558,omar.siddiqui558@example.com,2024-01-24,Karachi,Paid Social,Android
+C000559,zainab.raza559@example.com,2024-01-24,Lahore,Influencer,Android
+C000560,maryam.mirza560@example.com,2024-01-24,Lahore,Organic Search,Android
+C000561,zainab.butt561@example.com,2024-01-24,Lahore,Referral,iOS
+C000562,danish.sheikh562@example.com,2024-01-24,Karachi,Direct,Android
+C000563,saad.shah563@example.com,2024-01-24,Karachi,App Store,Android
+C000564,maryam.ahmed564@example.com,2024-01-24,Bahawalpur,Referral,Android
+C000565,hassan.ahmed565@example.com,2024-01-24,Peshawar,Google Organic,Android
+C000566,zain.ahmed566@example.com,2024-01-24,Multan,Paid Social,Android
+C000567,maryam.malik567@example.com,2024-01-24,Hyderabad,Influencer,Desktop
+C000568,abdullah.abbasi568@example.com,2024-01-24,Multan,Referral,Android
+C000569,iqra.shah569@example.com,2024-01-24,Karachi,Influencer,iOS
+C000570,usman.rana570@example.com,2024-01-24,Bahawalpur,Direct,Android
+C000571,zain.raza571@example.com,2024-01-24,Lahore,Organic Search,Android
+C000572,areeba.raza572@example.com,2024-01-24,Islamabad,Influencer,Android
+C000573,zain.khan573@example.com,2024-01-24,Quetta,App Store,Android
+C000574,usman.mirza574@example.com,2024-01-24,Karachi,Influencer,Desktop
+C000575,danish.javed575@example.com,2024-01-24,Lahore,App Store,Android
+C000576,ibrahim.javed576@example.com,2024-01-24,Sialkot,Referral,Android
+C000577,hamza.malik577@example.com,2024-01-24,Islamabad,Paid Social,Desktop
+C000578,bilal.awan578@example.com,2024-01-24,Lahore,Paid Social,Android
+C000579,ali.chaudhry579@example.com,2024-01-24,Abbottabad,Organic Search,Android
+C000580,hira.mirza580@example.com,2024-01-24,Quetta,Direct,Android
+C000581,danish.sheikh581@example.com,2024-01-24,Quetta,Paid Social,Android
+C000582,hamza.awan582@example.com,2024-01-25,Karachi,Google Organic,Desktop
+C000583,areeba.hussain583@example.com,2024-01-25,Gujranwala,Organic Search,Android
+C000584,sara.malik584@example.com,2024-01-25,Faisalabad,Paid Social,iOS
+C000585,omar.qureshi585@example.com,2024-01-25,Multan,Influencer,Android
+C000586,ayesha.shah586@example.com,2024-01-25,Karachi,Organic Search,Android
+C000587,ayesha.qureshi587@example.com,2024-01-25,rawalpindi,App Store,Android
+C000588,danish.mirza588@example.com,2024-01-25,Karachi,Direct,Android
+C000589,hamza.baig589@example.com,2024-01-25,Bahawalpur,Paid Social,Android
+C000590,sana.shah590@example.com,2024-01-25,Rawalpindi,Paid Social,Android
+C000591,saad.siddiqui591@example.com,2024-01-25,Faisalabad,Paid Social,Android
+C000592,mahnoor.akhtar592@example.com,2024-01-25,Lahore,Organic Search,Android
+C000593,bilal.awan593@example.com,2024-01-25,,Organic Search,iOS
+C000594,amna.rana594@example.com,2024-01-25,Islamabad,Direct,Android
+C000595,hira.shah595@example.com,2024-01-25,HYD,Referral,Android
+C000596,usman.butt596@example.com,2024-01-25,,Paid Social,Android
+C000597,asad.butt597@example.com,2024-01-25,Karachi,Influencer,Android
+C000598,fatima.abbasi598@example.com,2024-01-25,Lahore,Organic Search,Android
+C000599,amna.siddiqui599@example.com,2024-01-25,Lahore,Direct,Android
+C000600,iqra.mirza600@example.com,2024-01-25,Islamabad,Paid Social,Android
+C000601,ahmed.khan601@example.com,2024-01-25,Islamabad,App Store,iOS
+C000602,usman.iqbal602@example.com,2024-01-25,Karachi,Paid Social,Android
+C000603,noor.malik603@example.com,2024-01-25,Karachi,Organic Search,Desktop
+C000604,iqra.javed604@example.com,2024-01-25,faisalabad,Referral,Android
+C000605,ibrahim.shah605@example.com,2024-01-25,Rawalpindi,Referral,Desktop
+C000606,abdullah.ahmed606@example.com,2024-01-25,Karachi,Organic Search,Android
+C000607,asad.raza607@example.com,2024-01-25,Rawalpindi,Direct,Android
+C000608,usman.malik608@example.com,2024-01-26,Islamabad,Paid Social,Desktop
+C000609,ali.awan609@example.com,2024-01-26,Karachi,Organic Search,Desktop
+C000610,ayesha.khan610@example.com,2024-01-26,Karachi,Paid Social,Android
+C000611,bilal.rana611@example.com,2024-01-26,Lahore,Organic Search,Android
+C000612,asad.mirza612@example.com,2024-01-26,Hyderabad,Google Organic,Android
+C000613,hassan.mirza613@example.com,2024-01-26,Karachi,App Store,Desktop
+C000614,ibrahim.iqbal614@example.com,2024-01-26,Sukkur,Referral,Android
+C000615,hamza.siddiqui615@example.com,2024-01-26,Rawalpindi,App Store,Desktop
+C000616,abdullah.butt616@example.com,2024-01-26,Peshawar,App Store,iOS
+C000617,usman.sheikh617@example.com,2024-01-26,Sargodha,Referral,Android
+C000618,sana.abbasi618@example.com,2024-01-26,Lahore,Referral,Android
+C000619,fatima.awan619@example.com,2024-01-26,RWP,App Store,Desktop
+C000620,abdullah.hussain620@example.com,2024-01-26,Lahore,app_store,iOS
+C000621,saad.hussain621@example.com,2024-01-26,Karachi,Paid Social,iOS
+C000622,sara.siddiqui622@example.com,2024-01-26,Hyderabad,organic,Android
+C000623,hamza.malik623@example.com,2024-01-26,Karachi,App Store,iOS
+C000624,amna.mirza624@example.com,2024-01-26,Sialkot,Referral,Android
+C000625,sara.awan625@example.com,2024-01-26,Hyderabad,Referral,Android
+C000626,faisal.siddiqui626@example.com,2024-01-26,Faisalabad,Paid Social,Android
+C000627,ali.ali627@example.com,2024-01-26,Rawalpindi,Organic Search,iOS
+C000628,zainab.shah628@example.com,2024-01-26,Gujranwala,Influencer,Desktop
+C000629,ahmed.ali629@example.com,2024-01-26,Karachi,app_store,Android
+C000630,ayesha.javed630@example.com,2024-01-26,Peshawar,Paid Social,Android
+C000631,omar.chaudhry631@example.com,2024-01-27,Karachi,Organic Search,Android
+C000632,sara.awan632@example.com,2024-01-27,Karachi,App Store,Android
+C000633,usman.malik633@example.com,2024-01-27,Lahore,Paid Social,Desktop
+C000634,hassan.akhtar634@example.com,2024-01-27,Lahore,Direct,Desktop
+C000635,mahnoor.butt635@example.com,2024-01-27,Karachi,Direct,Desktop
+C000636,ali.ali636@example.com,2024-01-27,Multan,Facebook Ads,Android
+C000637,zainab.khan637@example.com,2024-01-27,Rawalpindi,Paid Social,Android
+C000638,hira.ali638@example.com,2024-01-27,Bahawalpur,App Store,Android
+C000639,ahmed.javed639@example.com,2024-01-27,Peshawar,App Store,Android
+C000640,hira.ali640@example.com,2024-01-27,Gujranwala,Direct,Android
+C000641,hassan.ahmed641@example.com,2024-01-27,Quetta,Organic Search,Android
+C000642,areeba.chaudhry642@example.com,2024-01-27,Hyderabad,Direct,Android
+C000643,danish.khan643@example.com,2024-01-27,Karachi,Influencer,iOS
+C000644,haris.chaudhry644@example.com,2024-01-27,Karachi,App Store,Desktop
+C000645,hamza.chaudhry645@example.com,2024-01-27,Lahore,Paid Social,Android
+C000646,bilal.mirza646@example.com,2024-01-27,Lahore,Direct,Android
+C000647,ahmed.javed647@example.com,2024-01-27,Quetta,Paid Social,Android
+C000648,bilal.mirza648@example.com,2024-01-27,Islamabad,Organic Search,Desktop
+C000649,hira.qureshi649@example.com,2024-01-27,Sialkot,Paid Social,Android
+C000650,ali.malik650@example.com,2024-01-27,Lahore,Direct,Desktop
+C000651,danish.iqbal651@example.com,2024-01-27,Quetta,Paid Social,iOS
+C000652,usman.sheikh652@example.com,2024-01-28,Karachi,Influencer,Android
+C000653,rabia.malik653@example.com,2024-01-28,Lahore,Referral,iOS
+C000654,saad.javed654@example.com,2024-01-28,,Organic Search,Android
+C000655,hassan.raza655@example.com,2024-01-28,Lahore,Referral,Desktop
+C000656,usman.butt656@example.com,2024-01-28,Peshawar,Influencer,Android
+C000657,khadija.javed657@example.com,2024-01-28,Lahore,Referral,Android
+C000658,fatima.mirza658@example.com,2024-01-28,Gujranwala,Direct,Android
+C000659,amna.butt659@example.com,2024-01-28,Faisalabad,Organic Search,Android
+C000660,ibrahim.butt660@example.com,2024-01-28,HYD,Organic Search,Android
+C000661,bilal.malik661@example.com,2024-01-28,Islamabad,App Store,Android
+C000662,ibrahim.hussain662@example.com,2024-01-28,Faisalabad,Paid Social,Android
+C000663,areeba.akhtar663@example.com,2024-01-28,Islamabad,Paid Social,Desktop
+C000664,fatima.awan664@example.com,2024-01-28,Rawalpindi,Organic Search,Android
+C000665,sara.abbasi665@example.com,2024-01-28,Multan,Paid Social,Android
+C000666,hira.awan666@example.com,2024-01-28,Karachi,Paid Social,Desktop
+C000667,haris.hussain667@example.com,2024-01-28,Peshawar,Influencer,Android
+C000668,areeba.chaudhry668@example.com,2024-01-28,Lahore,Referral,Android
+C000669,sana.khan669@example.com,2024-01-28,Karachi,Referral,Android
+C000670,hassan.ahmed670@example.com,2024-01-28,Faisalabad,App Store,Android
+C000671,amna.sheikh671@example.com,2024-01-28,Faisalabad,App Store,Android
+C000672,hira.siddiqui672@example.com,2024-01-28,Peshawar,Organic Search,Android
+C000673,ibrahim.chaudhry673@example.com,2024-01-28,Mardan,Organic Search,Android
+C000674,sana.sheikh674@example.com,2024-01-28,Islamabad,Paid Social,Desktop
+C000675,zainab.awan675@example.com,2024-01-28,Sargodha,Paid Social,Android
+C000676,omar.javed676@example.com,2024-01-28,Rawalpindi,App Store,Android
+C000677,omar.siddiqui677@example.com,2024-01-28,Lahore,Organic Search,Android
+C000678,zain.mirza678@example.com,2024-01-28,Multan,Direct,Android
+C000679,noor.chaudhry679@example.com,2024-01-28,Karachi,Influencer,Android
+C000680,khadija.hussain680@example.com,2024-01-28,Abbottabad,Organic Search,Android
+C000681,taimoor.siddiqui681@example.com,2024-01-29,Lahore,App Store,Android
+C000682,hamza.shah682@example.com,2024-01-29,Karachi,Direct,Android
+C000683,mahnoor.iqbal683@example.com,2024-01-29,Faisalabad,App Store,Android
+C000684,fatima.qureshi684@example.com,2024-01-29,Karachi,Direct,Android
+C000685,khadija.awan685@example.com,2024-01-29,Karachi,Organic Search,Android
+C000686,sana.iqbal686@example.com,2024-01-29,Karachi,App Store,Desktop
+C000687,faisal.butt687@example.com,2024-01-29,Quetta,Direct,Android
+C000688,ali.shah688@example.com,2024-01-29,Karachi,Direct,Android
+C000689,bilal.khan689@example.com,2024-01-29,Islamabad,Paid Social,Desktop
+C000690,rabia.javed690@example.com,2024-01-29,Islamabad,paid social,iOS
+C000691,ahmed.akhtar691@example.com,2024-01-29,Quetta,Organic Search,iOS
+C000692,usman.qureshi692@example.com,2024-01-29,Quetta,Organic Search,Android
+C000693,faisal.iqbal693@example.com,2024-01-29,Bahawalpur,Referral,Android
+C000694,mahnoor.raza694@example.com,2024-01-29,Lahore,Referral,Desktop
+C000695,saad.siddiqui695@example.com,2024-01-29,Islamabad,Influencer,Android
+C000696,zainab.siddiqui696@example.com,2024-01-29,Gujranwala,Direct,Desktop
+C000697,zain.ali697@example.com,2024-01-29,Karachi,Referral,Desktop
+C000698,maryam.mirza698@example.com,2024-01-29,Karachi,Organic Search,Android
+C000699,asad.malik699@example.com,2024-01-29,Bahawalpur,Organic Search,Android
+C000700,zainab.abbasi700@example.com,2024-01-29,Karachi,App Store,Desktop
+C000701,taimoor.iqbal701@example.com,2024-01-30,Lahore,Influencer,iOS
+C000702,taimoor.butt702@example.com,2024-01-30,Karachi,Referral,Android
+C000703,ibrahim.iqbal703@example.com,2024-01-30,Karachi ,Organic Search,Android
+C000704,rabia.siddiqui704@example.com,2024-01-30,Sargodha,Referral,Android
+C000705,mahnoor.sheikh705@example.com,2024-01-30,Karachi,Organic Search,Android
+C000706,bilal.chaudhry706@example.com,2024-01-30,Lahore,Influencer,Android
+C000707,hassan.iqbal707@example.com,2024-01-30,LHR,App Store,iOS
+C000708,omar.qureshi708@example.com,2024-01-30,Islamabad ,App Store,Android
+C000709,hassan.siddiqui709@example.com,2024-01-30,Peshawar,Paid Social,Android
+C000710,iqra.mirza710@example.com,2024-01-30,Faisalabad,Referral,iOS
+C000711,sara.baig711@example.com,2024-01-30,Rawalpindi,Organic Search,iOS
+C000712,amna.baig712@example.com,2024-01-30,Islamabad,App Store,Android
+C000713,bilal.ali713@example.com,2024-01-30,Karachi,App Store,Android
+C000714,rabia.butt714@example.com,2024-01-30,Lahore,Organic Search,iOS
+C000715,maryam.hussain715@example.com,2024-01-30,Quetta,App Store,Android
+C000716,zain.qureshi716@example.com,2024-01-31,Gujranwala,App Store,Desktop
+C000717,haris.abbasi717@example.com,2024-01-31,Karachi,Paid Social,Android
+C000718,amna.javed718@example.com,2024-01-31,Gujranwala,Direct,Android
+C000719,maryam.raza719@example.com,2024-01-31,Gujranwala,App Store,Android
+C000720,mahnoor.baig720@example.com,2024-01-31,"Hyderabad, Sindh",App Store,iOS
+C000721,mahnoor.chaudhry721@example.com,2024-01-31,Gujranwala,Paid Social,Android
+C000722,bilal.butt722@example.com,2024-01-31,Sargodha,Influencer,Android
+C000723,danish.siddiqui723@example.com,2024-01-31,Karachi,Organic Search,Desktop
+C000724,mahnoor.qureshi724@example.com,2024-01-31,Lahore,Referral,iOS
+C000725,noor.khan725@example.com,2024-01-31,Abbottabad,Referral,Android
+C000726,hassan.javed726@example.com,2024-01-31,rawalpindi,Paid Social,iOS
+C000727,zain.akhtar727@example.com,2024-01-31,Multan,Organic Search,Android
+C000728,iqra.sheikh728@example.com,2024-01-31,Lahore,Referral,Android
+C000729,rabia.iqbal729@example.com,2024-01-31,Karachi,Organic Search,Android
+C000730,faisal.ahmed730@example.com,2024-01-31,Sargodha,Organic Search,Android
+C000731,sana.iqbal731@example.com,2024-01-31,Lahore,Direct,Android
+C000732,ali.awan732@example.com,2024-01-31,Rawalpindi,app_store,Android
+C000733,hira.rana733@example.com,2024-01-31,Lahore,App Store,iOS
+C000734,fatima.shah734@example.com,2024-02-01,Abbottabad,Paid Social,Android
+C000735,ayesha.ahmed735@example.com,2024-02-01,Lahore,Influencer,Desktop
+C000736,taimoor.malik736@example.com,2024-02-01,Bahawalpur,Referral,Android
+C000737,ali.rana737@example.com,2024-02-01,Lahore,Google Organic,iOS
+C000738,sana.iqbal738@example.com,2024-02-01,Sukkur,Influencer,Desktop
+C000739,fatima.butt739@example.com,2024-02-01,Lahore,Paid Social,Desktop
+C000740,omar.abbasi740@example.com,2024-02-01,Sialkot,Influencer,Android
+C000741,omar.malik741@example.com,2024-02-01,Rawalpindi,Paid Social,Android
+C000742,ali.akhtar742@example.com,2024-02-01,Karachi,Paid Social,Android
+C000743,asad.siddiqui743@example.com,2024-02-01,Lahore,organic,Desktop
+C000744,saad.shah744@example.com,2024-02-01,Peshawar,paid social,Android
+C000745,saad.rana745@example.com,2024-02-01,Faisalabad,Paid Social,Android
+C000746,usman.javed746@example.com,2024-02-01,Lahore,App Store,Android
+C000747,haris.baig747@example.com,2024-02-01,Karachi,App Store,iOS
+C000748,sana.malik748@example.com,2024-02-01,Gujranwala,App Store,Desktop
+C000749,faisal.mirza749@example.com,2024-02-01,Faisalabad,Paid Social,iOS
+C000750,ibrahim.qureshi750@example.com,2024-02-01,Multan,App Store,Desktop
+C000751,hassan.ahmed751@example.com,2024-02-01,Islamabad,Paid Social,Android
+C000752,rabia.ali752@example.com,2024-02-01,Lahore,Organic Search,iOS
+C000753,areeba.baig753@example.com,2024-02-02,Lahore,Influencer,Android
+C000754,fatima.malik754@example.com,2024-02-02,Karachi,App Store,Android
+C000755,saad.ali755@example.com,,sukkur,Organic Search,Android
+C000756,amna.siddiqui756@example.com,2024-02-02,Lahore,Paid Social,Desktop
+C000757,iqra.abbasi757@example.com,2024-02-02,Islamabad,Referral,Android
+C000758,sana.abbasi758@example.com,2024-02-02,Lahore,Organic Search,Android
+C000759,sara.qureshi759@example.com,2024-02-02,LAHORE,App Store,Android
+C000760,haris.mirza760@example.com,2024-02-02,Multan,App Store,Android
+C000761,maryam.mirza761@example.com,2024-02-02,Faisalabad,App Store,iOS
+C000762,faisal.javed762@example.com,2024-02-02,Hyderabad,Organic Search,Android
+C000763,maryam.hussain763@example.com,2024-02-02,Karachi,Influencer,Android
+C000764,fatima.malik764@example.com,2024-02-02,Sialkot,Organic Search,Android
+C000765,noor.baig765@example.com,2024-02-02,Abbottabad,Direct,Android
+C000766,sara.iqbal766@example.com,2024-02-02,Sargodha,Direct,Desktop
+C000767,hamza.awan767@example.com,2024-02-02,Karachi,Paid Social,Desktop
+C000768,amna.ali768@example.com,2024-02-02,Islamabad,Influencer,Desktop
+C000769,omar.malik769@example.com,2024-02-02,Sukkur,Organic Search,Android
+C000770,abdullah.iqbal770@example.com,2024-02-02,Peshawar,Direct,Android
+C000771,ahmed.mirza771@example.com,2024-02-02,Karachi,Referral,Desktop
+C000772,ali.chaudhry772@example.com,2024-02-02,Sialkot,Paid Social,Android
+C000773,hira.raza773@example.com,2024-02-02,GRW,Referral,Desktop
+C000774,maryam.ahmed774@example.com,2024-02-02,,Instagram Ads,iOS
+C000775,zain.butt775@example.com,2024-02-02,Lahore,Paid Social,Desktop
+C000776,amna.chaudhry776@example.com,2024-02-03,Faisalabad,Referral,Desktop
+C000777,khadija.ahmed777@example.com,2024-02-03,Multan,Paid Social,iOS
+C000778,saad.khan778@example.com,2024-02-03,Lahore,App Store,Android
+C000779,omar.qureshi779@example.com,2024-02-03,Hyderabad,App Store,Desktop
+C000780,fatima.abbasi780@example.com,2024-02-03,Lahore,Influencer,Desktop
+C000781,abdullah.raza781@example.com,2024-02-03,Karachi,Referral,Android
+C000782,haris.shah782@example.com,2024-02-03,Sialkot,Paid Social,Desktop
+C000783,omar.mirza783@example.com,2024-02-03,Lahore,Organic Search,Android
+C000784,asad.awan784@example.com,2024-02-03,Karachi,Organic Search,Android
+C000785,taimoor.malik785@example.com,2024-02-03,Gujranwala,Paid Social,Android
+C000786,sana.ali786@example.com,2024-02-03,Hyderabad,Influencer,Android
+C000787,danish.chaudhry787@example.com,2024-02-03,Hyderabad,App Store,iOS
+C000788,taimoor.raza788@example.com,2024-02-03,Lahore,Paid Social,Android
+C000789,mahnoor.rana789@example.com,2024-02-03,Rawalpindi,App Store,Android
+C000790,rabia.ali790@example.com,2024-02-03,Karachi,Paid Social,Android
+C000791,iqra.ali791@example.com,2024-02-03,Karachi,App Store,Android
+C000792,fatima.chaudhry792@example.com,2024-02-03,Lahore,Direct,Android
+C000793,ibrahim.sheikh793@example.com,2024-02-03,Islamabad,Referral,Android
+C000794,ali.javed794@example.com,2024-02-03,Rawalpindi,App Store,Desktop
+C000795,ahmed.khan795@example.com,2024-02-03,Karachi,Paid Social,iOS
+C000796,areeba.ahmed796@example.com,2024-02-03,Sialkot,Influencer,Android
+C000797,sana.ahmed797@example.com,2024-02-03,Abbottabad,Referral,Android
+C000798,danish.abbasi798@example.com,2024-02-04,Karachi,Referral,Desktop
+C000799,noor.abbasi799@example.com,2024-02-04,Gujranwala,Organic Search,Android
+C000800,iqra.shah800@example.com,2024-02-04,Faisalabad,Referral,Android
+C000801,ali.shah801@example.com,2024-02-04,Islamabad,App Store,Android
+C000802,hamza.shah802@example.com,2024-02-04,Islamabad,Organic Search,Desktop
+C000803,hira.malik803@example.com,2024-02-04,Peshawar,Influencer,Android
+C000804,bilal.ali804@example.com,2024-02-04,Karachi,Organic Search,Desktop
+C000805,zain.abbasi805@example.com,2024-02-04,Faisalabad,Paid Social,Android
+C000806,sana.malik806@example.com,2024-02-04,Lahore,Referral,iOS
+C000807,maryam.qureshi807@example.com,2024-02-04,Karachi,Influencer,Android
+C000808,fatima.butt808@example.com,2024-02-04,Rawalpindi,Influencer,Android
+C000809,abdullah.ahmed809@example.com,2024-02-04,Lahore,Paid Social,Android
+C000810,asad.chaudhry810@example.com,2024-02-04,Peshawar,Direct,Android
+C000811,hira.akhtar811@example.com,2024-02-04,Faisalabad,Paid Social,Android
+C000812,mahnoor.siddiqui812@example.com,2024-02-04,Karachi,Direct,Android
+C000813,usman.qureshi813@example.com,2024-02-04,Sialkot,App Store,Android
+C000814,usman.malik814@example.com,2024-02-04,Lahore,Direct,iOS
+C000815,ayesha.abbasi815@example.com,2024-02-04,Multan,App Store,Android
+C000816,ayesha.malik816@example.com,2024-02-04,Lahore,Organic Search,Android
+C000817,zain.khan817@example.com,2024-02-04,Karachi,Organic Search,Android
+C000818,zainab.raza818@example.com,2024-02-04,Sialkot,Paid Social,Android
+C000819,fatima.raza819@example.com,2024-02-04,Bahawalpur,Referral,Android
+C000820,fatima.khan820@example.com,2024-02-04,Lahore,Organic Search,Desktop
+C000821,haris.mirza821@example.com,2024-02-04,Lahore,App Store,Desktop
+C000822,zainab.shah822@example.com,2024-02-04,Multan,App Store,Android
+C000823,hira.iqbal823@example.com,2024-02-04,Karachi,Organic Search,Android
+C000824,abdullah.mirza824@example.com,2024-02-04,Sialkot,Paid Social,iOS
+C000825,rabia.ahmed825@example.com,2024-02-05,Karachi,Direct,iOS
+C000826,abdullah.qureshi826@example.com,2024-02-05,Karachi,Influencer,Desktop
+C000827,abdullah.akhtar827@example.com,2024-02-05,Karachi,Referral,Android
+C000828,asad.khan828@example.com,2024-02-05,Lahore,Direct,Android
+C000829,amna.siddiqui829@example.com,2024-02-05,Sialkot,App Store,Android
+C000830,zain.chaudhry830@example.com,2024-02-05,Faisalabad,Organic Search,Android
+C000831,usman.shah831@example.com,2024-02-05,Karachi,App Store,Desktop
+C000832,asad.mirza832@example.com,2024-02-05,Karachi,Direct,Desktop
+C000833,zainab.ali833@example.com,2024-02-05,Lahore,paid social,Desktop
+C000834,mahnoor.qureshi834@example.com,2024-02-05,Faisalabad,Paid Social,Desktop
+C000835,zainab.akhtar835@example.com,2024-02-05,Rawalpindi,App Store,Android
+C000836,rabia.rana836@example.com,2024-02-05,Karachi,Referral,Android
+C000837,danish.rana837@example.com,2024-02-05,Peshawar,Influencer,Android
+C000838,usman.chaudhry838@example.com,2024-02-05,Faisalabad,Facebook Ads,Desktop
+C000839,noor.iqbal839@example.com,2024-02-05,sargodha,Organic Search,Android
+C000840,maryam.siddiqui840@example.com,2024-02-05,Rawalpindi,Paid Social,Android
+C000841,rabia.shah841@example.com,2024-02-05,LHR,Referral,iOS
+C000842,iqra.malik842@example.com,2024-02-05,Karachi,App Store,Android
+C000843,zain.awan843@example.com,2024-02-05,Bahawalpur,Organic Search,Android
+C000844,amna.hussain844@example.com,2024-02-05,Karachi,Organic Search,Android
+C000845,fatima.hussain845@example.com,2024-02-05,Lahore,App Store,Android
+C000846,noor.mirza846@example.com,2024-02-05,Islamabad Capital Territory,App Store,Android
+C000847,bilal.raza847@example.com,2024-02-05,rawalpindi,Organic Search,Android
+C000848,asad.butt848@example.com,2024-02-05,Rawalpindi,Paid Social,Android
+C000849,mahnoor.sheikh849@example.com,2024-02-05,Multan,Paid Social,Desktop
+C000850,hassan.khan850@example.com,2024-02-05,karachi,Direct,Android
+C000851,taimoor.awan851@example.com,2024-02-05,MULTAN,Organic Search,Desktop
+C000852,asad.sheikh852@example.com,2024-02-06,QUETTA,Organic Search,Android
+C000853,omar.qureshi853@example.com,2024-02-06,Karachi,Organic Search,Desktop
+C000854,haris.iqbal854@example.com,2024-02-06,Karachi,Paid Social,Android
+C000855,areeba.rana855@example.com,2024-02-06,Mardan,Referral,Android
+C000856,hamza.hussain856@example.com,2024-02-06,Lahore,Influencer,iOS
+C000857,ayesha.khan857@example.com,2024-02-06,Islamabad,App Store,iOS
+C000858,hassan.hussain858@example.com,2024-02-06,Lahore Cantt,Influencer,Android
+C000859,khadija.iqbal859@example.com,2024-02-06,Rawalpindi,Paid Social,Android
+C000860,ahmed.ali860@example.com,2024-02-06,Multan,Referral,Android
+C000861,rabia.khan861@example.com,2024-02-06,PESHAWAR,App Store,Android
+C000862,sana.sheikh862@example.com,2024-02-06,Lahore,Organic Search,Desktop
+C000863,fatima.siddiqui863@example.com,2024-02-06,Lahore,Referral,Android
+C000864,hamza.awan864@example.com,2024-02-06,Rawalpindi,Organic Search,Desktop
+C000865,ali.javed865@example.com,2024-02-06,Lahore,Paid Social,Android
+C000866,sara.akhtar866@example.com,2024-02-06,Faisalabad,App Store,iOS
+C000867,usman.iqbal867@example.com,2024-02-06,Faisalabad ,Direct,iOS
+C000868,sara.mirza868@example.com,2024-02-06,Quetta,Organic Search,Android
+C000869,areeba.khan869@example.com,2024-02-06,Karachi,Paid Social,Android
+C000870,maryam.qureshi870@example.com,2024-02-06,Karachi,Direct,Android
+C000871,hassan.ali871@example.com,2024-02-06,hyderabad,App Store,Android
+C000872,zain.rana872@example.com,2024-02-06,Rawalpindi,App Store,iOS
+C000873,hamza.akhtar873@example.com,2024-02-06,Karachi,App Store,Desktop
+C000874,danish.hussain874@example.com,2024-02-06,Sukkur,Organic Search,Desktop
+C000875,usman.malik875@example.com,2024-02-06,Faisalabad,App Store,Desktop
+C000876,sara.shah876@example.com,2024-02-06,Islamabad,Organic Search,iOS
+C000877,ahmed.ali877@example.com,2024-02-06,Hyderabad,Influencer,Android
+C000878,ali.malik878@example.com,2024-02-06,Pindi,Referral,Android
+C000879,mahnoor.malik879@example.com,2024-02-06,,Organic Search,iOS
+C000880,ayesha.ahmed880@example.com,2024-02-06,Lahore,App Store,Desktop
+C000881,mahnoor.rana881@example.com,2024-02-06,Islamabad,Organic Search,Android
+C000882,fatima.iqbal882@example.com,2024-02-07,islamabad,Influencer,Android
+C000883,sana.ahmed883@example.com,2024-02-07,Multan,App Store,Android
+C000884,zainab.ali884@example.com,2024-02-07,Islamabad,Paid Social,iOS
+C000885,ibrahim.hussain885@example.com,2024-02-07,Karachi,Paid Social,Android
+C000886,rabia.javed886@example.com,2024-02-07,Multan,Organic Search,Android
+C000887,khadija.khan887@example.com,2024-02-07,Karachi,App Store,Android
+C000888,ayesha.baig888@example.com,2024-02-07,Gujranwala,Influencer,Desktop
+C000889,omar.raza889@example.com,2024-02-07,MULTAN,Influencer,Desktop
+C000890,faisal.raza890@example.com,2024-02-07,Rawalpindi,Direct,Android
+C000891,ayesha.ali891@example.com,2024-02-07,Islamabad ,Direct,iOS
+C000892,haris.ali892@example.com,2024-02-07,,App Store,Android
+C000893,khadija.baig893@example.com,2024-02-07,Faisalabad,Organic Search,iOS
+C000894,noor.raza894@example.com,2024-02-07,Karachi,Organic Search,Desktop
+C000895,mahnoor.hussain895@example.com,2024-02-07,Faisalabad,Direct,Android
+C000896,rabia.abbasi896@example.com,2024-02-07,Karachi,Direct,Android
+C000897,noor.hussain897@example.com,2024-02-07,Rawalpindi,Paid Social,Android
+C000898,zainab.rana898@example.com,2024-02-07,Karachi,App Store,Desktop
+C000899,zain.hussain899@example.com,2024-02-07,Karachi,Paid Social,iOS
+C000900,usman.khan900@example.com,2024-02-07,Islamabad,Organic Search,Desktop
+C000901,khadija.khan901@example.com,2024-02-07,Multan,Direct,Android
+C000902,sara.butt902@example.com,2024-02-08,Lahore,App Store,Desktop
+C000903,fatima.sheikh903@example.com,2024-02-08,Islamabad,Direct,Android
+C000904,asad.ali904@example.com,2024-02-08,"Hyderabad, Sindh",Organic Search,Android
+C000905,saad.rana905@example.com,2024-02-08,Rawalpindi,Direct,Android
+C000906,abdullah.qureshi906@example.com,2024-02-08,Rawalpindi,Referral,Desktop
+C000907,bilal.chaudhry907@example.com,2024-02-08,Karachi,Organic Search,Android
+C000908,areeba.ali908@example.com,2024-02-08,Karachi,Paid Social,iOS
+C000909,hira.siddiqui909@example.com,2024-02-08,,Paid Social,iOS
+C000910,asad.abbasi910@example.com,2024-02-08,Sargodha,Paid Social,Desktop
+C000911,zainab.malik911@example.com,2024-02-08,karachi,App Store,Android
+C000912,areeba.khan912@example.com,2024-02-08,Karachi,Organic Search,Android
+C000913,rabia.abbasi913@example.com,2024-02-08,"Karachi, Sindh",Direct,Desktop
+C000914,sara.ahmed914@example.com,2024-02-08,"Hyderabad, Sindh",App Store,Android
+C000915,hira.iqbal915@example.com,2024-02-08,Lahore,Influencer,Android
+C000916,bilal.siddiqui916@example.com,2024-02-08,Hyderabad,Paid Social,Android
+C000917,hira.siddiqui917@example.com,2024-02-08,Lahore,Influencer,Desktop
+C000918,sana.malik918@example.com,2024-02-08,Hyderabad,app_store,Android
+C000919,mahnoor.awan919@example.com,2024-02-08,Quetta,Paid Social,Android
+C000920,abdullah.ahmed920@example.com,2024-02-08,Lahore,app_store,Android
+C000921,saad.siddiqui921@example.com,2024-02-08,Sargodha,Paid Social,Desktop
+C000922,fatima.akhtar922@example.com,2024-02-08,Sukkur,App Store,Android
+C000923,ibrahim.raza923@example.com,2024-02-08,Karachi,App Store,Desktop
+C000924,amna.ali924@example.com,2024-02-08,Rawalpindi,Referral,Desktop
+C000925,khadija.awan925@example.com,2024-02-08,Faisalabad,Referral,Desktop
+C000926,taimoor.chaudhry926@example.com,2024-02-09,GRW,Paid Social,Android
+C000927,ali.sheikh927@example.com,2024-02-09,Multan,Paid Social,iOS
+C000928,abdullah.ahmed928@example.com,2024-02-09,Multan,App Store,Desktop
+C000929,maryam.siddiqui929@example.com,2024-02-09,Lahore,App Store,iOS
+C000930,noor.sheikh930@example.com,2024-02-09,Gujranwala,Influencer,Android
+C000931,faisal.hussain931@example.com,2024-02-09,karachi,Paid Social,Desktop
+C000932,taimoor.khan932@example.com,2024-02-09,Faisalabad,Influencer,Android
+C000933,bilal.awan933@example.com,2024-02-09,Karachi,Paid Social,Android
+C000934,mahnoor.awan934@example.com,2024-02-09,peshawar,Organic Search,Desktop
+C000935,khadija.baig935@example.com,2024-02-09,Hyderabad,Paid Social,Android
+C000936,asad.sheikh936@example.com,2024-02-09,Karachi,App Store,Desktop
+C000937,abdullah.mirza937@example.com,2024-02-09,Hyderabad,paid social,Android
+C000938,mahnoor.abbasi938@example.com,2024-02-09,Gujranwala,Organic Search,Android
+C000939,zain.iqbal939@example.com,2024-02-09,Karachi,Influencer,iOS
+C000940,khadija.khan940@example.com,2024-02-09,Lahore,Paid Social,iOS
+C000941,saad.akhtar941@example.com,2024-02-09,Karachi,Paid Social,iOS
+C000942,hamza.sheikh942@example.com,2024-02-10,Karachi,Paid Social,Desktop
+C000943,hira.chaudhry943@example.com,2024-02-10,Hyderabad,App Store,Android
+C000944,usman.javed944@example.com,2024-02-10,Lahore,Direct,Android
+C000945,hira.akhtar945@example.com,2024-02-10,Faisalabad,Facebook Ads,iOS
+C000946,hamza.hussain946@example.com,2024-02-10,Karachi,Organic Search,Android
+C000947,mahnoor.khan947@example.com,2024-02-10,Karachi,Paid Social,Android
+C000948,noor.chaudhry948@example.com,2024-02-10,Faisalabad,App Store,Android
+C000949,ayesha.siddiqui949@example.com,2024-02-10,Lahore,Organic Search,Android
+C000950,zainab.mirza950@example.com,2024-02-10,quetta,Referral,Android
+C000951,zainab.chaudhry951@example.com,2024-02-10,Karachi,Paid Social,iOS
+C000952,khadija.ahmed952@example.com,2024-02-10,Faisalabad ,App Store,Android
+C000953,sara.shah953@example.com,2024-02-10,Multan,Direct,Android
+C000954,asad.chaudhry954@example.com,2024-02-10,Faisalabad,Paid Social,Android
+C000955,iqra.sheikh955@example.com,2024-02-10,Multan,Influencer,Android
+C000956,danish.qureshi956@example.com,2024-02-10,Lahore,Direct,iOS
+C000957,asad.rana957@example.com,2024-02-10,Peshawar,Referral,Android
+C000958,bilal.shah958@example.com,2024-02-10,Rawalpindi,App Store,Desktop
+C000959,abdullah.siddiqui959@example.com,2024-02-10,Hyderabad,Paid Social,Android
+C000960,ali.ali960@example.com,2024-02-10,Karachi,Organic Search,Desktop
+C000961,mahnoor.javed961@example.com,2024-02-10,Karachi,Organic Search,Android
+C000962,asad.khan962@example.com,2024-02-10,,Organic Search,Android
+C000963,ahmed.siddiqui963@example.com,2024-02-10,Lahore,App Store,Android
+C000964,faisal.qureshi964@example.com,2024-02-10,Karachi,Direct,Desktop
+C000965,zain.siddiqui965@example.com,2024-02-10,Karachi,Influencer,Android
+C000966,bilal.butt966@example.com,2024-02-10,Karachi,Influencer,Android
+C000967,ali.shah967@example.com,2024-02-10,Karachi,App Store,Android
+C000968,zain.butt968@example.com,2024-02-11,Karachi,Paid Social,Desktop
+C000969,sara.ali969@example.com,2024-02-11,Hyderabad,App Store,Android
+C000970,zain.akhtar970@example.com,2024-02-11,Sukkur,Influencer,Android
+C000971,mahnoor.akhtar971@example.com,2024-02-11,Lahore,App Store,Android
+C000972,danish.malik972@example.com,2024-02-11,Karachi,Direct,Android
+C000973,ayesha.butt973@example.com,2024-02-11,Lahore,Organic Search,Desktop
+C000974,usman.awan974@example.com,2024-02-11,Gujranwala,Organic Search,Android
+C000975,fatima.sheikh975@example.com,2024-02-11,Bahawalpur,Referral,Android
+C000976,sara.ahmed976@example.com,2024-02-11,Lahore,App Store,iOS
+C000977,hamza.mirza977@example.com,2024-02-11,Karachi,Organic Search,Android
+C000978,asad.qureshi978@example.com,2024-02-11,Lahore,Paid Social,Desktop
+C000979,hassan.rana979@example.com,2024-02-11,Lahore,Direct,Android
+C000980,areeba.javed980@example.com,2024-02-11,Karachi,Organic Search,Desktop
+C000981,ali.abbasi981@example.com,2024-02-11,Multan,Paid Social,Android
+C000982,bilal.sheikh982@example.com,2024-02-11,Karachi,Organic Search,iOS
+C000983,fatima.mirza983@example.com,2024-02-11,Karachi,Organic Search,Android
+C000984,amna.abbasi984@example.com,2024-02-11,Multan,Paid Social,Android
+C000985,faisal.chaudhry985@example.com,2024-02-11,Peshawar,Organic Search,Desktop
+C000986,noor.shah986@example.com,2024-02-11,Karachi,Paid Social,Desktop
+C000987,saad.hussain987@example.com,2024-02-11,peshawar,Organic Search,Desktop
+C000988,zainab.ahmed988@example.com,2024-02-11,Lahore,Paid Social,iOS
+C000989,sana.abbasi989@example.com,2024-02-11,Lahore,Organic Search,iOS
+C000990,ibrahim.siddiqui990@example.com,2024-02-11,Karachi,Paid Social,Android
+C000991,faisal.malik991@example.com,2024-02-11,Karachi,Referral,Android
+C000992,hamza.chaudhry992@example.com,2024-02-12,Karachi,paid social,Android
+C000993,ayesha.hussain993@example.com,2024-02-12,Faisalabad,App Store,Android
+C000994,danish.sheikh994@example.com,2024-02-12,Sialkot,App Store,Android
+C000995,faisal.ahmed995@example.com,2024-02-12,Karachi,Paid Social,Android
+C000996,hamza.javed996@example.com,2024-02-12,Lahore,Paid Social,Android
+C000997,khadija.hussain997@example.com,2024-02-12,Lahore,Influencer,Android
+C000998,asad.baig998@example.com,2024-02-12,Lahore,Paid Social,Desktop
+C000999,zain.malik999@example.com,2024-02-12,Gujranwala,Paid Social,Android
+C001000,ahmed.siddiqui1000@example.com,2024-02-12,Karachi,Organic Search,iOS

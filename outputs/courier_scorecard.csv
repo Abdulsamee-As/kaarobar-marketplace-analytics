@@ -1,0 +1,15 @@
+courier,city_tier,orders,avg_delivery_days,late_rate_pct,rto_rate_pct
+PakRider,3,3840,4.77,7.39,13.42
+SwiftShip,1,12040,2.43,16.81,7.43
+RapidRoute,1,6074,3.83,49.75,10.7
+SwiftShip,,1,2.0,0.0,0.0
+PakRider,2,6598,3.9,22.92,9.9
+CityExpress,1,9426,2.74,20.74,8.56
+CityExpress,2,3171,3.56,17.98,10.49
+RapidRoute,3,4251,5.98,24.06,16.34
+PakRider,,2,2.0,0.0,0.0
+RapidRoute,2,5566,4.66,39.79,13.43
+CityExpress,3,1070,6.55,36.96,13.38
+PakRider,1,10146,3.08,25.37,8.27
+SwiftShip,3,1470,4.01,1.74,11.43
+SwiftShip,2,4146,3.2,13.6,8.05

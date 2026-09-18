@@ -1,0 +1,20 @@
+table_name,check_name,rows_affected
+orders,rows,68155
+orders,exact duplicate rows (ingestion retry),272
+orders,legacy date format DD/MM/YYYY HH:MI,18203
+orders,blank shipping_city,546
+orders,distinct spellings of shipping_city,59
+orders,distinct payment_method labels,10
+orders,distinct order_status labels,9
+orders,shipping_fee stored as text like Rs. 150,18203
+orders,delivered status but blank delivered_at,465
+orders,orders from QA test accounts,45
+customers,duplicate accounts (same email after trim and lower-case),540
+customers,blank signup_date,109
+products,distinct spellings of category,21
+order_items,quantity zero or negative,106
+order_items,unit_price above 5x list price (extra zero typed),266
+returns,orphan returns (order_item_id not found),14
+checkout_sessions,duplicate session rows,492
+checkout_sessions,sessions under 3 seconds (likely bots),1261
+checkout_sessions,distinct experiment_group labels,6

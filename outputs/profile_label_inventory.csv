@@ -1,0 +1,47 @@
+field,raw_value,rows_count
+category,Fashion,147
+category,Home & Kitchen,97
+category,Mobile Accessories,85
+category,Beauty & Personal Care,69
+category,Electronics,62
+category,Grocery,62
+category,Footwear,50
+category,Baby & Toys,37
+category,beauty & personal care,4
+category,Home and Kitchen,3
+category,Fashion ,3
+category,fashion,3
+category,Beauty and Personal Care,3
+category,grocery,2
+category,MOBILE ACCESSORIES,2
+category,Mobile accessories,2
+category,home & kitchen,2
+category,footwear,1
+category,Electronics ,1
+category,electronics,1
+category,Baby and Toys,1
+experiment_group,treatment,48291
+experiment_group,control,48002
+experiment_group,Treatment,806
+experiment_group,Control,734
+experiment_group,TREATMENT ,488
+experiment_group,CONTROL ,478
+order_status,delivered,40732
+order_status,DLVD,15435
+order_status,returned_to_origin,4487
+order_status,Delivered,2161
+order_status,RTO,1967
+order_status,cancelled,1798
+order_status,CNCL,801
+order_status,canceled,442
+order_status,shipped,332
+payment_method,cash_on_delivery,28793
+payment_method,COD,9339
+payment_method,card,8619
+payment_method,jazzcash,6409
+payment_method,easypaisa,5298
+payment_method,CC,3309
+payment_method,Cash on Delivery,3197
+payment_method,WALLET,2358
+payment_method,COD ,561
+payment_method,Card,272
