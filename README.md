@@ -114,6 +114,8 @@ python src/ab_test.py         # A/B test statistics and chart
 python src/eda_charts.py      # charts to images/
 ```
 
+To explore, `python src/run_sql.py sql/04_analysis.sql` runs one SQL file statement by statement, and `python src/run_sql.py -q "SELECT * FROM mart.v_rfm_summary"` runs a single query and prints the result.
+
 The data is seeded, so every run reproduces the same numbers. Query results land in `outputs/` as CSV.
 
 The SQL is written in PostgreSQL syntax and tested end to end on DuckDB, which needs no database server. To load into PostgreSQL instead, run `sql/00_load_postgres.sql` with `psql`, then files 01 to 05 in order.
@@ -136,6 +138,7 @@ The SQL is written in PostgreSQL syntax and tested end to end on DuckDB, which n
 └── src/
     ├── generate_data.py   synthetic data generator
     ├── run_pipeline.py    runs the SQL and exports results
+    ├── run_sql.py         runs one SQL file or query and prints the results
     ├── ab_test.py         significance tests and sample ratio check
     └── eda_charts.py      exploratory charts
 ```
