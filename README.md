@@ -115,6 +115,8 @@ python src/ab_test.py         # A/B test statistics and chart
 python src/eda_charts.py      # charts to images/
 ```
 
+On Windows, double-clicking `run_all.bat` does all of this in one step and asks for the PostgreSQL password once.
+
 `run_pipeline.py` runs all SQL through `psql`, which it finds on the PATH or in the default Windows install folder. It connects with the standard PostgreSQL environment variables (`PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`), defaulting to `localhost`, port `5432`, user `postgres`, and database `kaarobar`, which it creates if needed. If `PGPASSWORD` is not set, it asks for the password once.
 
 The data is seeded, so every run reproduces the same numbers. Query results land in `outputs/` as CSV, and any PostgreSQL client can query the `kaarobar` database directly.
@@ -129,6 +131,7 @@ To run the SQL by hand instead, create the `kaarobar` database and run `sql/00_l
 │   └── data_dictionary.md tables, columns, and known data problems
 ├── images/               charts used in this README
 ├── outputs/              query results as CSV
+├── run_all.bat           Windows: one double-click runs every step
 ├── sql/
 │   ├── 00_load_postgres.sql
 │   ├── 01_profile_raw.sql
