@@ -1,137 +1,137 @@
 seller_id,seller_name,category,items_delivered,items_returned,not_as_described_returns,return_rate_pct,category_return_rate_pct,z_score,flagged
-S0001,Madina Enterprises,Fashion,289,40,4,13.84,14.58,-0.36,False
-S0002,Ravi Traders,Fashion,258,32,2,12.4,14.58,-0.99,False
-S0003,Clifton Traders,Fashion,760,209,136,27.5,14.58,10.09,True
-S0004,Rehmat Emporium,Fashion,1279,181,23,14.15,14.58,-0.43,False
-S0005,Madina Store,Fashion,390,51,9,13.08,14.58,-0.84,False
-S0006,Indus Enterprises,Fashion,201,34,6,16.92,14.58,0.94,False
-S0007,Hayat Enterprises,Fashion,113,13,1,11.5,14.58,-0.93,False
-S0008,Clifton Collection,Fashion,230,37,3,16.09,14.58,0.65,False
-S0009,Anarkali Mart,Fashion,136,23,5,16.91,14.58,0.77,False
-S0010,Liberty Traders,Fashion,989,134,12,13.55,14.58,-0.92,False
-S0011,Sitara Store,Fashion,753,106,19,14.08,14.58,-0.39,False
-S0012,Rehmat Enterprises,Fashion,1421,193,24,13.58,14.58,-1.07,False
-S0013,Ravi Emporium,Fashion,1073,143,23,13.33,14.58,-1.16,False
-S0014,Rehmat Enterprises,Fashion,2493,339,53,13.6,14.58,-1.39,False
-S0015,Gulberg Store,Fashion,816,112,14,13.73,14.58,-0.69,False
-S0016,Anarkali Emporium,Fashion,493,76,7,15.42,14.58,0.53,False
-S0018,Johar Traders,Fashion,49,6,1,12.24,14.58,-0.46,False
-S0019,Bolan Enterprises,Fashion,287,29,7,10.1,14.58,-2.15,False
-S0020,Sitara Mart,Fashion,3380,462,68,13.67,14.58,-1.5,False
-S0021,Bolan Emporium,Fashion,59,4,0,6.78,14.58,-1.7,False
-S0022,Margalla Traders,Fashion,653,83,11,12.71,14.58,-1.35,False
-S0023,Barkat Collection,Fashion,456,59,7,12.94,14.58,-0.99,False
-S0024,Liberty Store,Fashion,1552,215,33,13.85,14.58,-0.81,False
-S0025,Johar Mart,Fashion,311,80,46,25.72,14.58,5.57,True
-S0026,Saddar Outlet,Fashion,445,72,8,16.18,14.58,0.96,False
-S0027,Chenab Enterprises,Fashion,354,50,2,14.12,14.58,-0.24,False
-S0028,Madina Traders,Fashion,333,79,46,23.72,14.58,4.73,True
-S0029,Barkat Mart,Fashion,396,62,8,15.66,14.58,0.61,False
-S0030,Al-Noor Enterprises,Fashion,514,65,7,12.65,14.58,-1.24,False
-S0031,Crescent Emporium,Fashion,70,9,0,12.86,14.58,-0.41,False
-S0032,Rehmat Traders,Fashion,93,7,0,7.53,14.58,-1.93,False
-S0033,Hayat Traders,Fashion,1660,247,32,14.88,14.58,0.35,False
-S0034,Bolan Emporium,Footwear,318,30,3,9.43,12.19,-1.5,False
-S0035,Indus Outlet,Footwear,392,46,7,11.73,12.19,-0.27,False
-S0036,Chenab Store,Footwear,725,70,9,9.66,12.19,-2.08,False
-S0037,Clifton Store,Footwear,1510,172,23,11.39,12.19,-0.95,False
-S0038,Mehran Store,Footwear,642,67,7,10.44,12.19,-1.36,False
-S0039,Clifton Traders,Footwear,888,109,10,12.27,12.19,0.08,False
-S0040,Crescent Collection,Footwear,40,8,1,20.0,12.19,1.51,False
-S0041,Margalla Traders,Footwear,843,93,14,11.03,12.19,-1.02,False
-S0042,Crescent Store,Footwear,902,188,107,20.84,12.19,7.95,True
-S0043,Bolan Mart,Footwear,720,73,9,10.14,12.19,-1.68,False
-S0044,Sitara Collection,Footwear,200,19,1,9.5,12.19,-1.16,False
-S0045,Chenab Store,Electronics,566,33,7,5.83,6.53,-0.67,False
-S0046,Mehran Outlet,Electronics,321,58,35,18.07,6.53,8.37,True
-S0047,Al-Noor Enterprises,Electronics,1661,93,14,5.6,6.53,-1.54,False
-S0048,Barkat Enterprises,Electronics,486,36,6,7.41,6.53,0.78,False
-S0049,Al-Noor Traders,Electronics,694,41,11,5.91,6.53,-0.66,False
-S0050,Saddar Emporium,Electronics,139,2,1,1.44,6.53,-2.43,False
-S0051,Bolan Enterprises,Electronics,161,7,2,4.35,6.53,-1.12,False
-S0052,Sitara Traders,Electronics,816,62,13,7.6,6.53,1.23,False
-S0053,Bolan Traders,Electronics,958,44,9,4.59,6.53,-2.43,False
-S0054,Anarkali Collection,Electronics,170,11,1,6.47,6.53,-0.03,False
-S0055,Mehran Traders,Electronics,395,31,4,7.85,6.53,1.06,False
-S0056,Bolan Mart,Electronics,261,14,3,5.36,6.53,-0.76,False
-S0057,Clifton Mart,Electronics,2031,138,21,6.79,6.53,0.48,False
-S0058,Crescent Emporium,Electronics,223,10,3,4.48,6.53,-1.24,False
-S0059,Al-Noor Outlet,Mobile Accessories,776,50,11,6.44,6.63,-0.21,False
-S0060,Anarkali Store,Mobile Accessories,285,16,3,5.61,6.63,-0.69,False
-S0061,Chenab Enterprises,Mobile Accessories,188,19,6,10.11,6.63,1.92,False
-S0062,Rehmat Emporium,Mobile Accessories,667,40,9,6.0,6.63,-0.65,False
-S0063,Crescent Mart,Mobile Accessories,163,7,0,4.29,6.63,-1.2,False
-S0064,Chenab Store,Mobile Accessories,1241,89,18,7.17,6.63,0.77,False
-S0065,Mehran Enterprises,Mobile Accessories,1161,93,22,8.01,6.63,1.9,False
-S0066,Saddar Collection,Mobile Accessories,636,44,5,6.92,6.63,0.3,False
-S0067,Sitara Outlet,Mobile Accessories,145,9,1,6.21,6.63,-0.2,False
-S0068,Liberty Traders,Mobile Accessories,80,6,1,7.5,6.63,0.31,False
-S0069,Mehran Traders,Mobile Accessories,280,20,2,7.14,6.63,0.35,False
-S0070,Mehran Mart,Mobile Accessories,251,14,3,5.58,6.63,-0.67,False
-S0071,Clifton Traders,Mobile Accessories,1175,78,14,6.64,6.63,0.02,False
-S0072,Johar Store,Mobile Accessories,532,27,5,5.08,6.63,-1.44,False
-S0073,Sitara Store,Mobile Accessories,332,21,3,6.33,6.63,-0.22,False
-S0074,Anarkali Outlet,Mobile Accessories,2359,132,24,5.6,6.63,-2.01,False
-S0075,Ravi Outlet,Mobile Accessories,618,47,5,7.61,6.63,0.98,False
-S0076,Johar Enterprises,Mobile Accessories,722,59,12,8.17,6.63,1.67,False
-S0077,Bolan Outlet,Mobile Accessories,1126,73,18,6.48,6.63,-0.19,False
-S0078,Ravi Collection,Home & Kitchen,773,35,5,4.53,4.71,-0.24,False
-S0079,Johar Collection,Home & Kitchen,683,38,8,5.56,4.71,1.05,False
-S0080,Anarkali Mart,Home & Kitchen,535,26,2,4.86,4.71,0.16,False
-S0081,Hayat Outlet,Home & Kitchen,600,23,6,3.83,4.71,-1.02,False
-S0082,Bolan Enterprises,Home & Kitchen,120,6,1,5.0,4.71,0.15,False
-S0083,Rehmat Emporium,Home & Kitchen,440,23,4,5.23,4.71,0.51,False
-S0084,Gulberg Emporium,Home & Kitchen,788,34,9,4.31,4.71,-0.53,False
-S0085,Johar Traders,Home & Kitchen,274,11,3,4.01,4.71,-0.54,False
-S0086,Barkat Traders,Home & Kitchen,704,29,8,4.12,4.71,-0.74,False
-S0087,Anarkali Enterprises,Home & Kitchen,450,15,3,3.33,4.71,-1.38,False
-S0088,Barkat Emporium,Home & Kitchen,768,40,7,5.21,4.71,0.65,False
-S0089,Crescent Store,Home & Kitchen,238,8,4,3.36,4.71,-0.98,False
-S0090,Barkat Enterprises,Home & Kitchen,724,37,7,5.11,4.71,0.51,False
-S0091,Crescent Outlet,Home & Kitchen,431,23,3,5.34,4.71,0.61,False
-S0092,Liberty Emporium,Home & Kitchen,280,12,2,4.29,4.71,-0.34,False
-S0093,Barkat Mart,Home & Kitchen,441,26,4,5.9,4.71,1.17,False
-S0094,Rehmat Mart,Home & Kitchen,674,37,5,5.49,4.71,0.95,False
-S0095,Madina Outlet,Home & Kitchen,954,36,7,3.77,4.71,-1.37,False
-S0096,Indus Store,Home & Kitchen,1256,70,12,5.57,4.71,1.44,False
-S0097,Crescent Mart,Home & Kitchen,37,6,3,16.22,4.71,3.3,False
-S0098,Anarkali Traders,Home & Kitchen,1439,67,11,4.66,4.71,-0.1,False
-S0099,Liberty Emporium,Home & Kitchen,2439,107,23,4.39,4.71,-0.76,False
-S0100,Barkat Enterprises,Beauty & Personal Care,562,23,7,4.09,3.6,0.62,False
-S0101,Al-Noor Mart,Beauty & Personal Care,798,37,8,4.64,3.6,1.57,False
-S0102,Saddar Outlet,Beauty & Personal Care,495,18,1,3.64,3.6,0.04,False
-S0103,Al-Noor Traders,Beauty & Personal Care,399,8,4,2.01,3.6,-1.71,False
-S0104,Johar Traders,Beauty & Personal Care,1447,45,4,3.11,3.6,-1.01,False
-S0105,Liberty Collection,Beauty & Personal Care,190,8,1,4.21,3.6,0.45,False
-S0106,Chenab Emporium,Beauty & Personal Care,554,22,4,3.97,3.6,0.47,False
-S0107,Mehran Emporium,Beauty & Personal Care,270,9,1,3.33,3.6,-0.24,False
-S0108,Ravi Traders,Beauty & Personal Care,356,11,3,3.09,3.6,-0.52,False
-S0109,Mehran Emporium,Beauty & Personal Care,156,6,0,3.85,3.6,0.16,False
-S0110,Crescent Traders,Beauty & Personal Care,157,2,0,1.27,3.6,-1.57,False
-S0111,Madina Enterprises,Beauty & Personal Care,1192,39,4,3.27,3.6,-0.61,False
-S0112,Al-Noor Collection,Beauty & Personal Care,2393,90,13,3.76,3.6,0.41,False
-S0113,Clifton Traders,Beauty & Personal Care,727,32,4,4.4,3.6,1.16,False
-S0114,Liberty Emporium,Beauty & Personal Care,128,7,1,5.47,3.6,1.13,False
-S0115,Saddar Outlet,Beauty & Personal Care,723,23,5,3.18,3.6,-0.61,False
-S0116,Kohinoor Emporium,Grocery,297,8,4,2.69,1.74,1.26,False
-S0117,Anarkali Emporium,Grocery,628,8,3,1.27,1.74,-0.89,False
-S0118,Indus Collection,Grocery,256,3,0,1.17,1.74,-0.7,False
-S0119,Crescent Traders,Grocery,815,19,3,2.33,1.74,1.29,False
-S0120,Johar Mart,Grocery,217,1,0,0.46,1.74,-1.44,False
-S0121,Indus Mart,Grocery,509,16,2,3.14,1.74,2.42,False
-S0122,Sitara Traders,Grocery,564,10,1,1.77,1.74,0.06,False
-S0123,Madina Emporium,Grocery,928,21,3,2.26,1.74,1.22,False
-S0124,Gulberg Emporium,Grocery,114,0,0,0.0,1.74,-1.42,False
-S0125,Indus Store,Grocery,290,4,3,1.38,1.74,-0.47,False
-S0126,Mehran Enterprises,Grocery,1840,21,4,1.14,1.74,-1.96,False
-S0127,Barkat Store,Grocery,997,17,3,1.71,1.74,-0.08,False
-S0128,Saddar Store,Grocery,905,16,4,1.77,1.74,0.06,False
-S0129,Mehran Traders,Grocery,777,15,5,1.93,1.74,0.41,False
-S0130,Barkat Mart,Baby & Toys,502,21,3,4.18,4.67,-0.51,False
-S0131,Barkat Enterprises,Baby & Toys,172,6,0,3.49,4.67,-0.73,False
-S0132,Hayat Traders,Baby & Toys,299,17,1,5.69,4.67,0.84,False
-S0133,Anarkali Enterprises,Baby & Toys,1011,54,11,5.34,4.67,1.02,False
-S0134,Rehmat Mart,Baby & Toys,1236,49,13,3.96,4.67,-1.17,False
-S0135,Rehmat Store,Baby & Toys,159,6,2,3.77,4.67,-0.53,False
-S0136,Sitara Outlet,Baby & Toys,1655,76,10,4.59,4.67,-0.14,False
-S0137,Hayat Traders,Baby & Toys,280,19,4,6.79,4.67,1.68,False
+S0001,Madina Enterprises,Fashion,289,40,4,13.84,14.58,-0.36,f
+S0002,Ravi Traders,Fashion,258,32,2,12.40,14.58,-0.99,f
+S0003,Clifton Traders,Fashion,760,209,136,27.50,14.58,10.09,t
+S0004,Rehmat Emporium,Fashion,1279,181,23,14.15,14.58,-0.43,f
+S0005,Madina Store,Fashion,390,51,9,13.08,14.58,-0.84,f
+S0006,Indus Enterprises,Fashion,201,34,6,16.92,14.58,0.94,f
+S0007,Hayat Enterprises,Fashion,113,13,1,11.50,14.58,-0.93,f
+S0008,Clifton Collection,Fashion,230,37,3,16.09,14.58,0.65,f
+S0009,Anarkali Mart,Fashion,136,23,5,16.91,14.58,0.77,f
+S0010,Liberty Traders,Fashion,989,134,12,13.55,14.58,-0.92,f
+S0011,Sitara Store,Fashion,753,106,19,14.08,14.58,-0.39,f
+S0012,Rehmat Enterprises,Fashion,1421,193,24,13.58,14.58,-1.07,f
+S0013,Ravi Emporium,Fashion,1073,143,23,13.33,14.58,-1.16,f
+S0014,Rehmat Enterprises,Fashion,2493,339,53,13.60,14.58,-1.39,f
+S0015,Gulberg Store,Fashion,816,112,14,13.73,14.58,-0.69,f
+S0016,Anarkali Emporium,Fashion,493,76,7,15.42,14.58,0.53,f
+S0018,Johar Traders,Fashion,49,6,1,12.24,14.58,-0.46,f
+S0019,Bolan Enterprises,Fashion,287,29,7,10.10,14.58,-2.15,f
+S0020,Sitara Mart,Fashion,3380,462,68,13.67,14.58,-1.50,f
+S0021,Bolan Emporium,Fashion,59,4,0,6.78,14.58,-1.70,f
+S0022,Margalla Traders,Fashion,653,83,11,12.71,14.58,-1.35,f
+S0023,Barkat Collection,Fashion,456,59,7,12.94,14.58,-0.99,f
+S0024,Liberty Store,Fashion,1552,215,33,13.85,14.58,-0.81,f
+S0025,Johar Mart,Fashion,311,80,46,25.72,14.58,5.57,t
+S0026,Saddar Outlet,Fashion,445,72,8,16.18,14.58,0.96,f
+S0027,Chenab Enterprises,Fashion,354,50,2,14.12,14.58,-0.24,f
+S0028,Madina Traders,Fashion,333,79,46,23.72,14.58,4.73,t
+S0029,Barkat Mart,Fashion,396,62,8,15.66,14.58,0.61,f
+S0030,Al-Noor Enterprises,Fashion,514,65,7,12.65,14.58,-1.24,f
+S0031,Crescent Emporium,Fashion,70,9,0,12.86,14.58,-0.41,f
+S0032,Rehmat Traders,Fashion,93,7,0,7.53,14.58,-1.93,f
+S0033,Hayat Traders,Fashion,1660,247,32,14.88,14.58,0.35,f
+S0034,Bolan Emporium,Footwear,318,30,3,9.43,12.19,-1.50,f
+S0035,Indus Outlet,Footwear,392,46,7,11.73,12.19,-0.27,f
+S0036,Chenab Store,Footwear,725,70,9,9.66,12.19,-2.08,f
+S0037,Clifton Store,Footwear,1510,172,23,11.39,12.19,-0.95,f
+S0038,Mehran Store,Footwear,642,67,7,10.44,12.19,-1.36,f
+S0039,Clifton Traders,Footwear,888,109,10,12.27,12.19,0.08,f
+S0040,Crescent Collection,Footwear,40,8,1,20.00,12.19,1.51,f
+S0041,Margalla Traders,Footwear,843,93,14,11.03,12.19,-1.02,f
+S0042,Crescent Store,Footwear,902,188,107,20.84,12.19,7.95,t
+S0043,Bolan Mart,Footwear,720,73,9,10.14,12.19,-1.68,f
+S0044,Sitara Collection,Footwear,200,19,1,9.50,12.19,-1.16,f
+S0045,Chenab Store,Electronics,566,33,7,5.83,6.53,-0.67,f
+S0046,Mehran Outlet,Electronics,321,58,35,18.07,6.53,8.37,t
+S0047,Al-Noor Enterprises,Electronics,1661,93,14,5.60,6.53,-1.54,f
+S0048,Barkat Enterprises,Electronics,486,36,6,7.41,6.53,0.78,f
+S0049,Al-Noor Traders,Electronics,694,41,11,5.91,6.53,-0.66,f
+S0050,Saddar Emporium,Electronics,139,2,1,1.44,6.53,-2.43,f
+S0051,Bolan Enterprises,Electronics,161,7,2,4.35,6.53,-1.12,f
+S0052,Sitara Traders,Electronics,816,62,13,7.60,6.53,1.23,f
+S0053,Bolan Traders,Electronics,958,44,9,4.59,6.53,-2.43,f
+S0054,Anarkali Collection,Electronics,170,11,1,6.47,6.53,-0.03,f
+S0055,Mehran Traders,Electronics,395,31,4,7.85,6.53,1.06,f
+S0056,Bolan Mart,Electronics,261,14,3,5.36,6.53,-0.76,f
+S0057,Clifton Mart,Electronics,2031,138,21,6.79,6.53,0.48,f
+S0058,Crescent Emporium,Electronics,223,10,3,4.48,6.53,-1.24,f
+S0059,Al-Noor Outlet,Mobile Accessories,776,50,11,6.44,6.63,-0.21,f
+S0060,Anarkali Store,Mobile Accessories,285,16,3,5.61,6.63,-0.69,f
+S0061,Chenab Enterprises,Mobile Accessories,188,19,6,10.11,6.63,1.92,f
+S0062,Rehmat Emporium,Mobile Accessories,667,40,9,6.00,6.63,-0.65,f
+S0063,Crescent Mart,Mobile Accessories,163,7,0,4.29,6.63,-1.20,f
+S0064,Chenab Store,Mobile Accessories,1241,89,18,7.17,6.63,0.77,f
+S0065,Mehran Enterprises,Mobile Accessories,1161,93,22,8.01,6.63,1.90,f
+S0066,Saddar Collection,Mobile Accessories,636,44,5,6.92,6.63,0.30,f
+S0067,Sitara Outlet,Mobile Accessories,145,9,1,6.21,6.63,-0.20,f
+S0068,Liberty Traders,Mobile Accessories,80,6,1,7.50,6.63,0.31,f
+S0069,Mehran Traders,Mobile Accessories,280,20,2,7.14,6.63,0.35,f
+S0070,Mehran Mart,Mobile Accessories,251,14,3,5.58,6.63,-0.67,f
+S0071,Clifton Traders,Mobile Accessories,1175,78,14,6.64,6.63,0.02,f
+S0072,Johar Store,Mobile Accessories,532,27,5,5.08,6.63,-1.44,f
+S0073,Sitara Store,Mobile Accessories,332,21,3,6.33,6.63,-0.22,f
+S0074,Anarkali Outlet,Mobile Accessories,2359,132,24,5.60,6.63,-2.01,f
+S0075,Ravi Outlet,Mobile Accessories,618,47,5,7.61,6.63,0.98,f
+S0076,Johar Enterprises,Mobile Accessories,722,59,12,8.17,6.63,1.67,f
+S0077,Bolan Outlet,Mobile Accessories,1126,73,18,6.48,6.63,-0.19,f
+S0078,Ravi Collection,Home & Kitchen,773,35,5,4.53,4.71,-0.24,f
+S0079,Johar Collection,Home & Kitchen,683,38,8,5.56,4.71,1.05,f
+S0080,Anarkali Mart,Home & Kitchen,535,26,2,4.86,4.71,0.16,f
+S0081,Hayat Outlet,Home & Kitchen,600,23,6,3.83,4.71,-1.02,f
+S0082,Bolan Enterprises,Home & Kitchen,120,6,1,5.00,4.71,0.15,f
+S0083,Rehmat Emporium,Home & Kitchen,440,23,4,5.23,4.71,0.51,f
+S0084,Gulberg Emporium,Home & Kitchen,788,34,9,4.31,4.71,-0.53,f
+S0085,Johar Traders,Home & Kitchen,274,11,3,4.01,4.71,-0.54,f
+S0086,Barkat Traders,Home & Kitchen,704,29,8,4.12,4.71,-0.74,f
+S0087,Anarkali Enterprises,Home & Kitchen,450,15,3,3.33,4.71,-1.38,f
+S0088,Barkat Emporium,Home & Kitchen,768,40,7,5.21,4.71,0.65,f
+S0089,Crescent Store,Home & Kitchen,238,8,4,3.36,4.71,-0.98,f
+S0090,Barkat Enterprises,Home & Kitchen,724,37,7,5.11,4.71,0.51,f
+S0091,Crescent Outlet,Home & Kitchen,431,23,3,5.34,4.71,0.61,f
+S0092,Liberty Emporium,Home & Kitchen,280,12,2,4.29,4.71,-0.34,f
+S0093,Barkat Mart,Home & Kitchen,441,26,4,5.90,4.71,1.17,f
+S0094,Rehmat Mart,Home & Kitchen,674,37,5,5.49,4.71,0.95,f
+S0095,Madina Outlet,Home & Kitchen,954,36,7,3.77,4.71,-1.37,f
+S0096,Indus Store,Home & Kitchen,1256,70,12,5.57,4.71,1.44,f
+S0097,Crescent Mart,Home & Kitchen,37,6,3,16.22,4.71,3.30,f
+S0098,Anarkali Traders,Home & Kitchen,1439,67,11,4.66,4.71,-0.10,f
+S0099,Liberty Emporium,Home & Kitchen,2439,107,23,4.39,4.71,-0.76,f
+S0100,Barkat Enterprises,Beauty & Personal Care,562,23,7,4.09,3.60,0.62,f
+S0101,Al-Noor Mart,Beauty & Personal Care,798,37,8,4.64,3.60,1.57,f
+S0102,Saddar Outlet,Beauty & Personal Care,495,18,1,3.64,3.60,0.04,f
+S0103,Al-Noor Traders,Beauty & Personal Care,399,8,4,2.01,3.60,-1.71,f
+S0104,Johar Traders,Beauty & Personal Care,1447,45,4,3.11,3.60,-1.01,f
+S0105,Liberty Collection,Beauty & Personal Care,190,8,1,4.21,3.60,0.45,f
+S0106,Chenab Emporium,Beauty & Personal Care,554,22,4,3.97,3.60,0.47,f
+S0107,Mehran Emporium,Beauty & Personal Care,270,9,1,3.33,3.60,-0.24,f
+S0108,Ravi Traders,Beauty & Personal Care,356,11,3,3.09,3.60,-0.52,f
+S0109,Mehran Emporium,Beauty & Personal Care,156,6,0,3.85,3.60,0.16,f
+S0110,Crescent Traders,Beauty & Personal Care,157,2,0,1.27,3.60,-1.57,f
+S0111,Madina Enterprises,Beauty & Personal Care,1192,39,4,3.27,3.60,-0.61,f
+S0112,Al-Noor Collection,Beauty & Personal Care,2393,90,13,3.76,3.60,0.41,f
+S0113,Clifton Traders,Beauty & Personal Care,727,32,4,4.40,3.60,1.16,f
+S0114,Liberty Emporium,Beauty & Personal Care,128,7,1,5.47,3.60,1.13,f
+S0115,Saddar Outlet,Beauty & Personal Care,723,23,5,3.18,3.60,-0.61,f
+S0116,Kohinoor Emporium,Grocery,297,8,4,2.69,1.74,1.26,f
+S0117,Anarkali Emporium,Grocery,628,8,3,1.27,1.74,-0.89,f
+S0118,Indus Collection,Grocery,256,3,0,1.17,1.74,-0.70,f
+S0119,Crescent Traders,Grocery,815,19,3,2.33,1.74,1.29,f
+S0120,Johar Mart,Grocery,217,1,0,0.46,1.74,-1.44,f
+S0121,Indus Mart,Grocery,509,16,2,3.14,1.74,2.42,f
+S0122,Sitara Traders,Grocery,564,10,1,1.77,1.74,0.06,f
+S0123,Madina Emporium,Grocery,928,21,3,2.26,1.74,1.22,f
+S0124,Gulberg Emporium,Grocery,114,0,0,0.00,1.74,-1.42,f
+S0125,Indus Store,Grocery,290,4,3,1.38,1.74,-0.47,f
+S0126,Mehran Enterprises,Grocery,1840,21,4,1.14,1.74,-1.96,f
+S0127,Barkat Store,Grocery,997,17,3,1.71,1.74,-0.08,f
+S0128,Saddar Store,Grocery,905,16,4,1.77,1.74,0.06,f
+S0129,Mehran Traders,Grocery,777,15,5,1.93,1.74,0.41,f
+S0130,Barkat Mart,Baby & Toys,502,21,3,4.18,4.67,-0.51,f
+S0131,Barkat Enterprises,Baby & Toys,172,6,0,3.49,4.67,-0.73,f
+S0132,Hayat Traders,Baby & Toys,299,17,1,5.69,4.67,0.84,f
+S0133,Anarkali Enterprises,Baby & Toys,1011,54,11,5.34,4.67,1.02,f
+S0134,Rehmat Mart,Baby & Toys,1236,49,13,3.96,4.67,-1.17,f
+S0135,Rehmat Store,Baby & Toys,159,6,2,3.77,4.67,-0.53,f
+S0136,Sitara Outlet,Baby & Toys,1655,76,10,4.59,4.67,-0.14,f
+S0137,Hayat Traders,Baby & Toys,280,19,4,6.79,4.67,1.68,f

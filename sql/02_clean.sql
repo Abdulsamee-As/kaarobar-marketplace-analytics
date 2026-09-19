@@ -1,6 +1,6 @@
 -- =====================================================================
 -- 02_clean.sql : raw text in, typed and standardised tables out
--- Dialect: PostgreSQL. Also runs unchanged in DuckDB.
+-- Dialect: PostgreSQL.
 -- Every rule below answers a problem found in 01_profile_raw.sql.
 -- =====================================================================
 DROP SCHEMA IF EXISTS clean CASCADE;

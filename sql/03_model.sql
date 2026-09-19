@@ -2,7 +2,7 @@
 -- 03_model.sql : analysis-ready tables
 -- fact_orders   one row per order: money, delivery, and order sequence
 -- dim_customers one row per customer: cohort, first-order experience, value
--- Dialect: PostgreSQL. Also runs unchanged in DuckDB.
+-- Dialect: PostgreSQL.
 -- =====================================================================
 DROP SCHEMA IF EXISTS mart CASCADE;
 CREATE SCHEMA mart;

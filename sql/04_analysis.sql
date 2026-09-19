@@ -2,7 +2,7 @@
 -- 04_analysis.sql : the business questions, one view each
 -- Money is in PKR. Net revenue = delivered GMV minus refunds.
 -- Rates are percentages rounded to two decimals.
--- Dialect: PostgreSQL. Also runs unchanged in DuckDB.
+-- Dialect: PostgreSQL.
 -- =====================================================================
 
 -- Headline numbers for the whole period

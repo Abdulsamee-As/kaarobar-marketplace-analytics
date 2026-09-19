@@ -15,13 +15,11 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
-import duckdb
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
 ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = ROOT / "kaarobar.duckdb"
 OUT_DIR = ROOT / "outputs"
 IMG_DIR = ROOT / "images"
 
@@ -54,9 +52,8 @@ def two_proportion_test(x_c: int, n_c: int, x_t: int, n_t: int) -> dict:
 
 
 def main() -> None:
-    con = duckdb.connect(str(DB_PATH), read_only=True)
-    ab = con.execute("SELECT * FROM mart.v_ab_test").df()
-    con.close()
+    # outputs/ab_test.csv is the mart.v_ab_test view, exported by src/run_pipeline.py
+    ab = pd.read_csv(OUT_DIR / "ab_test.csv", true_values=["t"], false_values=["f"])
 
     print("=== Sample ratio check (planned 50/50) ===")
     for label, data in (("all sessions, bots included", ab), ("bots removed", ab[~ab.is_bot])):

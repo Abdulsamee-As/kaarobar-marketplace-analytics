@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Exploratory charts for the Kaarobar analysis.
 
-Reads the analysis views built by src/run_pipeline.py and saves one PNG per
-question to images/. Chart titles state the finding, and every number in a
-title is computed from the data, so titles stay true if the data changes.
+Reads the analysis views that src/run_pipeline.py exports to outputs/ and
+saves one PNG per question to images/. Chart titles state the finding, and
+every number in a title is computed from the data, so titles stay true if
+the data changes.
 
 Run after src/run_pipeline.py:
     python src/eda_charts.py
@@ -13,7 +14,6 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import duckdb
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from generate_data import EID_FITR, MEGA_SALES, RAMADAN  # noqa: E402  (public calendar, used for annotations)
 
-DB_PATH = ROOT / "kaarobar.duckdb"
+OUT_DIR = ROOT / "outputs"
 IMG_DIR = ROOT / "images"
 COD, PREPAID, NEUTRAL, ACCENT, LIGHT = "#C8553D", "#2E86AB", "#5C6B73", "#F28F3B", "#D9DEE2"
 FOOTNOTE = "Synthetic data: Kaarobar is a fictional marketplace."
@@ -34,8 +34,9 @@ plt.rcParams.update({"axes.titlesize": 12, "axes.titleweight": "bold", "axes.tit
                      "axes.spines.top": False, "axes.spines.right": False, "figure.dpi": 110})
 
 
-def query(con, sql: str) -> pd.DataFrame:
-    return con.execute(sql).df()
+def load(view: str) -> pd.DataFrame:
+    """Read an exported view, e.g. load('monthly_kpis') for mart.v_monthly_kpis."""
+    return pd.read_csv(OUT_DIR / f"{view}.csv", true_values=["t"], false_values=["f"])
 
 
 def save(fig, name: str) -> None:
@@ -46,9 +47,10 @@ def save(fig, name: str) -> None:
     print(f"saved images/{name}")
 
 
-def monthly_revenue(con):
-    m = query(con, "SELECT order_month, orders, net_revenue FROM mart.v_monthly_kpis ORDER BY order_month")
+def monthly_revenue():
+    m = load("monthly_kpis")
     m["order_month"] = pd.to_datetime(m.order_month)
+    m = m.sort_values("order_month")
     first, last = m.iloc[0], m.iloc[-1]
     growth = last.net_revenue / first.net_revenue
     fig, ax = plt.subplots(figsize=(11, 5))
@@ -61,9 +63,10 @@ def monthly_revenue(con):
     save(fig, "01_monthly_revenue.png")
 
 
-def daily_orders(con):
-    d = query(con, "SELECT order_date, orders FROM mart.v_daily_orders ORDER BY order_date")
+def daily_orders():
+    d = load("daily_orders")
     d["order_date"] = pd.to_datetime(d.order_date)
+    d = d.sort_values("order_date").reset_index(drop=True)
     d["avg_7d"] = d.orders.rolling(7, center=True).mean()
     fig, ax = plt.subplots(figsize=(12, 5))
     for start, end in RAMADAN:
@@ -87,10 +90,10 @@ def daily_orders(con):
     save(fig, "02_daily_orders.png")
 
 
-def payment_mix(con):
-    p = query(con, "SELECT order_month, payment_method, share_pct FROM mart.v_payment_mix")
+def payment_mix():
+    p = load("payment_mix")
     p["order_month"] = pd.to_datetime(p.order_month)
-    wide = p.pivot(index="order_month", columns="payment_method", values="share_pct").fillna(0)
+    wide = p.pivot(index="order_month", columns="payment_method", values="share_pct").fillna(0).sort_index()
     wide = wide[["Cash on Delivery", "Mobile Wallet", "Card"]]
     fig, ax = plt.subplots(figsize=(11, 5))
     ax.stackplot(wide.index, wide.T.values, labels=wide.columns, colors=[COD, ACCENT, PREPAID], alpha=0.9)
@@ -104,8 +107,8 @@ def payment_mix(con):
     save(fig, "03_payment_mix.png")
 
 
-def rto_drivers(con):
-    r = query(con, "SELECT * FROM mart.v_rto_drivers")
+def rto_drivers():
+    r = load("rto_drivers")
     r["segment"] = r.customer_type + "\n" + r.order_value_band
     order = ["First order\nAbove PKR 15,000", "First order\nPKR 15,000 or less",
              "Repeat order\nAbove PKR 15,000", "Repeat order\nPKR 15,000 or less"]
@@ -124,8 +127,8 @@ def rto_drivers(con):
     save(fig, "04_rto_drivers.png")
 
 
-def courier_heatmap(con):
-    c = query(con, "SELECT courier, city_tier, late_rate_pct FROM mart.v_courier_scorecard WHERE city_tier IS NOT NULL")
+def courier_heatmap():
+    c = load("courier_scorecard").dropna(subset=["city_tier"])
     wide = c.pivot(index="courier", columns="city_tier", values="late_rate_pct")
     wide.columns = [f"Tier {int(t)} cities" for t in wide.columns]
     fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -137,9 +140,10 @@ def courier_heatmap(con):
     save(fig, "05_courier_late_rates.png")
 
 
-def late_by_month(con):
-    m = query(con, "SELECT order_month, late_rate_pct FROM mart.v_delivery_monthly ORDER BY order_month")
+def late_by_month():
+    m = load("delivery_monthly")
     m["order_month"] = pd.to_datetime(m.order_month)
+    m = m.sort_values("order_month").reset_index(drop=True)
     fig, ax = plt.subplots(figsize=(11, 4.8))
     colors = [COD if d.month in (11, 12) else NEUTRAL for d in m.order_month]
     ax.bar(m.order_month, m.late_rate_pct, width=25, color=colors)
@@ -152,28 +156,27 @@ def late_by_month(con):
     save(fig, "06_late_deliveries_by_month.png")
 
 
-def first_order_retention(con):
-    f = query(con, "SELECT * FROM mart.v_first_order_experience")
-    order = ["Delivered on time", "Cancelled", "Delivered late", "Refused at door (RTO)"]
-    f = f.set_index("first_order_experience").loc[order].reset_index()
+def first_order_retention():
+    f = load("first_order_experience").set_index("first_order_experience")
+    f = f.loc[["Delivered on time", "Cancelled", "Delivered late", "Refused at door (RTO)"]].reset_index()
     fig, ax = plt.subplots(figsize=(9, 4.8))
-    colors = [PREPAID, NEUTRAL, COD, COD]
-    bars = ax.bar(f.first_order_experience, f.repeat_90d_pct, color=colors)
+    bars = ax.bar(f.first_order_experience, f.repeat_90d_pct, color=[PREPAID, NEUTRAL, COD, COD])
     ax.bar_label(bars, labels=[f"{v:.0f}%\n(n={n:,})" for v, n in zip(f.repeat_90d_pct, f.customers)], fontsize=9)
     ax.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
     ax.set_ylabel("Ordered again within 90 days")
     ax.set_ylim(0, f.repeat_90d_pct.max() * 1.25)
-    on_time = f.set_index("first_order_experience").loc["Delivered on time", "repeat_90d_pct"]
-    late = f.set_index("first_order_experience").loc["Delivered late", "repeat_90d_pct"]
-    ax.set_title(f"A late first delivery cuts the 90-day repeat rate from {on_time:.0f}% to {late:.0f}%")
+    rates = f.set_index("first_order_experience").repeat_90d_pct
+    ax.set_title(f"A late first delivery cuts the 90-day repeat rate from {rates['Delivered on time']:.0f}% "
+                 f"to {rates['Delivered late']:.0f}%")
     save(fig, "07_first_order_retention.png")
 
 
-def cohort_heatmap(con):
-    c = query(con, """SELECT cohort_month, months_since_first, retention_pct FROM mart.v_cohort_retention
-                      WHERE cohort_month <= DATE '2025-12-01' AND months_since_first BETWEEN 1 AND 6""")
-    c["cohort_month"] = pd.to_datetime(c.cohort_month).dt.strftime("%Y-%m")
-    wide = c.pivot(index="cohort_month", columns="months_since_first", values="retention_pct")
+def cohort_heatmap():
+    c = load("cohort_retention")
+    c["cohort_month"] = pd.to_datetime(c.cohort_month)
+    c = c[(c.cohort_month <= "2025-12-01") & c.months_since_first.between(1, 6)].copy()
+    c["cohort_month"] = c.cohort_month.dt.strftime("%Y-%m")
+    wide = c.pivot(index="cohort_month", columns="months_since_first", values="retention_pct").sort_index()
     fig, ax = plt.subplots(figsize=(9, 9))
     sns.heatmap(wide, annot=True, fmt=".0f", cmap="Blues", cbar_kws={"label": "Customers ordering again, %"}, ax=ax)
     ax.set_xlabel("Months after first order")
@@ -185,14 +188,12 @@ def cohort_heatmap(con):
     save(fig, "08_cohort_retention.png")
 
 
-def acquisition_quality(con):
-    a = query(con, "SELECT * FROM mart.v_acquisition_quality")
-    ch = query(con, "SELECT * FROM mart.v_channel_quality ORDER BY repeat_90d_pct DESC")
+def acquisition_quality():
+    a = load("acquisition_quality").set_index("acquisition")
+    ch = load("channel_quality").sort_values("repeat_90d_pct", ascending=False)
+    sale, other = a.loc["First order used a mega-sale code"], a.loc["First order at any other time"]
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.8), gridspec_kw={"width_ratios": [1, 1.6]})
-    bars = ax1.bar(["Mega-sale code", "Any other time"],
-                   [a.set_index("acquisition").iloc[:, 1].get("First order used a mega-sale code"),
-                    a.set_index("acquisition").iloc[:, 1].get("First order at any other time")],
-                   color=[COD, PREPAID])
+    bars = ax1.bar(["Mega-sale code", "Any other time"], [sale.repeat_90d_pct, other.repeat_90d_pct], color=[COD, PREPAID])
     ax1.bar_label(bars, fmt="%.0f%%")
     ax1.set_title("By first order", fontsize=11)
     ax1.set_ylabel("Ordered again within 90 days")
@@ -202,23 +203,20 @@ def acquisition_quality(con):
     ax2.invert_yaxis()
     ax2.set_title("By acquisition channel", fontsize=11)
     ax2.xaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
-    idx = a.set_index("acquisition")
-    sale, other = idx.loc["First order used a mega-sale code"], idx.loc["First order at any other time"]
     fig.suptitle(f"Mega-sale customers come back less ({sale.repeat_90d_pct:.0f}% vs {other.repeat_90d_pct:.0f}%) "
                  f"and spend {100 * (1 - sale.avg_net_revenue / other.avg_net_revenue):.0f}% less over their lifetime",
                  x=0.01, ha="left", fontsize=12, fontweight="bold")
     save(fig, "09_acquisition_quality.png")
 
 
-def returns_by_category(con):
-    r = query(con, "SELECT * FROM mart.v_returns_by_category ORDER BY return_rate_pct DESC")
+def returns_by_category():
+    r = load("returns_by_category").sort_values("return_rate_pct", ascending=False).reset_index(drop=True)
     reasons = ["size_or_fit", "not_as_described", "defective_or_damaged", "arrived_too_late", "changed_mind"]
     labels = ["Size or fit", "Not as described", "Defective or damaged", "Arrived too late", "Changed mind"]
     shares = r[reasons].fillna(0).div(r.items_delivered, axis=0) * 100
     fig, ax = plt.subplots(figsize=(11, 5))
     left = pd.Series(0.0, index=r.index)
-    palette = [COD, ACCENT, NEUTRAL, "#8E9AAF", LIGHT]
-    for col, label, color in zip(reasons, labels, palette):
+    for col, label, color in zip(reasons, labels, [COD, ACCENT, NEUTRAL, "#8E9AAF", LIGHT]):
         ax.barh(r.category, shares[col], left=left, label=label, color=color)
         left += shares[col]
     ax.invert_yaxis()
@@ -231,8 +229,8 @@ def returns_by_category(con):
     save(fig, "10_returns_by_category.png")
 
 
-def rfm(con):
-    s = query(con, "SELECT * FROM mart.v_rfm_summary")
+def rfm():
+    s = load("rfm_summary")
     s["customer_share_pct"] = 100 * s.customers / s.customers.sum()
     s = s.sort_values("revenue_share_pct", ascending=False)
     long = s.melt(id_vars="segment", value_vars=["customer_share_pct", "revenue_share_pct"],
@@ -252,8 +250,8 @@ def rfm(con):
     save(fig, "12_rfm_segments.png")
 
 
-def city_tiers(con):
-    g = query(con, "SELECT * FROM mart.v_city_tier_growth ORDER BY order_year, half, city_tier")
+def city_tiers():
+    g = load("city_tier_growth").sort_values(["order_year", "half", "city_tier"])
     g["period"] = g.order_year.astype(str) + " H" + g.half.astype(str)
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.8))
     for tier, color in zip((1, 2, 3), (PREPAID, NEUTRAL, COD)):
@@ -274,11 +272,9 @@ def city_tiers(con):
 
 def main() -> None:
     IMG_DIR.mkdir(exist_ok=True)
-    con = duckdb.connect(str(DB_PATH), read_only=True)
     for chart in (monthly_revenue, daily_orders, payment_mix, rto_drivers, courier_heatmap, late_by_month,
                   first_order_retention, cohort_heatmap, acquisition_quality, returns_by_category, rfm, city_tiers):
-        chart(con)
-    con.close()
+        chart()
 
 
 if __name__ == "__main__":

@@ -1,19 +1,19 @@
 check_name,failing_rows,result
-clean.orders: order_id is unique,0,PASS
-clean.orders: every timestamp parsed,0,PASS
-clean.orders: every payment label mapped,0,PASS
-clean.orders: every status label mapped,0,PASS
-clean.orders: no delivery before the order,0,PASS
-clean.orders: no QA test accounts,0,PASS
-clean.orders: every customer exists,0,PASS
-clean.customers: one account per email,0,PASS
 clean.products: every category mapped,0,PASS
 clean.order_items: quantity is positive,0,PASS
-clean.order_items: price never above list price,0,PASS
-clean.order_items: every item has an order,0,PASS
-clean.returns: every return has an item,0,PASS
-clean.checkout_sessions: session_id is unique,0,PASS
-clean.checkout_sessions: group is control or treatment,0,PASS
-mart.fact_orders: net revenue never negative,0,PASS
 clean.orders: city known (warning),3,WARN
+clean.orders: every status label mapped,0,PASS
+clean.orders: every payment label mapped,0,PASS
+clean.orders: every timestamp parsed,0,PASS
 clean.orders: delivered with no delivery time (warning),522,WARN
+clean.orders: no QA test accounts,0,PASS
+clean.orders: no delivery before the order,0,PASS
+clean.checkout_sessions: group is control or treatment,0,PASS
+clean.customers: one account per email,0,PASS
+mart.fact_orders: net revenue never negative,0,PASS
+clean.order_items: every item has an order,0,PASS
+clean.checkout_sessions: session_id is unique,0,PASS
+clean.orders: every customer exists,0,PASS
+clean.returns: every return has an item,0,PASS
+clean.order_items: price never above list price,0,PASS
+clean.orders: order_id is unique,0,PASS
