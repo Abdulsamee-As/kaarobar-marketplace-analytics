@@ -1,9 +1,3 @@
--- =====================================================================
--- 03_model.sql : analysis-ready tables
--- fact_orders   one row per order: money, delivery, and order sequence
--- dim_customers one row per customer: cohort, first-order experience, value
--- Dialect: T-SQL (SQL Server 2017 or later).
--- =====================================================================
 IF SCHEMA_ID('mart') IS NULL EXEC('CREATE SCHEMA mart');
 GO
 
@@ -51,7 +45,6 @@ SELECT o.order_id,
        it.list_value - it.gmv AS discount_value,
        COALESCE(r.returned_items, 0) AS returned_items,
        COALESCE(r.refunded_value, 0) AS refunded_value,
-       -- net revenue: what the business keeps from delivered orders after refunds
        CASE WHEN o.order_status = 'Delivered' THEN it.gmv - COALESCE(r.refunded_value, 0) ELSE 0 END AS net_revenue,
        DATEDIFF(day, o.order_date, o.promised_date) AS promised_days,
        CASE WHEN o.order_status = 'Delivered' AND o.delivered_at IS NOT NULL
@@ -108,8 +101,6 @@ SELECT c.customer_id,
        f.first_payment_group,
        f.first_order_late,
        s.second_order_date,
-       -- a 90-day repeat can only be judged when the first order is at least
-       -- 90 days before the data extract (2026-06-30)
        CASE WHEN DATEDIFF(day, f.first_order_date, CAST('2026-06-30' AS date)) >= 90
             THEN CAST(CASE WHEN s.second_order_date IS NOT NULL
                             AND DATEDIFF(day, f.first_order_date, s.second_order_date) <= 90

@@ -1,21 +1,3 @@
-#!/usr/bin/env python3
-"""Generate the synthetic Kaarobar marketplace dataset.
-
-Kaarobar is a fictional Pakistani online marketplace. Every customer, seller,
-courier, product, and number in this dataset is synthetic. The generator plants
-two kinds of realism on purpose:
-
-1. Business patterns an analyst should find: growth, Ramadan, Eid and mega-sale
-   seasonality, cash-on-delivery (COD) refusals, courier delays, category
-   returns, weaker retention for sale-acquired customers, and a checkout A/B test.
-2. Data problems an analyst should clean: duplicate rows and customers,
-   inconsistent city and payment labels, a system migration on 2025-01-01 that
-   changed date formats and status codes, price entry errors, test orders,
-   orphan records, and bot sessions.
-
-Run from the project root:
-    python src/generate_data.py
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -25,9 +7,9 @@ import pandas as pd
 
 SEED = 42
 START = pd.Timestamp("2024-01-01")
-END = pd.Timestamp("2026-06-30")            # data extract date
-MIGRATION = pd.Timestamp("2025-01-01")      # new order system goes live
-COURIER_SHIFT = pd.Timestamp("2025-07-01")  # ops moves volume to the cheapest courier
+END = pd.Timestamp("2026-06-30")
+MIGRATION = pd.Timestamp("2025-01-01")
+COURIER_SHIFT = pd.Timestamp("2025-07-01")
 EXP_START, EXP_END = pd.Timestamp("2026-03-02"), pd.Timestamp("2026-04-26")
 N_CUSTOMERS = 36_000
 
@@ -40,17 +22,13 @@ N_DAYS = (END - START).days + 1
 
 
 def off(date: str | pd.Timestamp) -> int:
-    """Day offset from START."""
     return (pd.Timestamp(date) - START).days
 
 
-# ------------------------------------------------------------------ calendar
-# Dates for Ramadan and Eid are approximate; the moon sighting in Pakistan can
-# shift them by a day.
 RAMADAN = [("2024-03-12", "2024-04-09"), ("2025-03-02", "2025-03-30"), ("2026-02-19", "2026-03-20")]
 EID_FITR = ["2024-04-10", "2025-03-31", "2026-03-21"]
 EID_ADHA = ["2024-06-17", "2025-06-07", "2026-05-27"]
-MEGA_SALES = {  # date: (name, promo code, demand multiplier on the day)
+MEGA_SALES = {
     "2024-08-14": ("Independence Day Sale", "AZADI14", 1.8),
     "2024-11-11": ("11.11 Mega Sale", "MEGA1111", 4.5),
     "2024-11-29": ("White Friday", "WHITEFRI", 3.2),
@@ -60,7 +38,7 @@ MEGA_SALES = {  # date: (name, promo code, demand multiplier on the day)
     "2025-11-28": ("White Friday", "WHITEFRI", 3.4),
     "2025-12-12": ("12.12 Sale", "SALE1212", 2.8),
 }
-GROWTH = 0.032  # underlying growth per month
+GROWTH = 0.032
 
 
 def build_calendar() -> pd.DataFrame:
@@ -105,12 +83,11 @@ def build_calendar() -> pd.DataFrame:
 HOUR_NORMAL = np.array([1.2, .7, .4, .3, .3, .4, .7, 1.2, 2, 2.8, 3.4, 3.8,
                         4, 3.6, 3.3, 3.4, 3.8, 4.3, 4.8, 5.4, 6.2, 6.8, 6.4, 3.4])
 HOUR_RAMADAN = np.array([4.5, 5, 4.2, 2.4, 1, .4, .3, .5, 1, 1.6, 2.2, 2.4,
-                         2.4, 2.2, 2, 2, 2.1, 1.8, 1.2, 3.4, 6, 7.2, 7, 5.8])  # sehri and post-iftar peaks
+                         2.4, 2.2, 2, 2, 2.1, 1.8, 1.2, 3.4, 6, 7.2, 7, 5.8])
 HOUR_NORMAL = HOUR_NORMAL / HOUR_NORMAL.sum()
 HOUR_RAMADAN = HOUR_RAMADAN / HOUR_RAMADAN.sum()
 
-# ------------------------------------------------------------------ geography
-CITIES = [  # city, province, tier, base share of customers
+CITIES = [
     ("Karachi", "Sindh", 1, 0.24), ("Lahore", "Punjab", 1, 0.22),
     ("Islamabad", "Islamabad Capital Territory", 1, 0.09), ("Rawalpindi", "Punjab", 1, 0.07),
     ("Faisalabad", "Punjab", 2, 0.07), ("Multan", "Punjab", 2, 0.05),
@@ -152,9 +129,7 @@ def dirty_city(city: str, p_variant: float = 0.09, p_blank: float = 0.008) -> st
     return city
 
 
-# ------------------------------------------------------------------ catalog
 CATEGORIES = {
-    # category: (demand share, item return rate, cost ratio, brands, [(subcategory, low, high, templates)])
     "Fashion": (0.24, 0.13, 0.55, ["Noor Threads", "Resham Loom", "Chaman Wear", "Saaya", "Zari Studio"], [
         ("Women's Unstitched Lawn", 2200, 7500, ["3-Piece Lawn Suit", "Printed Lawn 2-Piece", "Embroidered Lawn Suit"]),
         ("Men's Kurta", 1800, 5500, ["Cotton Kurta", "Kurta Shalwar Set", "Wash & Wear Suit"]),
@@ -216,7 +191,6 @@ def phase_category_multiplier(phase: str, month: int) -> np.ndarray:
 
 
 def price_point(low: float, high: float) -> int:
-    """Log-uniform price rounded to a retail-looking figure (x,x99 or x,x49)."""
     raw = np.exp(rng.uniform(np.log(low), np.log(high)))
     step = 100 if raw > 2000 else 50
     return int(max(step, round(raw / step) * step) - 1)
@@ -249,7 +223,6 @@ def make_catalog():
             })
             seller_cat.append(cat)
     seller_cat = np.array(seller_cat)
-    # a handful of sellers ship items that do not match their listings
     risky_pool = np.where(np.isin(seller_cat, ["Fashion", "Electronics", "Footwear"]))[0]
     bad_sellers = set(rng.choice(risky_pool, size=5, replace=False).tolist())
 
@@ -290,7 +263,6 @@ def make_catalog():
     return pd.DataFrame(sellers), pd.DataFrame(products), cat_products, cat_pop
 
 
-# ------------------------------------------------------------------ customers
 FIRST = ["ali", "ahmed", "hassan", "usman", "bilal", "hamza", "saad", "zain", "omar", "faisal",
          "ayesha", "fatima", "zainab", "maryam", "hira", "sana", "amna", "iqra", "mahnoor", "khadija",
          "abdullah", "ibrahim", "haris", "danish", "noor", "sara", "rabia", "areeba", "asad", "taimoor"]
@@ -307,13 +279,13 @@ DEVICE_P = {1: [0.55, 0.20, 0.25], 2: [0.68, 0.10, 0.22], 3: [0.80, 0.05, 0.15]}
 
 def make_customers(cal: pd.DataFrame) -> pd.DataFrame:
     w = cal.weight.to_numpy().copy()
-    w[cal.phase.eq("mega_sale").to_numpy()] *= 1.6  # extra acquisition push on sale days
+    w[cal.phase.eq("mega_sale").to_numpy()] *= 1.6
     day = np.sort(rng.choice(len(cal), size=N_CUSTOMERS, p=w / w.sum()))
     months = cal.month_idx.to_numpy()[day]
     on_sale = cal.sale_code.to_numpy()[day] != ""
 
     base = np.array([c[3] for c in CITIES])
-    growth = np.select([CITY_TIER == 1, CITY_TIER == 2], [0.0, 0.35], 0.9)  # smaller cities grow faster
+    growth = np.select([CITY_TIER == 1, CITY_TIER == 2], [0.0, 0.35], 0.9)
     city = np.empty(N_CUSTOMERS, dtype=int)
     month_int = np.floor(months).astype(int)
     for m in np.unique(month_int):
@@ -345,12 +317,11 @@ def make_customers(cal: pd.DataFrame) -> pd.DataFrame:
     })
 
 
-# ------------------------------------------------------------------ fulfilment
 COURIERS = ["SwiftShip", "PakRider", "CityExpress", "RapidRoute"]
 COURIER_P = {1: np.array([.38, .27, .25, .10]), 2: np.array([.28, .34, .16, .22]), 3: np.array([.20, .36, .10, .34])}
-COURIER_BASE = np.array([1.2, 1.9, 1.5, 2.6])        # days to deliver in a tier-1 city
-COURIER_T3_EXTRA = np.array([0.0, 0.0, 2.2, 0.6])     # extra days in tier-3 cities
-COURIER_RTO_ADD = np.array([0.0, 0.01, 0.02, 0.045])  # extra COD refusals
+COURIER_BASE = np.array([1.2, 1.9, 1.5, 2.6])
+COURIER_T3_EXTRA = np.array([0.0, 0.0, 2.2, 0.6])
+COURIER_RTO_ADD = np.array([0.0, 0.01, 0.02, 0.045])
 PROMISED_DAYS = {1: 3, 2: 4, 3: 6}
 TIER_ADD = {1: 0.0, 2: 0.8, 3: 1.6}
 SHIPPING_FEE = {1: 150, 2: 180, 3: 220}
@@ -396,7 +367,6 @@ class Simulator:
         hours = HOUR_RAMADAN if ph in ("ramadan", "pre_eid") else HOUR_NORMAL
         ts = d * 86400 + int(rng.choice(24, p=hours)) * 3600 + int(rng.integers(3600))
 
-        # promotion
         sale = self.sale_code[d]
         if sale and rng.random() < 0.70:
             code, disc = sale, rng.uniform(0.20, 0.35)
@@ -409,7 +379,6 @@ class Simulator:
         else:
             code, disc = "", 0.0
 
-        # basket
         cat_w = CAT_SHARE * phase_category_multiplier(ph, int(self.month[d]))
         n_items = int(rng.choice(4, p=[.62, .24, .09, .05])) + 1
         cats = rng.choice(len(CAT_NAMES), size=n_items, p=cat_w / cat_w.sum())
@@ -421,7 +390,6 @@ class Simulator:
             lines.append((p_idx, qty, unit, int(round(disc * 100))))
             gmv += unit * qty
 
-        # payment: COD still dominates but wallets grow every month
         mi = self.month_idx[d]
         p_cod = c.cod_base.iat[ci] - 0.20 * mi / 30 + (0.07 if is_first else 0) + (0.05 if gmv > 20000 else 0)
         if rng.random() < np.clip(p_cod, 0.15, 0.95):
@@ -432,7 +400,6 @@ class Simulator:
             pay = "card"
         cod = pay == "cod"
 
-        # courier and delivery time
         p = COURIER_P[tier].copy()
         if d >= self.shift_day:
             move = min(0.12, p[0] - 0.02)
@@ -445,7 +412,6 @@ class Simulator:
         days = max(1, int(round(raw_days)))
         late = days > promised
 
-        # outcome
         p_cancel = 0.025 + (0.025 if cod else 0) + (0.02 if promised >= 5 else 0)
         delivered_ts = None
         had_return = False
@@ -501,15 +467,14 @@ def simulate(cal, customers, dup_of, products, cat_products, cat_pop):
                 return dup_id
         return customers.customer_id.iat[ci]
 
-    # 1. each customer's own purchase journey; a bad experience makes churn likelier
     for ci in range(len(customers)):
         if rng.random() < 0.13:
-            continue  # registered but never ordered
+            continue
         d = int(customers.signup_day.iat[ci]) + (0 if rng.random() < 0.62 else int(rng.exponential(6)))
         is_first = True
         while d < N_DAYS:
             if not is_first:
-                for _ in range(8):  # quieter days (Eid, early Ramadan) push orders later
+                for _ in range(8):
                     if rng.random() < min(1.0, seasonal[d] / 1.15):
                         break
                     d += int(rng.integers(1, 4))
@@ -531,7 +496,6 @@ def simulate(cal, customers, dup_of, products, cat_products, cat_pop):
             is_first = False
             d += max(1, int(rng.exponential(customers.gap_mean.iat[ci])))
 
-    # 2. mega sales and pre-Eid shopping pull recently active customers back in
     p_rep = customers.p_repeat.to_numpy()
     for date, (_, _, mult) in MEGA_SALES.items():
         d = off(date)
@@ -550,7 +514,6 @@ def simulate(cal, customers, dup_of, products, cat_products, cat_pop):
     return sim
 
 
-# ------------------------------------------------------------------ formatting
 def fmt_ts(sec: np.ndarray, legacy: np.ndarray) -> list[str]:
     ts = pd.to_datetime(START) + pd.to_timedelta(sec, unit="s")
     iso = ts.strftime("%Y-%m-%d %H:%M:%S")
@@ -603,7 +566,6 @@ def build_orders_table(sim, customers):
         "shipping_fee": [(f"Rs. {f}" if lg else str(f)) for f, lg in zip(o.fee, legacy)],
     })
 
-    # data problems: missing and impossible delivery timestamps
     delivered_rows = np.where(has_del)[0]
     missing = rng.choice(delivered_rows, size=int(0.008 * len(delivered_rows)), replace=False)
     out.loc[missing, "delivered_at"] = ""
@@ -622,7 +584,6 @@ def main() -> None:
     sellers, products, cat_products, cat_pop = make_catalog()
     customers = make_customers(cal)
 
-    # duplicate customer accounts: same person, same email typed differently, a new id
     dup_rows, dup_of = [], {}
     dup_idx = rng.choice(len(customers), size=int(0.015 * len(customers)), replace=False)
     for n, ci in enumerate(sorted(dup_idx)):
@@ -638,7 +599,6 @@ def main() -> None:
     sim = simulate(cal, customers, dup_of, products, cat_products, cat_pop)
     orders_out, orders_int, key_to_order = build_orders_table(sim, customers)
 
-    # ---- customers.csv
     def signup_str(day):
         return (START + pd.Timedelta(days=int(day))).strftime("%Y-%m-%d")
 
@@ -661,13 +621,12 @@ def main() -> None:
         cust_rows.append({"customer_id": dup_id, "email": email, "signup_date": signup_str(day),
                           "city": dirty_city(CITY_NAMES[r.city_idx], p_variant=0.5),
                           "acquisition_channel": CHANNELS[r.channel_idx], "device_type": DEVICES[r.device_idx]})
-    for t in range(1, 4):  # QA accounts used to test checkout in production
+    for t in range(1, 4):
         cust_rows.append({"customer_id": f"TEST{t:03d}", "email": f"qa+{t}@kaarobar.test",
                           "signup_date": "2025-01-15", "city": "Test City",
                           "acquisition_channel": "Internal", "device_type": "Desktop"})
     customers_out = pd.DataFrame(cust_rows)
 
-    # ---- order_items.csv
     items = pd.DataFrame(sim.items, columns=["key", "line_no", "p_idx", "quantity", "unit_price", "discount_pct"])
     items["order_id"] = items.key.map(key_to_order)
     items = items.sort_values(["order_id", "line_no"]).reset_index(drop=True)
@@ -675,7 +634,6 @@ def main() -> None:
     items["product_id"] = products.product_id.to_numpy()[items.p_idx]
     item_id_lookup = dict(zip(zip(items.key, items.line_no), items.order_item_id))
 
-    # test orders from QA accounts
     test_orders, test_items = [], []
     for n in range(45):
         d = int(rng.integers(off("2025-02-01"), N_DAYS - 5))
@@ -693,18 +651,16 @@ def main() -> None:
 
     items_out = items[["order_item_id", "order_id", "product_id", "quantity", "unit_price", "discount_pct"]].copy()
     n_items = len(items_out)
-    err = rng.choice(n_items, size=int(0.0025 * n_items), replace=False)  # an extra zero typed into the price
+    err = rng.choice(n_items, size=int(0.0025 * n_items), replace=False)
     items_out.loc[err, "unit_price"] = items_out.loc[err, "unit_price"] * np.where(rng.random(len(err)) < 0.8, 10, 100)
     bad_qty = rng.choice(np.setdiff1d(np.arange(n_items), err), size=int(0.001 * n_items), replace=False)
     items_out.loc[bad_qty, "quantity"] = rng.choice([0, -1], size=len(bad_qty))
     items_out = pd.concat([items_out, pd.DataFrame(test_items)], ignore_index=True)
 
-    # duplicate order rows from an ingestion retry
     orders_out = pd.concat([orders_out, pd.DataFrame(test_orders)], ignore_index=True)
     dups = orders_out.sample(frac=0.004, random_state=SEED)
     orders_out = pd.concat([orders_out, dups], ignore_index=True).sort_values("order_id", kind="stable")
 
-    # ---- returns.csv
     ret = pd.DataFrame(sim.returns, columns=["key", "line_no", "reason", "req_day", "refund"])
     ret["order_item_id"] = [item_id_lookup[(k, ln)] for k, ln in zip(ret.key, ret.line_no)]
     ret["order_id"] = ret.key.map(key_to_order)
@@ -716,7 +672,6 @@ def main() -> None:
     returns_out = ret[["return_id", "order_item_id", "order_id", "reason", "return_requested_date", "refund"]].rename(
         columns={"reason": "return_reason", "refund": "refund_amount"})
 
-    # ---- checkout_sessions.csv: the one-page checkout experiment
     sessions = []
     signup_days = np.sort(np.concatenate([customers.signup_day.to_numpy()]))
     cust_ids_sorted = customers.sort_values("signup_day").customer_id.to_numpy()
@@ -740,7 +695,7 @@ def main() -> None:
         dur = np.round(np.exp(rng.normal(np.log(170), 0.6, size=n))).astype(int)
         for i in range(n):
             sessions.append((ts[i], cust[i], dev[i], src[i], grp[i], dur[i], int(done[i]), value[i]))
-        n_bots = int(round(0.013 * n))  # scripted traffic that never buys
+        n_bots = int(round(0.013 * n))
         for _ in range(n_bots):
             sessions.append((d * 86400 + int(rng.integers(0, 86400)), "", "Desktop", "Direct",
                              "treatment" if rng.random() < 0.72 else "control",

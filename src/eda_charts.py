@@ -1,14 +1,3 @@
-#!/usr/bin/env python3
-"""Exploratory charts for the Kaarobar analysis.
-
-Reads the analysis views that src/run_pipeline.py exports to outputs/ and
-saves one PNG per question to images/. Chart titles state the finding, and
-every number in a title is computed from the data, so titles stay true if
-the data changes.
-
-Run after src/run_pipeline.py:
-    python src/eda_charts.py
-"""
 from __future__ import annotations
 
 import sys
@@ -22,7 +11,7 @@ import seaborn as sns
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from generate_data import EID_FITR, MEGA_SALES, RAMADAN  # noqa: E402  (public calendar, used for annotations)
+from generate_data import EID_FITR, MEGA_SALES, RAMADAN
 
 OUT_DIR = ROOT / "outputs"
 IMG_DIR = ROOT / "images"
@@ -35,8 +24,10 @@ plt.rcParams.update({"axes.titlesize": 12, "axes.titleweight": "bold", "axes.tit
 
 
 def load(view: str) -> pd.DataFrame:
-    """Read an exported view, e.g. load('monthly_kpis') for mart.v_monthly_kpis."""
-    return pd.read_csv(OUT_DIR / f"{view}.csv")
+    path = OUT_DIR / f"{view}.csv"
+    if not path.exists():
+        sys.exit(f"{path.name} is missing from outputs/. Build it first:  python src/run_pipeline.py")
+    return pd.read_csv(path)
 
 
 def save(fig, name: str) -> None:

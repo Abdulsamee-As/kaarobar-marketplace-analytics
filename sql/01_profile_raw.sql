@@ -1,17 +1,3 @@
--- =====================================================================
--- 01_profile_raw.sql : profile the raw extracts before changing anything
--- Each query is saved to outputs/profile_<name>.csv by src/run_pipeline.py.
--- The findings drive every rule in 02_clean.sql.
--- Dialect: T-SQL (SQL Server 2017 or later).
---
--- SQL Server compares text without regard to letter case, and it ignores
--- trailing spaces, so 'lahore' and 'Lahore ' both look equal to 'Lahore'.
--- The spelling counts below defeat both: COLLATE Latin1_General_BIN2 compares
--- byte for byte, and adding a marker character keeps a trailing space visible.
--- =====================================================================
-
--- name: data_quality_scorecard
--- One row per check: how many rows break an expectation.
 SELECT 'orders' AS table_name, 'rows' AS check_name, COUNT(*) AS rows_affected FROM raw.orders
 UNION ALL
 SELECT 'orders', 'exact duplicate rows (ingestion retry)',
@@ -71,10 +57,6 @@ UNION ALL
 SELECT 'checkout_sessions', 'distinct experiment_group labels',
        COUNT(DISTINCT (experiment_group + '|') COLLATE Latin1_General_BIN2) FROM raw.checkout_sessions;
 
--- name: city_spellings
--- Every raw spelling of a city, to build the lookup table in 02_clean.sql.
--- Grouping on the byte length as well keeps 'Lahore' and 'Lahore ' apart, and
--- the characters column is what tells the two rows apart on screen.
 SELECT raw_city, characters, orders
 FROM (
     SELECT shipping_city COLLATE Latin1_General_BIN2 AS raw_city,
@@ -85,8 +67,6 @@ FROM (
 ) spellings
 ORDER BY orders DESC, CASE WHEN raw_city IS NULL THEN 1 ELSE 0 END, raw_city, characters;
 
--- name: label_inventory
--- Every raw label used for payment, status, experiment group, and category.
 SELECT field, raw_value, characters, rows_count
 FROM (
     SELECT 'payment_method' AS field, payment_method COLLATE Latin1_General_BIN2 AS raw_value,

@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-"""Build the Kaarobar database in SQL Server and export the results.
-
-Steps: create the database if needed, load the raw CSVs, profile them, clean,
-model, answer the business questions, run the quality checks, then export
-every analysis view to outputs/ as CSV. All SQL runs through sqlcmd using
-Windows authentication, so there is no password to type.
-
-Set SQLSERVER and SQLDATABASE to override the defaults.
-
-Run from the project root:
-    python src/run_pipeline.py
-"""
 from __future__ import annotations
 
 import glob
@@ -30,32 +17,23 @@ OUT_DIR = ROOT / "outputs"
 RAW_DIR = ROOT / "data" / "raw"
 TMP_FILE = OUT_DIR / "_sqlcmd_result.txt"
 DATABASE = os.environ.get("SQLDATABASE", "Kaarobar")
-# SQL Server Express installs with the browser service off, so the usual
-# "localhost\SQLEXPRESS" address can fail to resolve. The named pipe always works.
 SERVER_CANDIDATES = [os.environ["SQLSERVER"]] if os.environ.get("SQLSERVER") else [
     r"localhost\SQLEXPRESS",
     r"np:\\.\pipe\MSSQL$SQLEXPRESS\sql\query",
 ]
-SEP = "|"  # column separator for sqlcmd output; no value in this data contains it
-NOISE = ("Warning:", "Msg ", "Level ")  # sqlcmd status lines that are not data
+PROFILE_NAMES = ["data_quality_scorecard", "city_spellings", "label_inventory"]
+SEP = "|"
+NOISE = ("Warning:", "Msg ", "Level ")
 
 
-def statements(path: Path) -> list[tuple[str | None, str]]:
-    """Split a SQL file into statements, keeping any '-- name:' tag."""
+def statements(path: Path) -> list[str]:
     chunks = re.split(r";[ \t]*(?:\r?\n|$)", path.read_text(encoding="utf-8"))
-    result = []
-    for chunk in chunks:
-        lines = chunk.strip().splitlines()
-        if not any(line.strip() and not line.strip().startswith("--") for line in lines):
-            continue
-        name = next((line.split("name:", 1)[1].strip() for line in lines
-                     if line.strip().startswith("-- name:")), None)
-        result.append((name, chunk.strip()))
-    return result
+    return [chunk.strip() for chunk in chunks
+            if any(line.strip() and not line.strip().startswith("--")
+                   for line in chunk.splitlines())]
 
 
 def find_sqlcmd() -> str:
-    """sqlcmd on the PATH, or in its usual install folders."""
     found = shutil.which("sqlcmd")
     if found:
         return found
@@ -94,14 +72,11 @@ class Sqlcmd:
         args = ["-i", str(SQL_DIR / name)]
         for key, value in variables.items():
             args += ["-v", f"{key}={value}"]
-        self.run(*args)  # runs from ROOT, so relative paths resolve
+        self.run(*args)
         print(f"ran {name}")
 
     def export(self, sql: str, path: Path) -> pd.DataFrame:
-        """Run a query and save the result as a real CSV file."""
         self.run("-Q", f"SET NOCOUNT ON; {sql}", "-s", SEP, "-W", "-w", "65535", "-o", str(TMP_FILE))
-        # sqlcmd writes a header row, a row of dashes, then the data, and can add
-        # status lines such as a warning about NULLs dropped by an aggregate
         rows = [line for line in TMP_FILE.read_text(encoding="utf-8").splitlines()
                 if not line.startswith(NOISE)]
         df = pd.read_csv(io.StringIO("\n".join(rows)), sep=SEP, skiprows=[1], na_values=["NULL"])
@@ -120,9 +95,10 @@ def main() -> int:
     sql.run_file("00_load_sqlserver.sql", DataDir=f"{RAW_DIR}\\")
 
     print("\n=== 01 profile of the raw data ===")
-    for n, (name, query) in enumerate(statements(SQL_DIR / "01_profile_raw.sql"), start=1):
-        df = sql.export(query, OUT_DIR / f"profile_{name or f'query_{n}'}.csv")
-        if n == 1:  # the data quality scorecard
+    for n, query in enumerate(statements(SQL_DIR / "01_profile_raw.sql")):
+        name = PROFILE_NAMES[n] if n < len(PROFILE_NAMES) else f"query_{n + 1}"
+        df = sql.export(query, OUT_DIR / f"profile_{name}.csv")
+        if n == 0:
             print(df.to_string(index=False))
 
     for name in ("02_clean.sql", "03_model.sql", "04_analysis.sql"):
@@ -130,7 +106,7 @@ def main() -> int:
 
     print("\n=== 05 quality checks on the cleaned data ===")
     checks_path = OUT_DIR / "quality_checks.csv"
-    checks = sql.export(statements(SQL_DIR / "05_quality_checks.sql")[0][1], checks_path)
+    checks = sql.export(statements(SQL_DIR / "05_quality_checks.sql")[0], checks_path)
     checks["result"] = checks.apply(
         lambda r: "PASS" if r.failing_rows == 0 else ("WARN" if "(warning)" in r.check_name else "FAIL"), axis=1)
     checks.to_csv(checks_path, index=False)
@@ -143,7 +119,7 @@ def main() -> int:
                    "WHERE c.TABLE_SCHEMA = 'mart' GROUP BY c.TABLE_NAME ORDER BY c.TABLE_NAME")
     views = [line.strip().split("|") for line in rows.splitlines() if "|" in line]
     for view, n_cols in views:
-        order_by = ", ".join(str(i) for i in range(1, int(n_cols) + 1))  # stable row order between runs
+        order_by = ", ".join(str(i) for i in range(1, int(n_cols) + 1))
         sql.export(f"SELECT * FROM mart.{view} ORDER BY {order_by}", OUT_DIR / f"{view.removeprefix('v_')}.csv")
     print(f"\nexported {len(views)} analysis views to outputs/")
     TMP_FILE.unlink(missing_ok=True)

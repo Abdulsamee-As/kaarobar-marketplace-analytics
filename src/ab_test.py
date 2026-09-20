@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -16,12 +17,18 @@ plt.rcParams.update({"axes.titlesize": 12, "axes.titleweight": "bold", "axes.tit
                      "axes.spines.top": False, "axes.spines.right": False})
 
 
+def read_export(name: str) -> pd.DataFrame:
+    path = OUT_DIR / f"{name}.csv"
+    if not path.exists():
+        sys.exit(f"{path.name} is missing from outputs/. Build it first:  python src/run_pipeline.py")
+    return pd.read_csv(path)
+
+
 def normal_sf(z: float) -> float:
     return 0.5 * math.erfc(z / math.sqrt(2))
 
 
 def srm_test(n_control: int, n_treatment: int) -> tuple[float, float]:
-    """Chi-square goodness-of-fit against a 50/50 split (1 degree of freedom)."""
     expected = (n_control + n_treatment) / 2
     chi2 = ((n_control - expected) ** 2 + (n_treatment - expected) ** 2) / expected
     return chi2, math.erfc(math.sqrt(chi2 / 2))
@@ -39,8 +46,7 @@ def two_proportion_test(x_c: int, n_c: int, x_t: int, n_t: int) -> dict:
 
 
 def main() -> None:
-    # outputs/ab_test.csv is the mart.v_ab_test view, exported by src/run_pipeline.py
-    ab = pd.read_csv(OUT_DIR / "ab_test.csv")
+    ab = read_export("ab_test")
 
     print("=== Sample ratio check (planned 50/50) ===")
     for label, data in (("all sessions, bots included", ab), ("bots removed", ab[ab.is_bot == 0])):
@@ -51,7 +57,7 @@ def main() -> None:
               f"chi2 {chi2:7.2f}  p {p:.2g}  -> {verdict}")
 
     rows = []
-    human = ab[ab.is_bot == 0]  # SQL Server writes the bit column as 0 or 1
+    human = ab[ab.is_bot == 0]
     segments = [("All devices", human)] + [(d, human[human.device_type == d]) for d in ("Android", "iOS", "Desktop")]
     segments.append(("All devices, bots included", ab))
     for name, data in segments:
@@ -70,7 +76,6 @@ def main() -> None:
     show["p_value"] = show["p_value"].map(lambda p: f"{p:.2g}")
     print(show.to_string(index=False))
 
-    # chart: conversion by device with the 95% CI of the lift
     plot = results[results.segment.isin(["Android", "iOS", "Desktop", "All devices"])].set_index("segment")
     plot = plot.loc[["Android", "iOS", "Desktop", "All devices"]]
     fig, ax = plt.subplots(figsize=(9, 4.8))

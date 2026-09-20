@@ -1,16 +1,6 @@
--- =====================================================================
--- 02_clean.sql : raw text in, typed and standardised tables out
--- Dialect: T-SQL (SQL Server 2017 or later).
--- Every rule below answers a problem found in 01_profile_raw.sql.
--- =====================================================================
 IF SCHEMA_ID('clean') IS NULL EXEC('CREATE SCHEMA clean');
 GO
 
--- ---------------------------------------------------------------------
--- 1. City lookup. The raw data spells 16 cities in dozens of ways: case,
---    stray spaces, abbreviations (KHI, LHR, ISB), "Cantt" suffixes, and a
---    common misspelling (Abbotabad). Keys are lower-cased and trimmed.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.city_map;
 GO
 SELECT raw_key, city, province, city_tier
@@ -42,12 +32,6 @@ FROM (VALUES
 ) AS t(raw_key, city, province, city_tier);
 GO
 
--- ---------------------------------------------------------------------
--- 2. Duplicate customer accounts. The same person registered twice with
---    the email typed differently (case, spaces). The earliest signup
---    becomes the canonical customer_id; every raw id maps to it.
---    QA test accounts are excluded here and everywhere downstream.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.customer_id_map;
 GO
 WITH ranked AS (
@@ -88,14 +72,10 @@ INTO clean.customers
 FROM raw.customers c
 JOIN clean.customer_id_map idm
   ON idm.raw_customer_id = c.customer_id
- AND idm.customer_id = c.customer_id            -- keep the canonical row only
+ AND idm.customer_id = c.customer_id
 LEFT JOIN clean.city_map m ON m.raw_key = LOWER(TRIM(c.city));
 GO
 
--- ---------------------------------------------------------------------
--- 3. Sellers and products. Category labels vary in case and in
---    "and" versus "&"; prices arrive as text.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.sellers;
 GO
 SELECT seller_id,
@@ -130,17 +110,6 @@ INTO clean.products
 FROM raw.products;
 GO
 
--- ---------------------------------------------------------------------
--- 4. Orders. Problems handled, in order:
---    a. exact duplicate rows from an ingestion retry
---    b. two timestamp formats: the legacy system (before 2025-01-01)
---       wrote DD/MM/YYYY HH:MI (style 103), the new one writes ISO (style 120)
---    c. two sets of status and payment labels, plus stray case and spaces
---    d. shipping fee stored as "Rs. 150" in the legacy system
---    e. blank shipping city: fall back to the customer's home city
---    f. delivery timestamps earlier than the order: set to NULL, flagged
---    g. QA test orders removed
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.orders;
 GO
 WITH dedup AS (
@@ -201,11 +170,6 @@ LEFT JOIN clean.customers c ON c.customer_id = COALESCE(idm.customer_id, p.raw_c
 LEFT JOIN clean.city_map m ON m.raw_key = p.city_key;
 GO
 
--- ---------------------------------------------------------------------
--- 5. Order items. Prices with an extra zero typed in (10x or 100x the
---    list price) are divided back and flagged; zero or negative
---    quantities are dropped; items of removed test orders are dropped.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.order_items;
 GO
 WITH typed AS (
@@ -235,9 +199,6 @@ WHERE quantity > 0
   AND order_id IN (SELECT order_id FROM clean.orders);
 GO
 
--- ---------------------------------------------------------------------
--- 6. Returns. Orphan rows (item not found) are dropped.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.returns;
 GO
 SELECT r.return_id,
@@ -251,12 +212,6 @@ FROM raw.returns r
 JOIN clean.order_items i ON i.order_item_id = r.order_item_id;
 GO
 
--- ---------------------------------------------------------------------
--- 7. Checkout sessions from the one-page checkout experiment.
---    Duplicate rows removed, group labels standardised, and sessions
---    shorter than 3 seconds flagged as bots rather than deleted, so the
---    A/B analysis can show their effect.
--- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS clean.checkout_sessions;
 GO
 SELECT DISTINCT

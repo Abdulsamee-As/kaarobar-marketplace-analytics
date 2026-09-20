@@ -1,11 +1,3 @@
--- =====================================================================
--- 04_analysis.sql : the business questions, one view each
--- Money is in PKR. Net revenue = delivered GMV minus refunds.
--- Rates are percentages rounded to two decimals.
--- Dialect: T-SQL (SQL Server 2017 or later).
--- =====================================================================
-
--- Headline numbers for the whole period
 CREATE OR ALTER VIEW mart.v_headline_kpis AS
 SELECT COUNT(*) AS orders,
        COUNT(DISTINCT customer_id) AS ordering_customers,
@@ -20,7 +12,6 @@ SELECT COUNT(*) AS orders,
 FROM mart.fact_orders;
 GO
 
--- Q1. How fast is the business growing?
 CREATE OR ALTER VIEW mart.v_monthly_kpis AS
 WITH m AS (
     SELECT order_month,
@@ -46,7 +37,6 @@ SELECT order_month,
 FROM m;
 GO
 
--- Q2. When do people buy? Daily orders, for the seasonality chart.
 CREATE OR ALTER VIEW mart.v_daily_orders AS
 SELECT order_date,
        COUNT(*) AS orders,
@@ -55,7 +45,6 @@ FROM mart.fact_orders
 GROUP BY order_date;
 GO
 
--- Q3. How are customers paying, and how is that changing?
 CREATE OR ALTER VIEW mart.v_payment_mix AS
 SELECT order_month,
        payment_method,
@@ -65,8 +54,6 @@ FROM mart.fact_orders
 GROUP BY order_month, payment_method;
 GO
 
--- Q4. Who refuses parcels at the door? Return-to-origin (RTO) rate among
---     shipped orders, by payment type, customer type, and order value.
 CREATE OR ALTER VIEW mart.v_rto_drivers AS
 SELECT payment_group,
        CASE WHEN customer_order_seq = 1 THEN 'First order' ELSE 'Repeat order' END AS customer_type,
@@ -81,7 +68,6 @@ GROUP BY payment_group,
          CASE WHEN gmv > 15000 THEN 'Above PKR 15,000' ELSE 'PKR 15,000 or less' END;
 GO
 
--- Q4b. RTO by city tier and payment type
 CREATE OR ALTER VIEW mart.v_rto_by_tier AS
 SELECT city_tier,
        payment_group,
@@ -92,8 +78,6 @@ WHERE order_status IN ('Delivered', 'Returned to Origin')
 GROUP BY city_tier, payment_group;
 GO
 
--- Q4c. What do refused parcels cost? Assumption: PKR 180 courier fee each
---      way plus PKR 60 packaging and handling, so PKR 420 per RTO order.
 CREATE OR ALTER VIEW mart.v_rto_cost AS
 SELECT YEAR(order_date) AS order_year,
        payment_group,
@@ -104,7 +88,6 @@ FROM mart.fact_orders
 GROUP BY YEAR(order_date), payment_group;
 GO
 
--- Q5. Which courier delivers on time, and where?
 CREATE OR ALTER VIEW mart.v_courier_scorecard AS
 SELECT courier,
        city_tier,
@@ -118,7 +101,6 @@ FROM mart.fact_orders
 GROUP BY courier, city_tier;
 GO
 
--- Q6. Did moving volume to the cheapest courier in mid-2025 hurt delivery?
 CREATE OR ALTER VIEW mart.v_delivery_monthly AS
 SELECT order_month,
        CAST(ROUND(100.0 * SUM(CASE WHEN courier = 'RapidRoute' THEN 1 ELSE 0 END) / COUNT(*), 2) AS decimal(18, 2)) AS rapidroute_share_pct,
@@ -130,7 +112,6 @@ FROM mart.fact_orders
 GROUP BY order_month;
 GO
 
--- Q7. Does the first order decide whether a customer comes back?
 CREATE OR ALTER VIEW mart.v_first_order_experience AS
 WITH labelled AS (
     SELECT customer_id,
@@ -151,8 +132,6 @@ WHERE first_order_experience IS NOT NULL
 GROUP BY first_order_experience;
 GO
 
--- Q8. Monthly cohort retention: share of each first-order cohort that
---     orders again N months later.
 CREATE OR ALTER VIEW mart.v_cohort_retention AS
 WITH activity AS (
     SELECT DISTINCT
@@ -179,7 +158,6 @@ WHERE a.months_since_first BETWEEN 0 AND 12
 GROUP BY a.cohort_month, a.months_since_first, s.cohort_size;
 GO
 
--- Q9. Are customers won in mega sales worth as much?
 CREATE OR ALTER VIEW mart.v_acquisition_quality AS
 SELECT CASE WHEN acquired_in_mega_sale = 1 THEN 'First order used a mega-sale code'
             ELSE 'First order at any other time' END AS acquisition,
@@ -194,7 +172,6 @@ GROUP BY CASE WHEN acquired_in_mega_sale = 1 THEN 'First order used a mega-sale 
               ELSE 'First order at any other time' END;
 GO
 
--- Q9b. Acquisition channel quality
 CREATE OR ALTER VIEW mart.v_channel_quality AS
 SELECT acquisition_channel,
        COUNT(*) AS customers,
@@ -206,7 +183,6 @@ WHERE first_order_date IS NOT NULL
 GROUP BY acquisition_channel;
 GO
 
--- Q10. What comes back, and why?
 CREATE OR ALTER VIEW mart.v_returns_by_category AS
 WITH sold AS (
     SELECT p.category, COUNT(*) AS items_delivered
@@ -244,10 +220,6 @@ FROM sold s
 LEFT JOIN ret r ON r.category = s.category;
 GO
 
--- Q11. Which sellers ship items that do not match their listing?
---      Flag: at least 50 items delivered and a return rate more than three
---      standard errors above the category average (a one-sided binomial
---      z-test), so small sellers are not flagged by chance.
 CREATE OR ALTER VIEW mart.v_seller_returns AS
 WITH item_level AS (
     SELECT p.seller_id,
@@ -293,9 +265,6 @@ JOIN by_category c ON c.category = s.category
 JOIN clean.sellers se ON se.seller_id = s.seller_id;
 GO
 
--- Q12. RFM segmentation of customers with at least one delivered order.
---      Recency, frequency, and monetary value each scored 1 to 5.
---      customer_id breaks ties so the scores are identical on every run.
 CREATE OR ALTER VIEW mart.v_rfm AS
 WITH base AS (
     SELECT customer_id,
@@ -335,8 +304,6 @@ FROM mart.v_rfm
 GROUP BY segment;
 GO
 
--- Q13. The one-page checkout A/B test: sessions and orders by group,
---      device, and bot flag. Significance tests run in src/ab_test.py.
 CREATE OR ALTER VIEW mart.v_ab_test AS
 SELECT experiment_group,
        device_type,
@@ -348,8 +315,6 @@ FROM clean.checkout_sessions
 GROUP BY experiment_group, device_type, is_bot;
 GO
 
--- Q14. Where is growth coming from? Orders, COD share, and RTO rate by
---      city tier, per half-year.
 CREATE OR ALTER VIEW mart.v_city_tier_growth AS
 SELECT YEAR(order_date) AS order_year,
        CASE WHEN MONTH(order_date) <= 6 THEN 1 ELSE 2 END AS half,

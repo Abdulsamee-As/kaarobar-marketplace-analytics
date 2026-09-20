@@ -1,9 +1,3 @@
--- =====================================================================
--- 05_quality_checks.sql : tests the cleaned data must pass
--- Each check returns the number of failing rows; 0 means pass.
--- Checks marked (warning) are reported but do not fail the pipeline.
--- Dialect: T-SQL (SQL Server 2017 or later).
--- =====================================================================
 SELECT 'clean.orders: order_id is unique' AS check_name,
        COUNT(*) - COUNT(DISTINCT order_id) AS failing_rows
 FROM clean.orders
