@@ -6,3 +6,4 @@ __pycache__/
 .venv/
 # personal editor settings
 .vscode/
+.vs/
