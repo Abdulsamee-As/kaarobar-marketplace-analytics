@@ -1,18 +1,21 @@
 -- =====================================================================
 -- 02_clean.sql : raw text in, typed and standardised tables out
--- Dialect: PostgreSQL.
+-- Dialect: T-SQL (SQL Server 2017 or later).
 -- Every rule below answers a problem found in 01_profile_raw.sql.
 -- =====================================================================
-DROP SCHEMA IF EXISTS clean CASCADE;
-CREATE SCHEMA clean;
+IF SCHEMA_ID('clean') IS NULL EXEC('CREATE SCHEMA clean');
+GO
 
 -- ---------------------------------------------------------------------
 -- 1. City lookup. The raw data spells 16 cities in dozens of ways: case,
 --    stray spaces, abbreviations (KHI, LHR, ISB), "Cantt" suffixes, and a
 --    common misspelling (Abbotabad). Keys are lower-cased and trimmed.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.city_map AS
-SELECT * FROM (VALUES
+DROP TABLE IF EXISTS clean.city_map;
+GO
+SELECT raw_key, city, province, city_tier
+INTO clean.city_map
+FROM (VALUES
     ('karachi', 'Karachi', 'Sindh', 1), ('khi', 'Karachi', 'Sindh', 1),
     ('karachi, sindh', 'Karachi', 'Sindh', 1),
     ('lahore', 'Lahore', 'Punjab', 1), ('lhr', 'Lahore', 'Punjab', 1),
@@ -37,6 +40,7 @@ SELECT * FROM (VALUES
     ('sargodha', 'Sargodha', 'Punjab', 3),
     ('mardan', 'Mardan', 'Khyber Pakhtunkhwa', 3)
 ) AS t(raw_key, city, province, city_tier);
+GO
 
 -- ---------------------------------------------------------------------
 -- 2. Duplicate customer accounts. The same person registered twice with
@@ -44,26 +48,32 @@ SELECT * FROM (VALUES
 --    becomes the canonical customer_id; every raw id maps to it.
 --    QA test accounts are excluded here and everywhere downstream.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.customer_id_map AS
+DROP TABLE IF EXISTS clean.customer_id_map;
+GO
 WITH ranked AS (
     SELECT customer_id,
            LOWER(TRIM(email)) AS email_key,
            ROW_NUMBER() OVER (
                PARTITION BY LOWER(TRIM(email))
-               ORDER BY CAST(signup_date AS DATE) NULLS LAST, customer_id
+               ORDER BY CASE WHEN TRY_CONVERT(date, signup_date) IS NULL THEN 1 ELSE 0 END,
+                        TRY_CONVERT(date, signup_date),
+                        customer_id
            ) AS rn
     FROM raw.customers
     WHERE customer_id NOT LIKE 'TEST%'
 )
 SELECT r.customer_id AS raw_customer_id,
        k.customer_id AS customer_id
+INTO clean.customer_id_map
 FROM ranked r
 JOIN ranked k ON k.email_key = r.email_key AND k.rn = 1;
+GO
 
-CREATE TABLE clean.customers AS
+DROP TABLE IF EXISTS clean.customers;
+GO
 SELECT c.customer_id,
        LOWER(TRIM(c.email)) AS email,
-       CAST(c.signup_date AS DATE) AS signup_date,
+       TRY_CONVERT(date, c.signup_date) AS signup_date,
        m.city,
        m.province,
        m.city_tier,
@@ -74,23 +84,31 @@ SELECT c.customer_id,
            ELSE TRIM(c.acquisition_channel)
        END AS acquisition_channel,
        c.device_type
+INTO clean.customers
 FROM raw.customers c
 JOIN clean.customer_id_map idm
   ON idm.raw_customer_id = c.customer_id
  AND idm.customer_id = c.customer_id            -- keep the canonical row only
 LEFT JOIN clean.city_map m ON m.raw_key = LOWER(TRIM(c.city));
+GO
 
 -- ---------------------------------------------------------------------
 -- 3. Sellers and products. Category labels vary in case and in
 --    "and" versus "&"; prices arrive as text.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.sellers AS
-SELECT seller_id, seller_name, seller_city,
-       CAST(joined_date AS DATE) AS joined_date,
+DROP TABLE IF EXISTS clean.sellers;
+GO
+SELECT seller_id,
+       seller_name,
+       seller_city,
+       TRY_CONVERT(date, joined_date) AS joined_date,
        seller_type
+INTO clean.sellers
 FROM raw.sellers;
+GO
 
-CREATE TABLE clean.products AS
+DROP TABLE IF EXISTS clean.products;
+GO
 SELECT product_id,
        product_name,
        CASE LOWER(TRIM(REPLACE(category, ' and ', ' & ')))
@@ -106,22 +124,25 @@ SELECT product_id,
        subcategory,
        brand,
        seller_id,
-       CAST(list_price AS NUMERIC(12, 2)) AS list_price,
-       CAST(unit_cost AS NUMERIC(12, 2)) AS unit_cost
+       TRY_CONVERT(decimal(14, 2), list_price) AS list_price,
+       TRY_CONVERT(decimal(14, 2), unit_cost) AS unit_cost
+INTO clean.products
 FROM raw.products;
+GO
 
 -- ---------------------------------------------------------------------
 -- 4. Orders. Problems handled, in order:
 --    a. exact duplicate rows from an ingestion retry
 --    b. two timestamp formats: the legacy system (before 2025-01-01)
---       wrote DD/MM/YYYY HH:MI, the new one writes ISO timestamps
+--       wrote DD/MM/YYYY HH:MI (style 103), the new one writes ISO (style 120)
 --    c. two sets of status and payment labels, plus stray case and spaces
 --    d. shipping fee stored as "Rs. 150" in the legacy system
 --    e. blank shipping city: fall back to the customer's home city
 --    f. delivery timestamps earlier than the order: set to NULL, flagged
 --    g. QA test orders removed
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.orders AS
+DROP TABLE IF EXISTS clean.orders;
+GO
 WITH dedup AS (
     SELECT DISTINCT * FROM raw.orders
 ),
@@ -129,33 +150,30 @@ parsed AS (
     SELECT order_id,
            customer_id AS raw_customer_id,
            CASE WHEN order_datetime LIKE '__/__/____ __:__'
-                THEN CAST(SUBSTRING(order_datetime, 7, 4) || '-' || SUBSTRING(order_datetime, 4, 2) || '-'
-                          || SUBSTRING(order_datetime, 1, 2) || ' ' || SUBSTRING(order_datetime, 12, 5) || ':00' AS TIMESTAMP)
-                ELSE CAST(order_datetime AS TIMESTAMP)
+                THEN TRY_CONVERT(datetime2(0), order_datetime, 103)
+                ELSE TRY_CONVERT(datetime2(0), order_datetime, 120)
            END AS ordered_at,
            CASE WHEN delivered_at LIKE '__/__/____ __:__'
-                THEN CAST(SUBSTRING(delivered_at, 7, 4) || '-' || SUBSTRING(delivered_at, 4, 2) || '-'
-                          || SUBSTRING(delivered_at, 1, 2) || ' ' || SUBSTRING(delivered_at, 12, 5) || ':00' AS TIMESTAMP)
-                ELSE CAST(NULLIF(TRIM(delivered_at), '') AS TIMESTAMP)
+                THEN TRY_CONVERT(datetime2(0), delivered_at, 103)
+                ELSE TRY_CONVERT(datetime2(0), NULLIF(TRIM(delivered_at), ''), 120)
            END AS delivered_at_raw,
            CASE WHEN promised_delivery_date LIKE '__/__/____'
-                THEN CAST(SUBSTRING(promised_delivery_date, 7, 4) || '-' || SUBSTRING(promised_delivery_date, 4, 2) || '-'
-                          || SUBSTRING(promised_delivery_date, 1, 2) AS DATE)
-                ELSE CAST(promised_delivery_date AS DATE)
+                THEN TRY_CONVERT(date, promised_delivery_date, 103)
+                ELSE TRY_CONVERT(date, promised_delivery_date, 23)
            END AS promised_date,
            LOWER(TRIM(shipping_city)) AS city_key,
            LOWER(TRIM(payment_method)) AS pay_raw,
            LOWER(TRIM(order_status)) AS status_raw,
            NULLIF(NULLIF(UPPER(TRIM(promo_code)), ''), 'NONE') AS promo_code,
            courier,
-           CAST(REGEXP_REPLACE(shipping_fee, '[^0-9]', '', 'g') AS INTEGER) AS shipping_fee
+           TRY_CONVERT(int, REPLACE(REPLACE(shipping_fee, 'Rs.', ''), ' ', '')) AS shipping_fee
     FROM dedup
     WHERE customer_id NOT LIKE 'TEST%'
 )
 SELECT p.order_id,
        COALESCE(idm.customer_id, p.raw_customer_id) AS customer_id,
        p.ordered_at,
-       CAST(p.ordered_at AS DATE) AS order_date,
+       CAST(p.ordered_at AS date) AS order_date,
        COALESCE(m.city, c.city) AS city,
        COALESCE(m.province, c.province) AS province,
        COALESCE(m.city_tier, c.city_tier) AS city_tier,
@@ -168,32 +186,35 @@ SELECT p.order_id,
        p.courier,
        p.promised_date,
        CASE WHEN p.delivered_at_raw < p.ordered_at THEN NULL ELSE p.delivered_at_raw END AS delivered_at,
-       COALESCE(p.delivered_at_raw < p.ordered_at, FALSE) AS delivered_before_ordered,
+       CAST(CASE WHEN p.delivered_at_raw < p.ordered_at THEN 1 ELSE 0 END AS bit) AS delivered_before_ordered,
        CASE WHEN p.status_raw IN ('dlvd', 'delivered') THEN 'Delivered'
             WHEN p.status_raw IN ('cncl', 'cancelled', 'canceled') THEN 'Cancelled'
             WHEN p.status_raw IN ('rto', 'returned_to_origin') THEN 'Returned to Origin'
             WHEN p.status_raw IN ('shpd', 'shipped') THEN 'In Transit'
        END AS order_status,
        p.shipping_fee,
-       p.ordered_at < TIMESTAMP '2025-01-01 00:00:00' AS from_legacy_system
+       CAST(CASE WHEN p.ordered_at < '2025-01-01' THEN 1 ELSE 0 END AS bit) AS from_legacy_system
+INTO clean.orders
 FROM parsed p
 LEFT JOIN clean.customer_id_map idm ON idm.raw_customer_id = p.raw_customer_id
 LEFT JOIN clean.customers c ON c.customer_id = COALESCE(idm.customer_id, p.raw_customer_id)
 LEFT JOIN clean.city_map m ON m.raw_key = p.city_key;
+GO
 
 -- ---------------------------------------------------------------------
 -- 5. Order items. Prices with an extra zero typed in (10x or 100x the
 --    list price) are divided back and flagged; zero or negative
 --    quantities are dropped; items of removed test orders are dropped.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.order_items AS
+DROP TABLE IF EXISTS clean.order_items;
+GO
 WITH typed AS (
     SELECT i.order_item_id,
            i.order_id,
            i.product_id,
-           CAST(i.quantity AS INTEGER) AS quantity,
-           CAST(i.unit_price AS NUMERIC(12, 2)) AS unit_price_raw,
-           CAST(i.discount_pct AS INTEGER) AS discount_pct,
+           TRY_CONVERT(int, i.quantity) AS quantity,
+           TRY_CONVERT(decimal(14, 2), i.unit_price) AS unit_price_raw,
+           TRY_CONVERT(int, i.discount_pct) AS discount_pct,
            p.list_price
     FROM raw.order_items i
     JOIN clean.products p ON p.product_id = i.product_id
@@ -203,27 +224,32 @@ SELECT order_item_id,
        product_id,
        quantity,
        discount_pct,
-       CASE WHEN unit_price_raw > 50 * list_price THEN ROUND(unit_price_raw / 100, 2)
-            WHEN unit_price_raw > 5 * list_price THEN ROUND(unit_price_raw / 10, 2)
-            ELSE unit_price_raw
-       END AS unit_price,
-       unit_price_raw > 5 * list_price AS price_corrected
+       CAST(CASE WHEN unit_price_raw > 50 * list_price THEN ROUND(unit_price_raw / 100, 2)
+                 WHEN unit_price_raw > 5 * list_price THEN ROUND(unit_price_raw / 10, 2)
+                 ELSE unit_price_raw
+            END AS decimal(14, 2)) AS unit_price,
+       CAST(CASE WHEN unit_price_raw > 5 * list_price THEN 1 ELSE 0 END AS bit) AS price_corrected
+INTO clean.order_items
 FROM typed
 WHERE quantity > 0
   AND order_id IN (SELECT order_id FROM clean.orders);
+GO
 
 -- ---------------------------------------------------------------------
 -- 6. Returns. Orphan rows (item not found) are dropped.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.returns AS
+DROP TABLE IF EXISTS clean.returns;
+GO
 SELECT r.return_id,
        r.order_item_id,
        i.order_id,
        TRIM(r.return_reason) AS return_reason,
-       CAST(r.return_requested_date AS DATE) AS return_requested_date,
-       CAST(r.refund_amount AS NUMERIC(12, 2)) AS refund_amount
+       TRY_CONVERT(date, r.return_requested_date) AS return_requested_date,
+       TRY_CONVERT(decimal(14, 2), r.refund_amount) AS refund_amount
+INTO clean.returns
 FROM raw.returns r
 JOIN clean.order_items i ON i.order_item_id = r.order_item_id;
+GO
 
 -- ---------------------------------------------------------------------
 -- 7. Checkout sessions from the one-page checkout experiment.
@@ -231,16 +257,19 @@ JOIN clean.order_items i ON i.order_item_id = r.order_item_id;
 --    shorter than 3 seconds flagged as bots rather than deleted, so the
 --    A/B analysis can show their effect.
 -- ---------------------------------------------------------------------
-CREATE TABLE clean.checkout_sessions AS
+DROP TABLE IF EXISTS clean.checkout_sessions;
+GO
 SELECT DISTINCT
        session_id,
        customer_id,
-       CAST(session_start AS TIMESTAMP) AS session_start,
+       TRY_CONVERT(datetime2(0), session_start, 120) AS session_start,
        device_type,
        traffic_source,
        LOWER(TRIM(experiment_group)) AS experiment_group,
-       CAST(session_duration_sec AS INTEGER) AS session_duration_sec,
-       CAST(session_duration_sec AS INTEGER) < 3 AS is_bot,
-       CAST(completed_order AS INTEGER) AS completed_order,
-       CAST(order_value AS NUMERIC(12, 2)) AS order_value
+       TRY_CONVERT(int, session_duration_sec) AS session_duration_sec,
+       CAST(CASE WHEN TRY_CONVERT(int, session_duration_sec) < 3 THEN 1 ELSE 0 END AS bit) AS is_bot,
+       TRY_CONVERT(int, completed_order) AS completed_order,
+       TRY_CONVERT(decimal(14, 2), order_value) AS order_value
+INTO clean.checkout_sessions
 FROM raw.checkout_sessions;
+GO

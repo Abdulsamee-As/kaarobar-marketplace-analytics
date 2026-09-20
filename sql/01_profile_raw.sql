@@ -2,6 +2,12 @@
 -- 01_profile_raw.sql : profile the raw extracts before changing anything
 -- Each query is saved to outputs/profile_<name>.csv by src/run_pipeline.py.
 -- The findings drive every rule in 02_clean.sql.
+-- Dialect: T-SQL (SQL Server 2017 or later).
+--
+-- SQL Server compares text without regard to letter case, and it ignores
+-- trailing spaces, so 'lahore' and 'Lahore ' both look equal to 'Lahore'.
+-- The spelling counts below defeat both: COLLATE Latin1_General_BIN2 compares
+-- byte for byte, and adding a marker character keeps a trailing space visible.
 -- =====================================================================
 
 -- name: data_quality_scorecard
@@ -9,71 +15,94 @@
 SELECT 'orders' AS table_name, 'rows' AS check_name, COUNT(*) AS rows_affected FROM raw.orders
 UNION ALL
 SELECT 'orders', 'exact duplicate rows (ingestion retry)',
-       COUNT(*) - (SELECT COUNT(*) FROM (SELECT DISTINCT * FROM raw.orders) d) FROM raw.orders
+       (SELECT COUNT(*) FROM raw.orders) - (SELECT COUNT(*) FROM (SELECT DISTINCT * FROM raw.orders) d)
 UNION ALL
 SELECT 'orders', 'legacy date format DD/MM/YYYY HH:MI',
-       COUNT(*) FILTER (WHERE order_datetime LIKE '__/__/____ __:__') FROM raw.orders
+       SUM(CASE WHEN order_datetime LIKE '__/__/____ __:__' THEN 1 ELSE 0 END) FROM raw.orders
 UNION ALL
 SELECT 'orders', 'blank shipping_city',
-       COUNT(*) FILTER (WHERE shipping_city IS NULL OR TRIM(shipping_city) = '') FROM raw.orders
+       SUM(CASE WHEN shipping_city IS NULL OR TRIM(shipping_city) = '' THEN 1 ELSE 0 END) FROM raw.orders
 UNION ALL
-SELECT 'orders', 'distinct spellings of shipping_city', COUNT(DISTINCT shipping_city) FROM raw.orders
+SELECT 'orders', 'distinct spellings of shipping_city',
+       COUNT(DISTINCT (shipping_city + '|') COLLATE Latin1_General_BIN2) FROM raw.orders
 UNION ALL
-SELECT 'orders', 'distinct payment_method labels', COUNT(DISTINCT payment_method) FROM raw.orders
+SELECT 'orders', 'distinct payment_method labels',
+       COUNT(DISTINCT (payment_method + '|') COLLATE Latin1_General_BIN2) FROM raw.orders
 UNION ALL
-SELECT 'orders', 'distinct order_status labels', COUNT(DISTINCT order_status) FROM raw.orders
+SELECT 'orders', 'distinct order_status labels',
+       COUNT(DISTINCT (order_status + '|') COLLATE Latin1_General_BIN2) FROM raw.orders
 UNION ALL
 SELECT 'orders', 'shipping_fee stored as text like Rs. 150',
-       COUNT(*) FILTER (WHERE shipping_fee LIKE 'Rs.%') FROM raw.orders
+       SUM(CASE WHEN shipping_fee LIKE 'Rs.%' THEN 1 ELSE 0 END) FROM raw.orders
 UNION ALL
 SELECT 'orders', 'delivered status but blank delivered_at',
-       COUNT(*) FILTER (WHERE LOWER(TRIM(order_status)) IN ('dlvd', 'delivered')
-                          AND (delivered_at IS NULL OR TRIM(delivered_at) = '')) FROM raw.orders
+       SUM(CASE WHEN LOWER(TRIM(order_status)) IN ('dlvd', 'delivered')
+                 AND (delivered_at IS NULL OR TRIM(delivered_at) = '') THEN 1 ELSE 0 END) FROM raw.orders
 UNION ALL
 SELECT 'orders', 'orders from QA test accounts',
-       COUNT(*) FILTER (WHERE customer_id LIKE 'TEST%') FROM raw.orders
+       SUM(CASE WHEN customer_id LIKE 'TEST%' THEN 1 ELSE 0 END) FROM raw.orders
 UNION ALL
 SELECT 'customers', 'duplicate accounts (same email after trim and lower-case)',
        COUNT(*) - COUNT(DISTINCT LOWER(TRIM(email))) FROM raw.customers
 UNION ALL
 SELECT 'customers', 'blank signup_date',
-       COUNT(*) FILTER (WHERE signup_date IS NULL OR TRIM(signup_date) = '') FROM raw.customers
+       SUM(CASE WHEN signup_date IS NULL OR TRIM(signup_date) = '' THEN 1 ELSE 0 END) FROM raw.customers
 UNION ALL
-SELECT 'products', 'distinct spellings of category', COUNT(DISTINCT category) FROM raw.products
+SELECT 'products', 'distinct spellings of category',
+       COUNT(DISTINCT (category + '|') COLLATE Latin1_General_BIN2) FROM raw.products
 UNION ALL
 SELECT 'order_items', 'quantity zero or negative',
-       COUNT(*) FILTER (WHERE CAST(quantity AS INTEGER) <= 0) FROM raw.order_items
+       SUM(CASE WHEN TRY_CONVERT(int, quantity) <= 0 THEN 1 ELSE 0 END) FROM raw.order_items
 UNION ALL
 SELECT 'order_items', 'unit_price above 5x list price (extra zero typed)',
-       COUNT(*) FILTER (WHERE CAST(i.unit_price AS NUMERIC(12, 2)) > 5 * CAST(p.list_price AS NUMERIC(12, 2)))
+       SUM(CASE WHEN TRY_CONVERT(decimal(14, 2), i.unit_price) > 5 * TRY_CONVERT(decimal(14, 2), p.list_price) THEN 1 ELSE 0 END)
 FROM raw.order_items i JOIN raw.products p ON p.product_id = i.product_id
 UNION ALL
 SELECT 'returns', 'orphan returns (order_item_id not found)',
-       COUNT(*) FILTER (WHERE i.order_item_id IS NULL)
+       SUM(CASE WHEN i.order_item_id IS NULL THEN 1 ELSE 0 END)
 FROM raw.returns r LEFT JOIN raw.order_items i ON i.order_item_id = r.order_item_id
 UNION ALL
 SELECT 'checkout_sessions', 'duplicate session rows',
        COUNT(*) - COUNT(DISTINCT session_id) FROM raw.checkout_sessions
 UNION ALL
 SELECT 'checkout_sessions', 'sessions under 3 seconds (likely bots)',
-       COUNT(*) FILTER (WHERE CAST(session_duration_sec AS INTEGER) < 3) FROM raw.checkout_sessions
+       SUM(CASE WHEN TRY_CONVERT(int, session_duration_sec) < 3 THEN 1 ELSE 0 END) FROM raw.checkout_sessions
 UNION ALL
-SELECT 'checkout_sessions', 'distinct experiment_group labels', COUNT(DISTINCT experiment_group) FROM raw.checkout_sessions;
+SELECT 'checkout_sessions', 'distinct experiment_group labels',
+       COUNT(DISTINCT (experiment_group + '|') COLLATE Latin1_General_BIN2) FROM raw.checkout_sessions;
 
 -- name: city_spellings
 -- Every raw spelling of a city, to build the lookup table in 02_clean.sql.
-SELECT shipping_city AS raw_city, COUNT(*) AS orders
-FROM raw.orders
-GROUP BY shipping_city
-ORDER BY orders DESC, raw_city NULLS LAST;
+-- Grouping on the byte length as well keeps 'Lahore' and 'Lahore ' apart, and
+-- the characters column is what tells the two rows apart on screen.
+SELECT raw_city, characters, orders
+FROM (
+    SELECT shipping_city COLLATE Latin1_General_BIN2 AS raw_city,
+           DATALENGTH(shipping_city) / 2 AS characters,
+           COUNT(*) AS orders
+    FROM raw.orders
+    GROUP BY shipping_city COLLATE Latin1_General_BIN2, DATALENGTH(shipping_city)
+) spellings
+ORDER BY orders DESC, CASE WHEN raw_city IS NULL THEN 1 ELSE 0 END, raw_city, characters;
 
 -- name: label_inventory
--- Every raw label used for payment, status, and experiment group.
-SELECT 'payment_method' AS field, payment_method AS raw_value, COUNT(*) AS rows_count FROM raw.orders GROUP BY payment_method
-UNION ALL
-SELECT 'order_status', order_status, COUNT(*) FROM raw.orders GROUP BY order_status
-UNION ALL
-SELECT 'experiment_group', experiment_group, COUNT(*) FROM raw.checkout_sessions GROUP BY experiment_group
-UNION ALL
-SELECT 'category', category, COUNT(*) FROM raw.products GROUP BY category
-ORDER BY field, rows_count DESC, raw_value NULLS LAST;
+-- Every raw label used for payment, status, experiment group, and category.
+SELECT field, raw_value, characters, rows_count
+FROM (
+    SELECT 'payment_method' AS field, payment_method COLLATE Latin1_General_BIN2 AS raw_value,
+           DATALENGTH(payment_method) / 2 AS characters, COUNT(*) AS rows_count
+    FROM raw.orders GROUP BY payment_method COLLATE Latin1_General_BIN2, DATALENGTH(payment_method)
+    UNION ALL
+    SELECT 'order_status', order_status COLLATE Latin1_General_BIN2,
+           DATALENGTH(order_status) / 2, COUNT(*)
+    FROM raw.orders GROUP BY order_status COLLATE Latin1_General_BIN2, DATALENGTH(order_status)
+    UNION ALL
+    SELECT 'experiment_group', experiment_group COLLATE Latin1_General_BIN2,
+           DATALENGTH(experiment_group) / 2, COUNT(*)
+    FROM raw.checkout_sessions GROUP BY experiment_group COLLATE Latin1_General_BIN2, DATALENGTH(experiment_group)
+    UNION ALL
+    SELECT 'category', category COLLATE Latin1_General_BIN2,
+           DATALENGTH(category) / 2, COUNT(*)
+    FROM raw.products GROUP BY category COLLATE Latin1_General_BIN2, DATALENGTH(category)
+) labels
+ORDER BY field, rows_count DESC, CASE WHEN raw_value IS NULL THEN 1 ELSE 0 END, raw_value, characters;

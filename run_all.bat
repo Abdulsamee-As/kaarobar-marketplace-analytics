@@ -1,9 +1,9 @@
 @echo off
-rem Double-click to rebuild everything: data (if missing), the PostgreSQL database, the A/B test, and the charts.
+rem Double-click to rebuild everything: data (if missing), the SQL Server database, the A/B test, and the charts.
 cd /d "%~dp0"
 echo.
-echo === Kaarobar: building everything in PostgreSQL ===
-echo When asked, type your PostgreSQL password. Nothing shows while you type; press Enter.
+echo === Kaarobar: building everything in SQL Server ===
+echo It uses your Windows login to reach SQL Server, so there is no password to type.
 echo.
 if not exist dataaw\orders.csv (
     echo Creating the dataset first, about 40 seconds...

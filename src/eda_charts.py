@@ -36,7 +36,7 @@ plt.rcParams.update({"axes.titlesize": 12, "axes.titleweight": "bold", "axes.tit
 
 def load(view: str) -> pd.DataFrame:
     """Read an exported view, e.g. load('monthly_kpis') for mart.v_monthly_kpis."""
-    return pd.read_csv(OUT_DIR / f"{view}.csv", true_values=["t"], false_values=["f"])
+    return pd.read_csv(OUT_DIR / f"{view}.csv")
 
 
 def save(fig, name: str) -> None:

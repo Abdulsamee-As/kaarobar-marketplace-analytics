@@ -2,7 +2,7 @@ payment_group,customer_type,order_value_band,shipped_orders,rto_orders,rto_rate_
 COD,First order,"Above PKR 15,000",1964,478,24.34
 COD,First order,"PKR 15,000 or less",17242,3307,19.18
 COD,Repeat order,"Above PKR 15,000",2270,378,16.65
-COD,Repeat order,"PKR 15,000 or less",17749,1882,10.60
+COD,Repeat order,"PKR 15,000 or less",17749,1882,10.6
 Prepaid,First order,"Above PKR 15,000",924,10,1.08
 Prepaid,First order,"PKR 15,000 or less",9522,147,1.54
 Prepaid,Repeat order,"Above PKR 15,000",1428,26,1.82

@@ -2,12 +2,13 @@
 -- 03_model.sql : analysis-ready tables
 -- fact_orders   one row per order: money, delivery, and order sequence
 -- dim_customers one row per customer: cohort, first-order experience, value
--- Dialect: PostgreSQL.
+-- Dialect: T-SQL (SQL Server 2017 or later).
 -- =====================================================================
-DROP SCHEMA IF EXISTS mart CASCADE;
-CREATE SCHEMA mart;
+IF SCHEMA_ID('mart') IS NULL EXEC('CREATE SCHEMA mart');
+GO
 
-CREATE TABLE mart.fact_orders AS
+DROP TABLE IF EXISTS mart.fact_orders;
+GO
 WITH items AS (
     SELECT i.order_id,
            COUNT(*) AS items_count,
@@ -30,7 +31,7 @@ SELECT o.order_id,
        o.customer_id,
        o.ordered_at,
        o.order_date,
-       CAST(DATE_TRUNC('month', o.order_date) AS DATE) AS order_month,
+       DATEFROMPARTS(YEAR(o.order_date), MONTH(o.order_date), 1) AS order_month,
        o.city,
        o.province,
        o.city_tier,
@@ -52,18 +53,21 @@ SELECT o.order_id,
        COALESCE(r.refunded_value, 0) AS refunded_value,
        -- net revenue: what the business keeps from delivered orders after refunds
        CASE WHEN o.order_status = 'Delivered' THEN it.gmv - COALESCE(r.refunded_value, 0) ELSE 0 END AS net_revenue,
-       o.promised_date - o.order_date AS promised_days,
+       DATEDIFF(day, o.order_date, o.promised_date) AS promised_days,
        CASE WHEN o.order_status = 'Delivered' AND o.delivered_at IS NOT NULL
-            THEN CAST(o.delivered_at AS DATE) - o.order_date END AS delivery_days,
+            THEN DATEDIFF(day, o.order_date, CAST(o.delivered_at AS date)) END AS delivery_days,
        CASE WHEN o.order_status = 'Delivered' AND o.delivered_at IS NOT NULL
-            THEN CAST(o.delivered_at AS DATE) > o.promised_date END AS is_late,
-       o.order_status = 'Returned to Origin' AS is_rto,
+            THEN CAST(CASE WHEN CAST(o.delivered_at AS date) > o.promised_date THEN 1 ELSE 0 END AS bit) END AS is_late,
+       CAST(CASE WHEN o.order_status = 'Returned to Origin' THEN 1 ELSE 0 END AS bit) AS is_rto,
        ROW_NUMBER() OVER (PARTITION BY o.customer_id ORDER BY o.ordered_at, o.order_id) AS customer_order_seq
+INTO mart.fact_orders
 FROM clean.orders o
 JOIN items it ON it.order_id = o.order_id
 LEFT JOIN rets r ON r.order_id = o.order_id;
+GO
 
-CREATE TABLE mart.dim_customers AS
+DROP TABLE IF EXISTS mart.dim_customers;
+GO
 WITH firsts AS (
     SELECT customer_id,
            order_date AS first_order_date,
@@ -83,7 +87,7 @@ seconds AS (
 totals AS (
     SELECT customer_id,
            COUNT(*) AS orders,
-           COUNT(*) FILTER (WHERE order_status = 'Delivered') AS delivered_orders,
+           SUM(CASE WHEN order_status = 'Delivered' THEN 1 ELSE 0 END) AS delivered_orders,
            SUM(net_revenue) AS net_revenue,
            MAX(order_date) AS last_order_date
     FROM mart.fact_orders
@@ -99,21 +103,25 @@ SELECT c.customer_id,
        f.first_order_date,
        f.cohort_month,
        f.first_promo_code,
-       COALESCE(f.first_promo_code IN ('MEGA1111', 'WHITEFRI', 'SALE1212', 'AZADI14'), FALSE) AS acquired_in_mega_sale,
+       CAST(CASE WHEN f.first_promo_code IN ('MEGA1111', 'WHITEFRI', 'SALE1212', 'AZADI14') THEN 1 ELSE 0 END AS bit) AS acquired_in_mega_sale,
        f.first_order_status,
        f.first_payment_group,
        f.first_order_late,
        s.second_order_date,
        -- a 90-day repeat can only be judged when the first order is at least
        -- 90 days before the data extract (2026-06-30)
-       CASE WHEN DATE '2026-06-30' - f.first_order_date >= 90
-            THEN COALESCE(s.second_order_date - f.first_order_date <= 90, FALSE)
+       CASE WHEN DATEDIFF(day, f.first_order_date, CAST('2026-06-30' AS date)) >= 90
+            THEN CAST(CASE WHEN s.second_order_date IS NOT NULL
+                            AND DATEDIFF(day, f.first_order_date, s.second_order_date) <= 90
+                       THEN 1 ELSE 0 END AS bit)
        END AS repeat_within_90d,
        COALESCE(t.orders, 0) AS orders,
        COALESCE(t.delivered_orders, 0) AS delivered_orders,
        COALESCE(t.net_revenue, 0) AS net_revenue,
        t.last_order_date
+INTO mart.dim_customers
 FROM clean.customers c
 LEFT JOIN firsts f ON f.customer_id = c.customer_id
 LEFT JOIN seconds s ON s.customer_id = c.customer_id
 LEFT JOIN totals t ON t.customer_id = c.customer_id;
+GO

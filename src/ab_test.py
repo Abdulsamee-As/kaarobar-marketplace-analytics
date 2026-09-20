@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-"""Evaluate the one-page checkout A/B test (2026-03-02 to 2026-04-26).
-
-1. Sample ratio mismatch (SRM): did the planned 50/50 split hold? Checked
-   before and after removing bot sessions, because bots can break the split.
-2. Checkout conversion by group, overall and per device: two-proportion
-   z-test and a 95% confidence interval for the difference.
-
-The statistics use only the standard library (math.erfc), so no SciPy.
-Run after src/run_pipeline.py:
-    python src/ab_test.py
-"""
 from __future__ import annotations
 
 import math
@@ -29,7 +17,6 @@ plt.rcParams.update({"axes.titlesize": 12, "axes.titleweight": "bold", "axes.tit
 
 
 def normal_sf(z: float) -> float:
-    """P(Z > z) for a standard normal."""
     return 0.5 * math.erfc(z / math.sqrt(2))
 
 
@@ -53,10 +40,10 @@ def two_proportion_test(x_c: int, n_c: int, x_t: int, n_t: int) -> dict:
 
 def main() -> None:
     # outputs/ab_test.csv is the mart.v_ab_test view, exported by src/run_pipeline.py
-    ab = pd.read_csv(OUT_DIR / "ab_test.csv", true_values=["t"], false_values=["f"])
+    ab = pd.read_csv(OUT_DIR / "ab_test.csv")
 
     print("=== Sample ratio check (planned 50/50) ===")
-    for label, data in (("all sessions, bots included", ab), ("bots removed", ab[~ab.is_bot])):
+    for label, data in (("all sessions, bots included", ab), ("bots removed", ab[ab.is_bot == 0])):
         n = data.groupby("experiment_group").sessions.sum()
         chi2, p = srm_test(int(n["control"]), int(n["treatment"]))
         verdict = "split is broken, investigate" if p < 0.001 else "split holds"
@@ -64,7 +51,7 @@ def main() -> None:
               f"chi2 {chi2:7.2f}  p {p:.2g}  -> {verdict}")
 
     rows = []
-    human = ab[~ab.is_bot]
+    human = ab[ab.is_bot == 0]  # SQL Server writes the bit column as 0 or 1
     segments = [("All devices", human)] + [(d, human[human.device_type == d]) for d in ("Android", "iOS", "Desktop")]
     segments.append(("All devices, bots included", ab))
     for name, data in segments:

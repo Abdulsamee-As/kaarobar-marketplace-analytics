@@ -1,61 +1,61 @@
-raw_city,orders
-Karachi,13136
-Lahore,12086
-Islamabad,4881
-Faisalabad,4338
-Rawalpindi,3999
-Peshawar,3317
-Multan,3181
-Gujranwala,2602
-Hyderabad,2473
-Quetta,2297
-Sialkot,1763
-Abbottabad,1669
-Sukkur,1602
-Sargodha,1594
-Bahawalpur,1584
-Mardan,811
-,546
-LAHORE,271
- Lahore,264
-Karachi ,260
-karachi,258
-Lahore Cantt,256
-KHI,253
-"Karachi, Sindh",248
-LHR,247
-KARACHI,246
-lahore,214
-sukkur,188
-sargodha,165
-GRW,158
-multan,153
-MULTAN,150
-faisalabad,148
-FSD,140
-QUETTA,140
-Islamabad ,131
-Islamabad Capital Territory,131
-ISB,130
-quetta,129
-islamabad,124
-Faisalabad ,118
-PESHAWAR,118
-Pesh,113
-gujranwala,111
-peshawar,110
-Pindi,105
-rawalpindi,103
-RWP,102
-sialkot,100
-Rawalpindi Cantt,96
-BWP,95
-hyderabad,95
-SKT,88
-abbottabad,88
-Abbotabad,82
-"Hyderabad, Sindh",79
-HYD,78
-bahawalpur,75
-mardan,71
-Test City,45
+raw_city,characters,orders
+Karachi,7.0,13136
+Lahore,6.0,12086
+Islamabad,9.0,4881
+Faisalabad,10.0,4338
+Rawalpindi,10.0,3999
+Peshawar,8.0,3317
+Multan,6.0,3181
+Gujranwala,10.0,2602
+Hyderabad,9.0,2473
+Quetta,6.0,2297
+Sialkot,7.0,1763
+Abbottabad,10.0,1669
+Sukkur,6.0,1602
+Sargodha,8.0,1594
+Bahawalpur,10.0,1584
+Mardan,6.0,811
+,,546
+LAHORE,6.0,271
+ Lahore,7.0,264
+Karachi ,8.0,260
+karachi,7.0,258
+Lahore Cantt,12.0,256
+KHI,3.0,253
+"Karachi, Sindh",14.0,248
+LHR,3.0,247
+KARACHI,7.0,246
+lahore,6.0,214
+sukkur,6.0,188
+sargodha,8.0,165
+GRW,3.0,158
+multan,6.0,153
+MULTAN,6.0,150
+faisalabad,10.0,148
+FSD,3.0,140
+QUETTA,6.0,140
+Islamabad ,10.0,131
+Islamabad Capital Territory,27.0,131
+ISB,3.0,130
+quetta,6.0,129
+islamabad,9.0,124
+Faisalabad ,11.0,118
+PESHAWAR,8.0,118
+Pesh,4.0,113
+gujranwala,10.0,111
+peshawar,8.0,110
+Pindi,5.0,105
+rawalpindi,10.0,103
+RWP,3.0,102
+sialkot,7.0,100
+Rawalpindi Cantt,16.0,96
+BWP,3.0,95
+hyderabad,9.0,95
+SKT,3.0,88
+abbottabad,10.0,88
+Abbotabad,9.0,82
+"Hyderabad, Sindh",16.0,79
+HYD,3.0,78
+bahawalpur,10.0,75
+mardan,6.0,71
+Test City,9.0,45

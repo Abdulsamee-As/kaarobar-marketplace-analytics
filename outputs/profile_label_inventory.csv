@@ -1,47 +1,47 @@
-field,raw_value,rows_count
-category,Fashion,147
-category,Home & Kitchen,97
-category,Mobile Accessories,85
-category,Beauty & Personal Care,69
-category,Electronics,62
-category,Grocery,62
-category,Footwear,50
-category,Baby & Toys,37
-category,beauty & personal care,4
-category,Beauty and Personal Care,3
-category,Fashion ,3
-category,Home and Kitchen,3
-category,fashion,3
-category,MOBILE ACCESSORIES,2
-category,Mobile accessories,2
-category,grocery,2
-category,home & kitchen,2
-category,Baby and Toys,1
-category,Electronics ,1
-category,electronics,1
-category,footwear,1
-experiment_group,treatment,48291
-experiment_group,control,48002
-experiment_group,Treatment,806
-experiment_group,Control,734
-experiment_group,TREATMENT ,488
-experiment_group,CONTROL ,478
-order_status,delivered,40732
-order_status,DLVD,15435
-order_status,returned_to_origin,4487
-order_status,Delivered,2161
-order_status,RTO,1967
-order_status,cancelled,1798
-order_status,CNCL,801
-order_status,canceled,442
-order_status,shipped,332
-payment_method,cash_on_delivery,28793
-payment_method,COD,9339
-payment_method,card,8619
-payment_method,jazzcash,6409
-payment_method,easypaisa,5298
-payment_method,CC,3309
-payment_method,Cash on Delivery,3197
-payment_method,WALLET,2358
-payment_method,COD ,561
-payment_method,Card,272
+field,raw_value,characters,rows_count
+category,Fashion,7,147
+category,Home & Kitchen,14,97
+category,Mobile Accessories,18,85
+category,Beauty & Personal Care,22,69
+category,Electronics,11,62
+category,Grocery,7,62
+category,Footwear,8,50
+category,Baby & Toys,11,37
+category,beauty & personal care,22,4
+category,Beauty and Personal Care,24,3
+category,Fashion ,8,3
+category,Home and Kitchen,16,3
+category,fashion,7,3
+category,MOBILE ACCESSORIES,18,2
+category,Mobile accessories,18,2
+category,grocery,7,2
+category,home & kitchen,14,2
+category,Baby and Toys,13,1
+category,Electronics ,12,1
+category,electronics,11,1
+category,footwear,8,1
+experiment_group,treatment,9,48291
+experiment_group,control,7,48002
+experiment_group,Treatment,9,806
+experiment_group,Control,7,734
+experiment_group,TREATMENT ,10,488
+experiment_group,CONTROL ,8,478
+order_status,delivered,9,40732
+order_status,DLVD,4,15435
+order_status,returned_to_origin,18,4487
+order_status,Delivered,9,2161
+order_status,RTO,3,1967
+order_status,cancelled,9,1798
+order_status,CNCL,4,801
+order_status,canceled,8,442
+order_status,shipped,7,332
+payment_method,cash_on_delivery,16,28793
+payment_method,COD,3,9339
+payment_method,card,4,8619
+payment_method,jazzcash,8,6409
+payment_method,easypaisa,9,5298
+payment_method,CC,2,3309
+payment_method,Cash on Delivery,16,3197
+payment_method,WALLET,6,2358
+payment_method,COD ,4,561
+payment_method,Card,4,272
