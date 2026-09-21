@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Medium draft: One in Ten Parcels Came Back Unpaid</title>
+<style>
+  body { max-width: 680px; margin: 40px auto; padding: 0 20px;
+         font: 19px/1.6 Georgia, "Times New Roman", serif; color: #222; }
+  h1 { font-size: 34px; line-height: 1.25; margin: 0 0 8px; }
+  .sub { font-size: 21px; color: #666; margin: 0 0 32px; }
+  h2 { font-size: 26px; margin: 40px 0 10px; line-height: 1.3; }
+  pre { background: #f5f5f5; padding: 14px 16px; overflow-x: auto;
+        font: 14px/1.5 Menlo, Consolas, monospace; }
+  blockquote { border-left: 3px solid #222; margin: 28px 0; padding-left: 18px;
+               font-style: italic; color: #444; }
+  .img { background: #eef2f7; border: 1px dashed #9bb; padding: 14px 16px; margin: 28px 0;
+         font: 15px/1.5 -apple-system, Segoe UI, sans-serif; color: #245; }
+  hr { border: none; text-align: center; margin: 40px 0; }
+  hr:after { content: "· · ·"; letter-spacing: 8px; color: #999; }
+  .note { background: #fffbe6; border: 1px dashed #d9c77a; padding: 14px 16px; margin: 28px 0;
+          font: 15px/1.55 -apple-system, Segoe UI, sans-serif; color: #5a4a00; }
+</style>
+</head>
+<body>
+
+<div class="note">
+<strong>How to use this file.</strong> Open it in your browser, select everything below the line, copy, and paste
+into a new Medium story. Headings, bold, lists and code blocks carry over. The grey boxes marked
+IMAGE are not content: at each one, drag the named PNG from your <code>images</code> folder into
+Medium and type the caption underneath. Delete this yellow box and the line below it before publishing.
+</div>
+<hr>
+
+<h1>One in Ten Parcels Came Back Unpaid. The Data Said Exactly Which Ones.</h1>
+<p class="sub">I built a marketplace dataset with real problems baked in, then wrote the SQL to find out where
+the money actually leaks. Cash on delivery was the villain, but not in the way I expected.</p>
+
+<p>Cash on delivery is how most of Pakistan shops online. It is also how a lot of money quietly disappears,
+because a parcel someone refuses at the door costs freight in both directions and earns nothing.</p>
+
+<p>Everybody in e-commerce knows this. What nobody seems able to say is <em>which</em> orders to worry about.
+"Reduce RTO" is not a decision anyone can act on. So I built a marketplace to find out.</p>
+
+<h2>First, the honest part</h2>
+
+<p>The data here is synthetic. I generated 68,155 orders across two and a half years for a fictional Pakistani
+marketplace I called Kaarobar, along with 36,543 customers, 637 products, 137 sellers and 98,799 checkout
+sessions.</p>
+
+<p>I did that deliberately, and not because real data was unavailable to me. Clean data teaches you nothing.
+I wanted a dataset that fights back, so I designed the defects in first: an order system that "migrated"
+on 1 January 2025 and left two date formats in one column, shipping fees stored as text like
+<code>Rs. 150</code>, one city spelled 59 different ways, duplicate customer accounts, and quality-assurance
+test orders sitting in production.</p>
+
+<p>Then I had to clean all of it before I could answer a single question. That part is the job. The findings
+below are real findings about this dataset, produced by real analysis. They are not claims about the
+Pakistani market.</p>
+
+<h2>The mess, by the numbers</h2>
+
+<p>Before changing anything, I profiled the raw data. That scorecard drove every cleaning rule that followed:</p>
+
+<ul>
+  <li><strong>18,203</strong> orders still in the old <code>DD/MM/YYYY</code> format</li>
+  <li><strong>59</strong> spellings of 16 cities, including KHI, lahore, Pindi and Abbotabad</li>
+  <li><strong>540</strong> duplicate customer accounts under the same email</li>
+  <li><strong>272</strong> exact duplicate order rows from an ingestion retry</li>
+  <li><strong>546</strong> orders with no shipping city at all</li>
+  <li><strong>266</strong> prices with an extra zero typed in</li>
+  <li><strong>45</strong> orders placed by internal test accounts</li>
+</ul>
+
+<p>Two date formats in one text column is the kind of thing that silently halves your dataset if you let the
+database decide. Parsing each row by its own shape fixes it:</p>
+
+<pre><code>CASE WHEN order_datetime LIKE '__/__/____ __:__'
+     THEN TRY_CONVERT(datetime2(0), order_datetime, 103)
+     ELSE TRY_CONVERT(datetime2(0), order_datetime, 120)
+END AS ordered_at</code></pre>
+
+<p><code>TRY_CONVERT</code> rather than <code>CONVERT</code> matters: a bad value returns NULL instead of
+killing the whole batch. Then a test asserts that zero timestamps failed to parse, so a silent loss becomes
+a loud failure.</p>
+
+<h2>The SQL Server quirk that nearly fooled me</h2>
+
+<p>Here is the one I did not see coming, and it is worth knowing if you work on SQL Server.</p>
+
+<p>I counted the distinct spellings of city and got 35. The data actually contained 59. SQL Server compares
+text without regard to letter case <em>and</em> ignores trailing spaces, so <code>lahore</code>,
+<code>Lahore</code> and <code>Lahore&nbsp;</code> all look identical to a plain
+<code>COUNT(DISTINCT ...)</code>.</p>
+
+<pre><code>SELECT COUNT(DISTINCT shipping_city) AS what_you_see_by_default,
+       COUNT(DISTINCT (shipping_city + '|') COLLATE Latin1_General_BIN2) AS actual_spellings
+FROM raw.orders;</code></pre>
+
+<p>The binary collation forces a byte-for-byte comparison, and the appended marker character keeps a trailing
+space from being swallowed. Two numbers, same column: 35 and 59.</p>
+
+<blockquote>If I had trusted the default, my lookup table would have missed 24 spellings, thousands of orders
+would have landed in the wrong city, and every city-level number in this article would have been wrong in a
+way no error message would ever have told me about.</blockquote>
+
+<h2>How it is built</h2>
+
+<p>Three layers, and the discipline is in keeping them apart.</p>
+
+<p><strong>raw</strong> holds the source files exactly as they arrived, every column as text so nothing is
+rejected on the way in. Nothing is ever edited here, which means I can always prove what the source actually
+said. <strong>clean</strong> is the corrected version, produced only by script, one written rule per defect.
+<strong>mart</strong> is what analysis reads: a fact table at one row per order, and a customer dimension at
+one row per customer.</p>
+
+<p>Then eighteen tests run on every single build. Order IDs unique. Every timestamp parsed. Every label
+mapped. No delivery date earlier than its own order. No test accounts. Net revenue never negative. Sixteen
+must pass or the build stops. Two are warnings, because the condition they describe is genuine business
+messiness rather than a defect.</p>
+
+<p>That is the part I would defend hardest in a job interview. Anyone can produce a chart. A number nobody
+tested is a number nobody should quote.</p>
+
+<hr>
+
+<h2>Finding 1: cash on delivery, but only in one corner</h2>
+
+<p>Cash is 61.5% of orders and 94% of refusals. That much is unsurprising. The useful part appears when you
+split by customer history and order value:</p>
+
+<ul>
+  <li>Cash, <strong>first-time</strong> customer, order above Rs 15,000: <strong>24.34%</strong> refused</li>
+  <li>Cash, first-time customer, Rs 15,000 or less: <strong>19.18%</strong></li>
+  <li>Cash, repeat customer, above Rs 15,000: <strong>16.65%</strong></li>
+  <li>Cash, repeat customer, Rs 15,000 or less: <strong>10.60%</strong></li>
+  <li>Prepaid, any segment at all: <strong>1.08% to 1.82%</strong></li>
+</ul>
+
+<div class="img">IMAGE: <code>images/04_rto_drivers.png</code><br>
+Caption: Refusal rate by payment type, customer history and order value. The first-order, high-value cash
+segment is the outlier.</div>
+
+<p>One in four high-value first orders from a new cash customer never gets paid for. Meanwhile a repeat
+customer paying cash for a small basket refuses one time in ten, which is survivable.</p>
+
+<p>That distinction is the whole point. A blanket cash-on-delivery policy would punish a large, mostly healthy
+segment to fix a small, badly behaved one. The intervention belongs on new customers spending big, and it
+belongs hardest in tier-3 cities, where cash refusal reaches 18.69% against 1.33% prepaid.</p>
+
+<p>Across 30 months, refused parcels carried Rs 63.4M of goods and burned roughly Rs 2.7M in freight.</p>
+
+<h2>Finding 2: a bad first delivery costs you the customer</h2>
+
+<p>I grouped every customer by how their very first order ended, then measured whether they ordered again
+within 90 days.</p>
+
+<ul>
+  <li>First order <strong>delivered on time</strong>: <strong>55.44%</strong> came back</li>
+  <li>First order <strong>cancelled</strong>: <strong>50.21%</strong></li>
+  <li>First order <strong>delivered late</strong>: <strong>28.90%</strong></li>
+  <li>First order <strong>refused at the door</strong>: <strong>24.58%</strong></li>
+</ul>
+
+<div class="img">IMAGE: <code>images/07_first_order_retention.png</code><br>
+Caption: 90-day repeat rate by how the first order ended.</div>
+
+<p>A late first delivery is associated with roughly half the repeat rate of an on-time one. Look at the
+cancelled row, though: customers forgive an order that never arrives more readily than one that arrives
+badly. Nothing is worse than a promise broken slowly.</p>
+
+<p>This reframes logistics. Late delivery is not only an operations cost line, it is a customer acquisition
+cost you already paid and then threw away.</p>
+
+<div class="img">IMAGE: <code>images/08_cohort_retention.png</code><br>
+Caption: Cohort retention by signup month, the longer-run view of the same story.</div>
+
+<h2>Finding 3: the checkout test worked, on mobile</h2>
+
+<p>The dataset includes an A/B test on a redesigned checkout, 98,799 sessions over two months. I removed 1,261
+sessions shorter than three seconds as automated traffic, then checked the split had not broken: 48,595
+against 48,463, chi-square p 0.67. Fine.</p>
+
+<p>Overall lift was <strong>+4.54 percentage points</strong>, confidence interval 3.92 to 5.15. A clear win.
+Except it was not a win everywhere:</p>
+
+<ul>
+  <li>Android: <strong>+6.02 points</strong> (5.23 to 6.81)</li>
+  <li>iOS: <strong>+5.56 points</strong> (3.95 to 7.17)</li>
+  <li>Desktop: <strong>+0.16 points</strong> (&minus;1.06 to 1.38)</li>
+</ul>
+
+<div class="img">IMAGE: <code>images/11_ab_test.png</code><br>
+Caption: Conversion lift by device, with 95% confidence intervals. Desktop crosses zero.</div>
+
+<p>The desktop interval crosses zero, which means the change did nothing there that we can distinguish from
+chance. Reporting the blended 4.54 and calling it a company-wide success would have been technically true and
+practically misleading.</p>
+
+<p>Recommendation: ship on mobile, keep testing desktop.</p>
+
+<h2>Finding 4: five sellers, not the worst five</h2>
+
+<p>Return rates by seller are a trap. Rank them and you get a list of small sellers where four returns out of
+twelve items produced a scary-looking percentage that means nothing.</p>
+
+<p>So I tested each seller against their own category's return rate with a one-sided binomial z-test, which
+accounts for how many items they actually shipped. Five sellers out of 137 are genuinely out of line, and the
+dominant return reason in that group is that the item did not match its description. That is a listing
+quality problem with a name and an owner, not a vague complaint about returns.</p>
+
+<hr>
+
+<h2>What I would tell the business</h2>
+
+<p><strong>Ask for partial advance payment on high-value first orders from new cash customers.</strong> That
+is the 24% segment, it is small enough to police, and leaving the repeat cash customer alone avoids
+strangling a segment that performs acceptably.</p>
+
+<p><strong>Treat first-order delivery as a retention investment.</strong> Route first orders to the courier
+with the best on-time record for that city tier, even at higher cost, and judge it on the 90-day repeat rate
+rather than on delivery cost alone.</p>
+
+<p><strong>Ship the checkout redesign on mobile only</strong>, and run the desktop version as its own
+experiment.</p>
+
+<p>And measure all of it as an experiment rather than a rollout. Refusal rate on its own is a gameable metric,
+since you can always improve it by shipping fewer orders. Read it alongside completed orders and net revenue
+per shipped order or you will optimise yourself into a smaller business.</p>
+
+<h2>What this does not prove</h2>
+
+<p>The retention findings are associations, not causes. Showing that faster first deliveries <em>cause</em>
+repeat orders needs an experiment: route a random subset differently and watch what happens. Courier prices
+are not in the dataset, so the courier comparison weighs service quality only. And there are no delivery
+attempt logs, so a customer who refused cannot be separated from a courier who never showed up.</p>
+
+<p>Saying that out loud costs nothing. Pretending otherwise costs everything the first time someone checks.</p>
+
+<h2>The stack, briefly</h2>
+
+<p>T-SQL on SQL Server 2025 Express for the pipeline, driven from Python through sqlcmd. pandas, Matplotlib
+and Seaborn for the statistics and charts. The whole database rebuilds from the source files in about a
+minute, every figure in this article regenerates from scratch, and the outputs are byte-identical between
+runs. The database is disposable. The SQL is the asset.</p>
+
+<p>Code, queries and charts are all on GitHub: <strong>[PASTE YOUR REPO LINK HERE]</strong></p>
+
+<p><em>The data is synthetic and Kaarobar is not a real company. The methods, the SQL and the mistakes are
+real.</em></p>
+
+</body>
+</html>
